@@ -67,6 +67,20 @@
 					</execution>
 				</executions>
 			</plugin>
+			<plugin>
+				<!-- https://maven.apache.org/components/plugins/maven-docck-plugin/index.html -->
+				<!-- http://maven.apache.org/guides/development/guide-plugin-documentation.html -->
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-docck-plugin</artifactId>
+				<version>1.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>check</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<profiles>
