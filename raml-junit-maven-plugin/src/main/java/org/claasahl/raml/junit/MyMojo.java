@@ -1,4 +1,4 @@
-package org.claasahl.raml_junit_maven_plugin;
+package org.claasahl.raml.junit;
 
 /*
  * Copyright 2001-2005 The Apache Software Foundation.
