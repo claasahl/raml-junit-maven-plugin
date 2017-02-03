@@ -10,8 +10,18 @@
 
 	<name>raml-junit-maven-plugin Maven Plugin</name>
 
-	<!-- FIXME change it to the project's website -->
-	<url>http://maven.apache.org</url>
+	<url>https://github.com/claasahl/raml-junit</url>
+	<inceptionYear>2017</inceptionYear>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/claasahl/raml-junit/issues</url>
+	</issueManagement>
+	<licenses>
+		<license>
+			<name>LGPL-3.0</name>
+			<url>https://www.gnu.org/licenses/lgpl-3.0.en.html</url>
+		</license>
+	</licenses>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -75,6 +85,7 @@
 				<version>1.1</version>
 				<executions>
 					<execution>
+						<id>check-plugin-documentation</id>
 						<goals>
 							<goal>check</goal>
 						</goals>
