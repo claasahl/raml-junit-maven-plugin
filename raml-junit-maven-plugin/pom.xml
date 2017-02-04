@@ -69,25 +69,41 @@
 							<goal>descriptor</goal>
 						</goals>
 					</execution>
-					<execution>
-						<id>help-goal</id>
-						<goals>
-							<goal>helpmojo</goal>
-						</goals>
-					</execution>
+					<!-- Causes problems with javadoc plugin, because the generated HelpMojo 
+						class does not have a valid java documentation (i.e. empty author tag, empty 
+						version tag and self-closing br tag) -->
+					<!-- <execution> <id>help-goal</id> <goals> <goal>helpmojo</goal> </goals> 
+						</execution> -->
 				</executions>
 			</plugin>
 			<plugin>
 				<!-- https://maven.apache.org/components/plugins/maven-docck-plugin/index.html -->
 				<!-- http://maven.apache.org/guides/development/guide-plugin-documentation.html -->
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-docck-plugin</artifactId>
 				<version>1.1</version>
+				<!-- <executions> <execution> <id>check-plugin-documentation</id> <goals> 
+					<goal>check</goal> </goals> </execution> </executions> -->
+			</plugin>
+			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>3.0.1</version>
 				<executions>
 					<execution>
-						<id>check-plugin-documentation</id>
+						<id>attach-sources</id>
 						<goals>
-							<goal>check</goal>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.10.4</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals>
+							<goal>jar</goal>
 						</goals>
 					</execution>
 				</executions>
