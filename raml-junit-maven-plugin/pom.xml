@@ -9,7 +9,7 @@
 	<packaging>maven-plugin</packaging>
 
 	<name>raml-junit-maven-plugin Maven Plugin</name>
-
+	<description>TBD</description>
 	<url>https://github.com/claasahl/raml-junit</url>
 	<inceptionYear>2017</inceptionYear>
 	<issueManagement>
@@ -22,9 +22,13 @@
 			<url>https://www.gnu.org/licenses/lgpl-3.0.en.html</url>
 		</license>
 	</licenses>
+	<prerequisites>
+		<maven>${version-maven}</maven>
+	</prerequisites>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<version-maven>3.0</version-maven>
 	</properties>
 
 	<dependencies>
