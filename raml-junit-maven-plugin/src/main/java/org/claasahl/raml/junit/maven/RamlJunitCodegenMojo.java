@@ -9,6 +9,11 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import com.sun.codemodel.JCodeModel;
+import com.sun.codemodel.JDefinedClass;
+import com.sun.codemodel.JExpr;
+import com.sun.codemodel.JMethod;
+
 @Mojo(name = "generate", defaultPhase = LifecyclePhase.GENERATE_TEST_SOURCES)
 public class RamlJunitCodegenMojo extends AbstractMojo {
 
@@ -37,7 +42,16 @@ public class RamlJunitCodegenMojo extends AbstractMojo {
 	private String basePackageName;
 
 	public void execute() throws MojoExecutionException, MojoFailureException {
-		// TODO Auto-generated method stub
+		try {
+			JCodeModel cm = new JCodeModel();
+			JDefinedClass dc = cm._class("foo.Bar");
+			JMethod m = dc.method(0, int.class, "foo");
+			m.body()._return(JExpr.lit(5));
 
+			outputDirectory.mkdirs();
+			cm.build(outputDirectory);
+		} catch (Exception e) {
+			throw new MojoExecutionException("Failed to generate Java source code.", e);
+		}
 	}
 }

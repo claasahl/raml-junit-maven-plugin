@@ -29,9 +29,17 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version-maven>3.0</version-maven>
+		<version-java>1.8</version-java>
+		<version-maven-compiler>3.6.0</version-maven-compiler>
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<!-- https://codemodel.java.net/nonav/apidocs/ -->
+			<groupId>com.sun.codemodel</groupId>
+			<artifactId>codemodel</artifactId>
+			<version>2.6</version>
+		</dependency>
 		<dependency>
 			<groupId>org.apache.maven</groupId>
 			<artifactId>maven-plugin-api</artifactId>
@@ -58,6 +66,14 @@
 
 	<build>
 		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${version-maven-compiler}</version>
+				<configuration>
+					<source>${version-java}</source>
+					<target>${version-java}</target>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-plugin-plugin</artifactId>
