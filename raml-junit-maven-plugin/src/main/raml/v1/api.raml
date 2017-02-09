@@ -1,0 +1,83 @@
+#%RAML 0.8
+title: A CRUD API for licenses.
+version: v12
+mediaType: application/json
+baseUri: http://localhost:8080/patterns/api/{version}/
+documentation: 
+  -
+    title: Getting Started
+    content: TBD
+schemas: 
+  - licenses: !include schemas/licenses.json
+  - license: !include schemas/license.json
+  - licenseNew: !include schemas/license-new.json
+resourceTypes:
+  - collection:
+      usage: This resourceType should be used for any collection of items.
+      description: The collection of <<resourcePathName>>.
+      get:
+        description: Retrieve all <<resourcePathName>>, optionally filtered.
+        responses:
+          200:
+            description: If the <<resourcePathName>> were successfully retrieved.
+            body:
+              schema: <<resourcePathName>> # e.g. users
+              example: <<exampleGet>>
+      post:
+        description: Create a new <<resourcePathName | !singularize>>
+        body: 
+          schema: <<resourcePathName | !singularize>>New # e.g. userNew
+          example: <<examplePost>>
+        responses:
+          201:
+            description: If the <<resourcePathName | !singularize>> was successfully created.
+            headers: 
+              Location:
+                description: Link to the newly created <<resourcePathName | !singularize>>.
+                example:  /<<resourcePathName>>/<<exampleId>>
+          400:
+            description: If the supplied data is invalid (e.g. missing data or incorrect data types).
+          409:
+            description: If the <<resourcePathName | !singularize>> already exists.
+  - member:
+      usage: This resourceType should be used for items in a collection.
+      description: The item <<resourcePathName | !singularize>>.
+      get:
+        description: Retrieve the identified <<resourcePathName | !singularize>>.
+        responses:
+          200:
+            description: If the identified <<resourcePathName | !singularize>> was retrieved.
+            body:
+              schema: <<resourcePathName | !singularize>> # e.g. user
+              example: <<example>>
+          404:
+            description: If the <<resourcePathName | !singularize>> was not found.
+      put:
+        description: Update the identified <<resourcePathName | !singularize>>.
+        body:
+          schema: <<resourcePathName | !singularize>>
+          example: <<example>>
+        responses:
+          204:
+            description: If the identified <<resourcePathName | !singularize>> was updated.
+          400:
+            description: If the supplied data is invalid (e.g. missing data or incorrect data types).
+          404:
+            description: If the <<resourcePathName | !singularize>> was not found.
+      delete:
+        description: Delete the identified <<resourcePathName | !singularize>>.
+        responses:
+          204:
+            description: If the identified <<resourcePathName | !singularize>> was deleted.
+          404:
+            description: If the <<resourcePathName | !singularize>> was not found.
+/licenses:
+  type: {collection: {exampleId: 23, exampleGet: !include examples/licenses.json, examplePost: !include examples/license-new.json}}
+  /{id}:
+    uriParameters: 
+      id: 
+        displayName: Identifier
+        description: Identifies a single license.
+        type: integer
+        example: 23
+    type: {member: {example: !include examples/license.json}}
