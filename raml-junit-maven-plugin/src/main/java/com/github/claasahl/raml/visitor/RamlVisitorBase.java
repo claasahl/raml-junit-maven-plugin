@@ -4,7 +4,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.raml.model.DocumentationItem;
-import org.raml.model.Protocol;
 import org.raml.model.Raml;
 import org.raml.model.Resource;
 import org.raml.model.SecurityReference;
@@ -17,9 +16,7 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	@Override
 	public void visitRaml(Raml raml) {
 		visitBaseUriParameters(raml);
-		visitConsolidatedSchemas(raml);
 		visitDocumentationItems(raml);
-		visitProtocols(raml);
 		visitResources(raml);
 		visitSchemas(raml);
 		visitSecurityReferences(raml);
@@ -34,18 +31,8 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	}
 
 	@Override
-	public void visitConsolidatedSchema(String key, String schema) {
-		// flat
-	}
-
-	@Override
 	public void visitDocumentationItem(DocumentationItem documentationItem) {
 		// DocumentationItem is a "flat" object, there is no need to dive any deeper
-	}
-
-	@Override
-	public void visitProtocol(Protocol protocol) {
-		// Protocol is a "flat" object, there is no need to dive any deeper
 	}
 
 	@Override
@@ -115,21 +102,9 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 		}
 	}
 
-	private void visitProtocols(Raml raml) {
-		for (Protocol protocol : raml.getProtocols()) {
-			visitProtocol(protocol);
-		}
-	}
-
 	private void visitDocumentationItems(Raml raml) {
 		for (DocumentationItem documentationItem : raml.getDocumentation()) {
 			visitDocumentationItem(documentationItem);
-		}
-	}
-
-	private void visitConsolidatedSchemas(Raml raml) {
-		for (Entry<String, String> entry : raml.getConsolidatedSchemas().entrySet()) {
-			visitConsolidatedSchema(entry.getKey(), entry.getValue());
 		}
 	}
 

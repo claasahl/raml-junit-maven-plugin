@@ -3,13 +3,9 @@ package com.github.claasahl.raml.visitor;
 import java.util.Collection;
 import java.util.Map;
 
-import org.raml.model.Action;
 import org.raml.model.DocumentationItem;
-import org.raml.model.MimeType;
-import org.raml.model.Protocol;
 import org.raml.model.Raml;
 import org.raml.model.Resource;
-import org.raml.model.Response;
 import org.raml.model.SecurityReference;
 import org.raml.model.SecurityScheme;
 import org.raml.model.Template;
@@ -30,11 +26,7 @@ public interface RamlVisitor {
 
 	void visitBaseUriParameter(String key, UriParameter uriParameter);
 
-	void visitConsolidatedSchema(String key, String schema);
-
 	void visitDocumentationItem(DocumentationItem documentationItem);
-
-	void visitProtocol(Protocol protocol);
 
 	void visitResource(String key, Resource resource);
 
