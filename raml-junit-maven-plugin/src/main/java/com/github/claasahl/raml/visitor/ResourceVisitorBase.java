@@ -24,29 +24,28 @@ public class ResourceVisitorBase implements ResourceVisitor {
 	@Override
 	public void visitAction(ActionType actionType, Action action) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public void visitBaseUriParameter(String key, List<UriParameter> uriParameters) {
-		// UriParameter is a "flat" object, there is no need to dive any deeper
+		// flat
 	}
 
 	@Override
 	public void visitResolvedUriParameter(String key, UriParameter uriParameters) {
-		// UriParameter is a "flat" object, there is no need to dive any deeper		
+		// flat
 	}
 
 	@Override
 	public void visitSecurityReference(SecurityReference securityReference) {
-		// SecurityReference is a "flat" object, there is no need to dive any deeper
+		// FIXME ???
 	}
 
 	@Override
 	public void visitUriParameter(String key, UriParameter uriParameter) {
-		// UriParameter is a "flat" object, there is no need to dive any deeper		
+		// flat
 	}
-	
+
 	private void visitSubResources(Resource resource) {
 		for (Resource subResource : resource.getResources().values()) {
 			visitResource(subResource);

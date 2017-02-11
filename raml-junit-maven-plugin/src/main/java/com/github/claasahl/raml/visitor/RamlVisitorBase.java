@@ -27,18 +27,17 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 
 	@Override
 	public void visitBaseUriParameter(String key, UriParameter uriParameter) {
-		// UriParameter is a "flat" object, there is no need to dive any deeper
+		// flat
 	}
 
 	@Override
 	public void visitDocumentationItem(DocumentationItem documentationItem) {
-		// DocumentationItem is a "flat" object, there is no need to dive any deeper
+		// flat
 	}
 
 	@Override
 	public void visitResource(String key, Resource resource) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
@@ -48,7 +47,7 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 
 	@Override
 	public void visitSecurityReference(SecurityReference securityReference) {
-		// SecurityReference is a "flat" object, there is no need to dive any deeper
+		// FIXME ???
 	}
 
 	@Override

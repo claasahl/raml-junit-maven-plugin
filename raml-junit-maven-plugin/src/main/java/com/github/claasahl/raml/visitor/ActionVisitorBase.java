@@ -25,38 +25,32 @@ public class ActionVisitorBase implements ActionVisitor {
 
 	@Override
 	public void visitBaseUriParameter(String key, List<UriParameter> uriParameters) {
-		// TODO Auto-generated method stub
-		
+		// flat
 	}
 
 	@Override
 	public void visitBody(String key, MimeType mimeType) {
-		// TODO Auto-generated method stub
-		
+		// FIXME ???
 	}
 
 	@Override
 	public void visitHeader(String key, Header header) {
-		// TODO Auto-generated method stub
-		
+		// flat
 	}
 
 	@Override
 	public void visitQueryParameter(String key, QueryParameter queryParameter) {
-		// TODO Auto-generated method stub
-		
+		// flat
 	}
 
 	@Override
 	public void visitSecurityReference(SecurityReference securityReference) {
-		// TODO Auto-generated method stub
-		
+		// FIXME ???
 	}
 
 	@Override
 	public void visitResponse(String key, Response response) {
 		// TODO Auto-generated method stub
-		
 	}
 	
 	private void visitResponses(Action action) {
