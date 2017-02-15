@@ -1,6 +1,5 @@
 package com.github.claasahl.raml.visitor;
 
-import java.util.Collection;
 import java.util.Map;
 
 import org.raml.model.DocumentationItem;
@@ -12,10 +11,15 @@ import org.raml.model.Template;
 import org.raml.model.parameter.UriParameter;
 
 /**
- * The interface {@link RamlVisitor} provides methods for visiting any
- * {@link Collection} or {@link Map} within {@link Raml} instances.
- * Implementation may be used to "walk" a RAML specification (i.e. "walk" as in
- * "walking" a directory structure).
+ * The interface {@link RamlVisitor}.
+ * <p>
+ * Superclass of all response-based visitors. This class is intended to model a
+ * visitor for {@link Raml} instances and their (composite) fields.
+ * Implementations of this class will most likely extract details (e.g. URI
+ * parameters or resources) or otherwise process responses.
+ * <p>
+ * This class resembles a derivation of the <i>visitor</i> design pattern. It
+ * includes a visit-method for all composite fields of the {@link Raml} class.
  * 
  * @author Claas
  *
