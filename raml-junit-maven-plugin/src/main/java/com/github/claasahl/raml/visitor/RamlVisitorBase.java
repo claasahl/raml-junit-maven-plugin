@@ -6,13 +6,39 @@ import java.util.Map.Entry;
 import org.raml.model.DocumentationItem;
 import org.raml.model.Raml;
 import org.raml.model.Resource;
+import org.raml.model.Response;
 import org.raml.model.SecurityReference;
 import org.raml.model.SecurityScheme;
 import org.raml.model.Template;
 import org.raml.model.parameter.UriParameter;
 
+/**
+ * The class {@link RamlVisitorBase}.
+ * <p>
+ * A base implementation of the {@link RamlVisitor} interface, which provides
+ * default implementations for all methods of the aforementioned interface. The
+ * method {@link #visitResponse(Response)} already implements a mechanism for
+ * visiting all composite fields (e.g. URI parameters or resources). The default
+ * implementation of the remaining methods is empty.
+ * <p>
+ * This visitor is context-free. As such, instances of this class can be used to
+ * multiple times (i.e. several RAML specifications may be processed).
+ * 
+ * @author Claas
+ *
+ */
 public abstract class RamlVisitorBase implements RamlVisitor {
 
+	/**
+	 * Visits the specified {@link Raml} specification. The default
+	 * implementation visits all composite fields (e.g. URI parameters or
+	 * resources).
+	 * <p>
+	 * <b>Hint:</b> When overwriting this method, it is recommended to still
+	 * call this method. Otherwise none of the composite fields may be visited.
+	 * 
+	 * @see RamlVisitor#visitRaml(Raml)
+	 */
 	@Override
 	public void visitRaml(Raml raml) {
 		visitBaseUriParameters(raml);
@@ -27,22 +53,22 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 
 	@Override
 	public void visitBaseUriParameter(String key, UriParameter uriParameter) {
-		// flat
+		// empty default implementation
 	}
 
 	@Override
 	public void visitDocumentationItem(DocumentationItem documentationItem) {
-		// flat
+		// empty default implementation
 	}
 
 	@Override
 	public void visitResource(String key, Resource resource) {
-		// TODO Auto-generated method stub
+		// empty default implementation
 	}
 
 	@Override
 	public void visitSchema(Map<String, String> schema) {
-		// flat
+		// empty default implementation
 	}
 
 	@Override
@@ -57,57 +83,132 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 
 	@Override
 	public void visitResourceType(Map<String, Template> resourceType) {
-		// flat
+		// empty default implementation
 	}
 
 	@Override
 	public void visitTrait(Map<String, Template> trait) {
-		// flat
+		// empty default implementation
 	}
-	
-	private void visitTraits(Raml raml) {
+
+	/**
+	 * A support method for iterating and visiting traits of the specified RAML
+	 * specification. This implementation calls {@link #visitTrait(Map)} for all
+	 * available traits.
+	 * 
+	 * @param raml
+	 *            the RAML specification
+	 * @see Raml#getTraits()
+	 */
+	protected void visitTraits(Raml raml) {
 		for (Map<String, Template> trait : raml.getTraits()) {
 			visitTrait(trait);
 		}
 	}
 
-	private void visitResourceTypes(Raml raml) {
+	/**
+	 * A support method for iterating and visiting resource types of the
+	 * specified RAML specification. This implementation calls
+	 * {@link #visitResourceType(Map)} for all available resource types.
+	 * 
+	 * @param raml
+	 *            the RAML specification
+	 * @see Raml#getResourceTypes()
+	 */
+	protected void visitResourceTypes(Raml raml) {
 		for (Map<String, Template> resourceType : raml.getResourceTypes()) {
 			visitResourceType(resourceType);
 		}
 	}
 
-	private void visitSecuritySchemes(Raml raml) {
+	/**
+	 * A support method for iterating and visiting security schemes of the
+	 * specified RAML specification. This implementation calls
+	 * {@link #visitSecurityScheme(Map)} for all available security schemes.
+	 * 
+	 * @param raml
+	 *            the RAML specification
+	 * @see Raml#getSecuritySchemes()
+	 */
+	protected void visitSecuritySchemes(Raml raml) {
 		for (Map<String, SecurityScheme> securityScheme : raml.getSecuritySchemes()) {
 			visitSecurityScheme(securityScheme);
 		}
 	}
 
-	private void visitSecurityReferences(Raml raml) {
+	/**
+	 * A support method for iterating and visiting security references of the
+	 * specified RAML specification. This implementation calls
+	 * {@link #visitSecurityReference(SecurityReference)} for all available
+	 * security references.
+	 * 
+	 * @param raml
+	 *            the RAML specification
+	 * @see Raml#getSecuredBy()
+	 */
+	protected void visitSecurityReferences(Raml raml) {
 		for (SecurityReference securityReference : raml.getSecuredBy()) {
 			visitSecurityReference(securityReference);
 		}
 	}
 
-	private void visitSchemas(Raml raml) {
+	/**
+	 * A support method for iterating and visiting schemas of the specified RAML
+	 * specification. This implementation calls {@link #visitSchema(Map)} for
+	 * all available schemas.
+	 * 
+	 * @param raml
+	 *            the RAML specification
+	 * @see Raml#getSchemas()
+	 */
+	protected void visitSchemas(Raml raml) {
 		for (Map<String, String> schema : raml.getSchemas()) {
 			visitSchema(schema);
 		}
 	}
 
-	private void visitResources(Raml raml) {
+	/**
+	 * A support method for iterating and visiting resources of the specified
+	 * RAML specification. This implementation calls
+	 * {@link #visitResource(String, Resource)} for all available resources.
+	 * 
+	 * @param raml
+	 *            the RAML specification
+	 * @see Raml#getResources()
+	 */
+	protected void visitResources(Raml raml) {
 		for (Entry<String, Resource> entry : raml.getResources().entrySet()) {
 			visitResource(entry.getKey(), entry.getValue());
 		}
 	}
 
-	private void visitDocumentationItems(Raml raml) {
+	/**
+	 * A support method for iterating and visiting documentation items of the
+	 * specified RAML specification. This implementation calls
+	 * {@link #visitDocumentationItem(DocumentationItem)} for all available
+	 * documentation items.
+	 * 
+	 * @param raml
+	 *            the RAML specification
+	 * @see Raml#getDocumentation()
+	 */
+	protected void visitDocumentationItems(Raml raml) {
 		for (DocumentationItem documentationItem : raml.getDocumentation()) {
 			visitDocumentationItem(documentationItem);
 		}
 	}
 
-	private void visitBaseUriParameters(Raml raml) {
+	/**
+	 * A support method for iterating and visiting base URI parameters of the
+	 * specified RAML specification. This implementation calls
+	 * {@link #visitBaseUriParameter(String, UriParameter)} for all available
+	 * base URI parameters.
+	 * 
+	 * @param raml
+	 *            the RAML specification
+	 * @see Raml#getBaseUriParameters()
+	 */
+	protected void visitBaseUriParameters(Raml raml) {
 		for (Entry<String, UriParameter> entry : raml.getBaseUriParameters().entrySet()) {
 			visitBaseUriParameter(entry.getKey(), entry.getValue());
 		}

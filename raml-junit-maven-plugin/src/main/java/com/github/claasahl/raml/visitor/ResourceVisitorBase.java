@@ -9,8 +9,32 @@ import org.raml.model.Resource;
 import org.raml.model.SecurityReference;
 import org.raml.model.parameter.UriParameter;
 
+/**
+ * The class {@link ResourceVisitorBase}.
+ * <p>
+ * A base implementation of the {@link ResourceVisitor} interface, which
+ * provides default implementations for all methods of the aforementioned
+ * interface. The method {@link #visitResource(Resource)} already implements a
+ * mechanism for visiting all composite fields (e.g. headers or body contents).
+ * The default implementation of the remaining methods is empty.
+ * <p>
+ * This visitor is context-free. As such, instances of this class can be used to
+ * multiple times (i.e. several resources may be processed).
+ * 
+ * @author Claas
+ *
+ */
 public class ResourceVisitorBase implements ResourceVisitor {
 
+	/**
+	 * Visits the specified {@link Resource}. The default implementation visits
+	 * all composite fields (e.g. headers or body contents).
+	 * <p>
+	 * <b>Hint:</b> When overwriting this method, it is recommended to still
+	 * call this method. Otherwise none of the composite fields may be visited.
+	 * 
+	 * @see ResourceVisitor#visitResource(Resource)
+	 */
 	@Override
 	public void visitResource(Resource resource) {
 		visitActions(resource);
@@ -23,17 +47,17 @@ public class ResourceVisitorBase implements ResourceVisitor {
 
 	@Override
 	public void visitAction(ActionType actionType, Action action) {
-		// TODO Auto-generated method stub
+		// empty default implementation
 	}
 
 	@Override
 	public void visitBaseUriParameter(String key, List<UriParameter> uriParameters) {
-		// flat
+		// empty default implementation
 	}
 
 	@Override
 	public void visitResolvedUriParameter(String key, UriParameter uriParameters) {
-		// flat
+		// empty default implementation
 	}
 
 	@Override
@@ -43,40 +67,98 @@ public class ResourceVisitorBase implements ResourceVisitor {
 
 	@Override
 	public void visitUriParameter(String key, UriParameter uriParameter) {
-		// flat
+		// empty default implementation
 	}
 
-	private void visitSubResources(Resource resource) {
+	/**
+	 * A support method for iterating and visiting sub-resources of the
+	 * specified resource. This implementation calls
+	 * {@link #visitResource(Resource)} for all available sub-resources.
+	 * 
+	 * @param resource
+	 *            the resource
+	 * @see Resource#getResources()
+	 */
+	protected void visitSubResources(Resource resource) {
 		for (Resource subResource : resource.getResources().values()) {
 			visitResource(subResource);
 		}
 	}
 
-	private void visitSecurityReferences(Resource resource) {
+	/**
+	 * A support method for iterating and visiting security references of the
+	 * specified resource. This implementation calls
+	 * {@link #visitSecurityReference(SecurityReference)} for all available
+	 * security references.
+	 * 
+	 * @param resource
+	 *            the resource
+	 * @see Resource#getSecuredBy()
+	 */
+	protected void visitSecurityReferences(Resource resource) {
 		for (SecurityReference securityReference : resource.getSecuredBy()) {
 			visitSecurityReference(securityReference);
 		}
 	}
 
-	private void visitUriParameters(Resource resource) {
+	/**
+	 * A support method for iterating and visiting URI parameters of the
+	 * specified resource. This implementation calls
+	 * {@link #visitUriParameter(String, UriParameter)} for all available URI
+	 * parameters.
+	 * 
+	 * @param resource
+	 *            the resource
+	 * @see Resource#getUriParameters()
+	 */
+	protected void visitUriParameters(Resource resource) {
 		for (Entry<String, UriParameter> entry : resource.getUriParameters().entrySet()) {
 			visitUriParameter(entry.getKey(), entry.getValue());
 		}
 	}
 
-	private void visitResolvedUriParameters(Resource resource) {
+	/**
+	 * A support method for iterating and visiting resolved URI parameters of
+	 * the specified resource. This implementation calls
+	 * {@link #visitResolvedUriParameter(String, UriParameter)} for all
+	 * available resolved URI parameters.
+	 * 
+	 * @param resource
+	 *            the resource
+	 * @see Resource#getResolvedUriParameters()
+	 */
+	protected void visitResolvedUriParameters(Resource resource) {
 		for (Entry<String, UriParameter> entry : resource.getResolvedUriParameters().entrySet()) {
 			visitResolvedUriParameter(entry.getKey(), entry.getValue());
 		}
 	}
 
-	private void visitBaseUriParameters(Resource resource) {
+	/**
+	 * A support method for iterating and visiting base URI parameters of the
+	 * specified resource. This implementation calls
+	 * {@link #visitBaseUriParameter(String, List)} for all available base URI
+	 * parameters.
+	 * 
+	 * @param resource
+	 *            the resource
+	 * @see Resource#getBaseUriParameters()
+	 */
+	protected void visitBaseUriParameters(Resource resource) {
 		for (Entry<String, List<UriParameter>> entry : resource.getBaseUriParameters().entrySet()) {
 			visitBaseUriParameter(entry.getKey(), entry.getValue());
 		}
 	}
 
-	private void visitActions(Resource resource) {
+	/**
+	 * A support method for iterating and visiting actions of the specified
+	 * resource. This implementation calls
+	 * {@link #visitAction(ActionType, Action)} for all available actions.
+	 * 
+	 * @param resource
+	 *            the resource
+	 * @see Resource#getActions()
+	 */
+	protected void visitActions(Resource resource) {
 		for (Entry<ActionType, Action> entry : resource.getActions().entrySet()) {
 			visitAction(entry.getKey(), entry.getValue());
 		}
