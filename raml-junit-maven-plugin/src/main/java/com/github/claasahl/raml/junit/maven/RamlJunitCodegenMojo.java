@@ -1,4 +1,4 @@
-package org.claasahl.raml.junit.maven;
+package com.github.claasahl.raml.junit.maven;
 
 import java.io.File;
 

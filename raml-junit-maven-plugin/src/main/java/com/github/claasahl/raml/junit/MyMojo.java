@@ -1,4 +1,4 @@
-package org.claasahl.raml.junit;
+package com.github.claasahl.raml.junit;
 
 /*
  * Copyright 2001-2005 The Apache Software Foundation.

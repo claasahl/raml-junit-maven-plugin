@@ -1,4 +1,4 @@
-package org.claasahl.raml.junit;
+package com.github.claasahl.raml.junit;
 
 import java.nio.file.Path;
 

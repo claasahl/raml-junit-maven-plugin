@@ -10,19 +10,19 @@ public class DebugResponseVisitor extends ResponseVisitorBase {
 
 	@Override
 	public void visitResponse(Response response) {
-		// TODO Auto-generated method stub
+		System.out.println(response);		
 		super.visitResponse(response);
 	}
 
 	@Override
 	public void visitBody(String key, MimeType mimeType) {
-		// TODO Auto-generated method stub
+		System.out.format("k:%s, m:%s\n", key, mimeType);
 		super.visitBody(key, mimeType);
 	}
 
 	@Override
 	public void visitHeader(String key, Header header) {
-		// TODO Auto-generated method stub
+		System.out.format("k:%s, h:%s\n", key, header);
 		super.visitHeader(key, header);
 	}
 

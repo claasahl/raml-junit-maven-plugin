@@ -23,6 +23,13 @@ public interface ResponseVisitor {
 
 	void visitResponse(Response response);
 
+	/**
+	 * 
+	 * @param key
+	 * @param mimeType
+	 * 
+	 * @see Response#getBody()
+	 */
 	void visitBody(String key, MimeType mimeType);
 
 	void visitHeader(String key, Header header);
