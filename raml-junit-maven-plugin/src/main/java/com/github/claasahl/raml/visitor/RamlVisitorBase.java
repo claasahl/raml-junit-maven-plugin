@@ -1,5 +1,6 @@
 package com.github.claasahl.raml.visitor;
 
+import java.nio.file.Path;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -101,6 +102,8 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	 * @see Raml#getTraits()
 	 */
 	protected void visitTraits(Raml raml) {
+		if (raml.getTraits() == null)
+			return;
 		for (Map<String, Template> trait : raml.getTraits()) {
 			visitTrait(trait);
 		}
@@ -116,6 +119,8 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	 * @see Raml#getResourceTypes()
 	 */
 	protected void visitResourceTypes(Raml raml) {
+		if (raml.getResourceTypes() == null)
+			return;
 		for (Map<String, Template> resourceType : raml.getResourceTypes()) {
 			visitResourceType(resourceType);
 		}
@@ -131,6 +136,8 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	 * @see Raml#getSecuritySchemes()
 	 */
 	protected void visitSecuritySchemes(Raml raml) {
+		if (raml.getSecuritySchemes() == null)
+			return;
 		for (Map<String, SecurityScheme> securityScheme : raml.getSecuritySchemes()) {
 			visitSecurityScheme(securityScheme);
 		}
@@ -147,6 +154,8 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	 * @see Raml#getSecuredBy()
 	 */
 	protected void visitSecurityReferences(Raml raml) {
+		if (raml.getSecuredBy() == null)
+			return;
 		for (SecurityReference securityReference : raml.getSecuredBy()) {
 			visitSecurityReference(securityReference);
 		}
@@ -162,6 +171,8 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	 * @see Raml#getSchemas()
 	 */
 	protected void visitSchemas(Raml raml) {
+		if (raml.getSchemas() == null)
+			return;
 		for (Map<String, String> schema : raml.getSchemas()) {
 			visitSchema(schema);
 		}
@@ -177,6 +188,8 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	 * @see Raml#getResources()
 	 */
 	protected void visitResources(Raml raml) {
+		if (raml.getResources() == null)
+			return;
 		for (Entry<String, Resource> entry : raml.getResources().entrySet()) {
 			visitResource(entry.getKey(), entry.getValue());
 		}
@@ -193,6 +206,8 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	 * @see Raml#getDocumentation()
 	 */
 	protected void visitDocumentationItems(Raml raml) {
+		if (raml.getDocumentation() == null)
+			return;
 		for (DocumentationItem documentationItem : raml.getDocumentation()) {
 			visitDocumentationItem(documentationItem);
 		}
@@ -209,6 +224,8 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	 * @see Raml#getBaseUriParameters()
 	 */
 	protected void visitBaseUriParameters(Raml raml) {
+		if (raml.getBaseUriParameters() == null)
+			return;
 		for (Entry<String, UriParameter> entry : raml.getBaseUriParameters().entrySet()) {
 			visitBaseUriParameter(entry.getKey(), entry.getValue());
 		}

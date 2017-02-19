@@ -87,6 +87,8 @@ public class ActionVisitorBase implements ActionVisitor {
 	 * @see Action#getResponses()
 	 */
 	protected void visitResponses(Action action) {
+		if (action.getResponses() == null)
+			return;
 		for (Entry<String, Response> entry : action.getResponses().entrySet()) {
 			visitResponse(entry.getKey(), entry.getValue());
 		}
@@ -103,6 +105,8 @@ public class ActionVisitorBase implements ActionVisitor {
 	 * @see Action#getSecuredBy()
 	 */
 	protected void visitSecurityReferences(Action action) {
+		if (action.getSecuredBy() == null)
+			return;
 		for (SecurityReference securityReference : action.getSecuredBy()) {
 			visitSecurityReference(securityReference);
 		}
@@ -119,6 +123,8 @@ public class ActionVisitorBase implements ActionVisitor {
 	 * @see Action#getQueryParameters()
 	 */
 	protected void visitQueryParameters(Action action) {
+		if (action.getQueryParameters() == null)
+			return;
 		for (Entry<String, QueryParameter> entry : action.getQueryParameters().entrySet()) {
 			visitQueryParameter(entry.getKey(), entry.getValue());
 		}
@@ -134,6 +140,8 @@ public class ActionVisitorBase implements ActionVisitor {
 	 * @see Action#getHeaders()
 	 */
 	protected void visitHeaders(Action action) {
+		if (action.getHeaders() == null)
+			return;
 		for (Entry<String, Header> entry : action.getHeaders().entrySet()) {
 			visitHeader(entry.getKey(), entry.getValue());
 		}
@@ -149,6 +157,8 @@ public class ActionVisitorBase implements ActionVisitor {
 	 * @see Action#getBody()
 	 */
 	protected void visitBodies(Action action) {
+		if (action.getBody() == null)
+			return;
 		for (Entry<String, MimeType> entry : action.getBody().entrySet()) {
 			visitBody(entry.getKey(), entry.getValue());
 		}
@@ -165,6 +175,8 @@ public class ActionVisitorBase implements ActionVisitor {
 	 * @see Action#getBaseUriParameters()
 	 */
 	protected void visitBaseUriParameters(Action action) {
+		if (action.getBaseUriParameters() == null)
+			return;
 		for (Entry<String, List<UriParameter>> entry : action.getBaseUriParameters().entrySet()) {
 			visitBaseUriParameter(entry.getKey(), entry.getValue());
 		}

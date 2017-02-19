@@ -80,6 +80,8 @@ public class ResourceVisitorBase implements ResourceVisitor {
 	 * @see Resource#getResources()
 	 */
 	protected void visitSubResources(Resource resource) {
+		if (resource.getResources() == null)
+			return;
 		for (Resource subResource : resource.getResources().values()) {
 			visitResource(subResource);
 		}
@@ -96,6 +98,8 @@ public class ResourceVisitorBase implements ResourceVisitor {
 	 * @see Resource#getSecuredBy()
 	 */
 	protected void visitSecurityReferences(Resource resource) {
+		if (resource.getSecuredBy() == null)
+			return;
 		for (SecurityReference securityReference : resource.getSecuredBy()) {
 			visitSecurityReference(securityReference);
 		}
@@ -112,6 +116,8 @@ public class ResourceVisitorBase implements ResourceVisitor {
 	 * @see Resource#getUriParameters()
 	 */
 	protected void visitUriParameters(Resource resource) {
+		if (resource.getUriParameters() == null)
+			return;
 		for (Entry<String, UriParameter> entry : resource.getUriParameters().entrySet()) {
 			visitUriParameter(entry.getKey(), entry.getValue());
 		}
@@ -128,6 +134,8 @@ public class ResourceVisitorBase implements ResourceVisitor {
 	 * @see Resource#getResolvedUriParameters()
 	 */
 	protected void visitResolvedUriParameters(Resource resource) {
+		if (resource.getResolvedUriParameters() == null)
+			return;
 		for (Entry<String, UriParameter> entry : resource.getResolvedUriParameters().entrySet()) {
 			visitResolvedUriParameter(entry.getKey(), entry.getValue());
 		}
@@ -144,6 +152,8 @@ public class ResourceVisitorBase implements ResourceVisitor {
 	 * @see Resource#getBaseUriParameters()
 	 */
 	protected void visitBaseUriParameters(Resource resource) {
+		if (resource.getBaseUriParameters() == null)
+			return;
 		for (Entry<String, List<UriParameter>> entry : resource.getBaseUriParameters().entrySet()) {
 			visitBaseUriParameter(entry.getKey(), entry.getValue());
 		}
@@ -159,6 +169,8 @@ public class ResourceVisitorBase implements ResourceVisitor {
 	 * @see Resource#getActions()
 	 */
 	protected void visitActions(Resource resource) {
+		if (resource.getActions() == null)
+			return;
 		for (Entry<ActionType, Action> entry : resource.getActions().entrySet()) {
 			visitAction(entry.getKey(), entry.getValue());
 		}

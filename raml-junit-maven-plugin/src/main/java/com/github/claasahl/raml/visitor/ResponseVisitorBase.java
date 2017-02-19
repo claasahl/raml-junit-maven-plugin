@@ -58,6 +58,8 @@ public class ResponseVisitorBase implements ResponseVisitor {
 	 * @see Response#getHeaders()
 	 */
 	protected void visitHeaders(Response response) {
+		if (response.getHeaders() == null)
+			return;
 		for (Entry<String, Header> entry : response.getHeaders().entrySet()) {
 			visitHeader(entry.getKey(), entry.getValue());
 		}
@@ -73,6 +75,8 @@ public class ResponseVisitorBase implements ResponseVisitor {
 	 * @see Response#getBody()
 	 */
 	protected void visitBodies(Response response) {
+		if (response.getBody() == null)
+			return;
 		for (Entry<String, MimeType> entry : response.getBody().entrySet()) {
 			visitBody(entry.getKey(), entry.getValue());
 		}
