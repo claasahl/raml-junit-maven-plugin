@@ -38,10 +38,10 @@ public abstract class RamlVisitorBase implements RamlVisitor {
 	 * <b>Hint:</b> When overwriting this method, it is recommended to still
 	 * call this method. Otherwise none of the composite fields may be visited.
 	 * 
-	 * @see RamlVisitor#visitRaml(Raml)
+	 * @see RamlVisitor#visitRaml(Raml, Path)
 	 */
 	@Override
-	public void visitRaml(Raml raml) {
+	public void visitRaml(Raml raml, Path ramlPath) {
 		visitBaseUriParameters(raml);
 		visitDocumentationItems(raml);
 		visitResources(raml);

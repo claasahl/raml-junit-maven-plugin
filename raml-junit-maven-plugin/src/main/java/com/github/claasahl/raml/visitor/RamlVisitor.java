@@ -1,5 +1,6 @@
 package com.github.claasahl.raml.visitor;
 
+import java.nio.file.Path;
 import java.util.Map;
 
 import org.raml.model.DocumentationItem;
@@ -26,7 +27,7 @@ import org.raml.model.parameter.UriParameter;
  */
 public interface RamlVisitor {
 
-	void visitRaml(Raml raml);
+	void visitRaml(Raml raml, Path ramlPath);
 
 	void visitBaseUriParameter(String key, UriParameter uriParameter);
 
