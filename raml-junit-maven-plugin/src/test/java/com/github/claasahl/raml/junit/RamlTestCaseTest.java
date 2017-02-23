@@ -6,11 +6,6 @@ import org.junit.Test;
 
 
 public class RamlTestCaseTest {
-
-	@Test
-	public void test() {
-		fail("Not yet implemented");
-	}
 	
 	@Test
 	public void implementationOfEqualsShouldHandleNull() {

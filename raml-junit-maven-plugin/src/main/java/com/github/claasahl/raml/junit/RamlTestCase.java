@@ -98,4 +98,68 @@ public class RamlTestCase {
 		this.securedBy = securedBy;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((action == null) ? 0 : action.hashCode());
+		result = prime * result + ((mimeType == null) ? 0 : mimeType.hashCode());
+		result = prime * result + ((protocol == null) ? 0 : protocol.hashCode());
+		result = prime * result + ((raml == null) ? 0 : raml.hashCode());
+		result = prime * result + ((ramlPath == null) ? 0 : ramlPath.hashCode());
+		result = prime * result + ((resource == null) ? 0 : resource.hashCode());
+		result = prime * result + ((securedBy == null) ? 0 : securedBy.hashCode());
+		result = prime * result + ((statusCode == null) ? 0 : statusCode.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		RamlTestCase other = (RamlTestCase) obj;
+		if (action == null) {
+			if (other.action != null)
+				return false;
+		} else if (!action.equals(other.action))
+			return false;
+		if (mimeType == null) {
+			if (other.mimeType != null)
+				return false;
+		} else if (!mimeType.equals(other.mimeType))
+			return false;
+		if (protocol != other.protocol)
+			return false;
+		if (raml == null) {
+			if (other.raml != null)
+				return false;
+		} else if (!raml.equals(other.raml))
+			return false;
+		if (ramlPath == null) {
+			if (other.ramlPath != null)
+				return false;
+		} else if (!ramlPath.equals(other.ramlPath))
+			return false;
+		if (resource == null) {
+			if (other.resource != null)
+				return false;
+		} else if (!resource.equals(other.resource))
+			return false;
+		if (securedBy == null) {
+			if (other.securedBy != null)
+				return false;
+		} else if (!securedBy.equals(other.securedBy))
+			return false;
+		if (statusCode == null) {
+			if (other.statusCode != null)
+				return false;
+		} else if (!statusCode.equals(other.statusCode))
+			return false;
+		return true;
+	}
+
 }
