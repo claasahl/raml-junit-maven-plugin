@@ -14,7 +14,6 @@ public class RamlTestCasesVisitor extends RamlVisitorBase {
 	private final RamlVisitorFactory factory;
 
 	public RamlTestCasesVisitor(RamlTestCaseBuilder builder, RamlVisitorFactory factory) {
-		super();
 		this.builder = builder;
 		this.factory = factory;
 	}

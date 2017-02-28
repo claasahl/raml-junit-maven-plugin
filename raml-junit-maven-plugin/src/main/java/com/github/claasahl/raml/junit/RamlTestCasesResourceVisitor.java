@@ -13,7 +13,6 @@ public class RamlTestCasesResourceVisitor extends ResourceVisitorBase {
 	private final RamlVisitorFactory factory;
 
 	public RamlTestCasesResourceVisitor(RamlTestCaseBuilder builder, RamlVisitorFactory factory) {
-		super();
 		this.builder = builder;
 		this.factory = factory;
 	}

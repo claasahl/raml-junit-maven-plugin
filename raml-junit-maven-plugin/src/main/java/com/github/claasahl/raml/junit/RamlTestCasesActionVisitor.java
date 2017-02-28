@@ -13,7 +13,6 @@ public class RamlTestCasesActionVisitor extends ActionVisitorBase {
 	private final RamlVisitorFactory factory;
 
 	public RamlTestCasesActionVisitor(RamlTestCaseBuilder builder, RamlVisitorFactory factory) {
-		super();
 		this.builder = builder;
 		this.factory = factory;
 	}
@@ -24,7 +23,7 @@ public class RamlTestCasesActionVisitor extends ActionVisitorBase {
 		this.builder.setAction(action);
 		super.visitAction(action);
 	}
-	
+
 	@Override
 	public void visitBody(String key, MimeType mimeType) {
 		this.builder.setMimeType(mimeType);
