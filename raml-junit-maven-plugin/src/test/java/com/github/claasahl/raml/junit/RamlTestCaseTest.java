@@ -8,6 +8,19 @@ import org.junit.Test;
 public class RamlTestCaseTest {
 	
 	@Test
+	public void shouldBeInitializedWithNull() {
+		RamlTestCase testCase = new RamlTestCase();
+		assertNull(testCase.getAction());
+		assertNull(testCase.getMimeType());
+		assertNull(testCase.getProtocol());
+		assertNull(testCase.getRaml());
+		assertNull(testCase.getRamlPath());
+		assertNull(testCase.getResource());
+		assertNull(testCase.getSecuredBy());
+		assertNull(testCase.getStatusCode());
+	}
+	
+	@Test
 	public void implementationOfEqualsShouldHandleNull() {
 		RamlTestCase testCase = new RamlTestCase();
 		assertFalse(testCase.equals(null));
