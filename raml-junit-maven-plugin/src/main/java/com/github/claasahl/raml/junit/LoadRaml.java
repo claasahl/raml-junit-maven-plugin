@@ -39,6 +39,9 @@ public class LoadRaml {
 		Path ramlPath = Paths.get("src/main/raml", "v1/api.raml");
 		List<RamlTestCase> testCases = generateTestCases(raml, ramlPath);
 		System.out.println(testCases);
+		
+		RamlTestCasesVisitorFactory factory = new RamlTestCasesVisitorFactory();
+		factory.createRamlVisitor().visitRaml(raml, ramlPath);
 	}
 	
 	private static List<RamlTestCase> generateTestCases(Raml raml, Path ramlPath) {
