@@ -38,6 +38,7 @@
 		<version-plugin-plugin>3.2</version-plugin-plugin>
 		<version-source-plugin>3.0.1</version-source-plugin>
 		<version-javadoc-plugin>2.10.4</version-javadoc-plugin>
+		<version-checkstyle-plugin>2.17</version-checkstyle-plugin>
 		<version-invoker-plugin>1.7</version-invoker-plugin>
 		<version-java>1.8</version-java>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -102,6 +103,9 @@
 						<goals>
 							<goal>descriptor</goal>
 						</goals>
+						<configuration>
+							<skip>true</skip>
+						</configuration>
 					</execution>
 					<!-- Causes problems with javadoc plugin, because the generated HelpMojo 
 						class does not have a valid java documentation (i.e. empty author tag, empty 
@@ -138,6 +142,19 @@
 						<id>attach-javadocs</id>
 						<goals>
 							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${version-checkstyle-plugin}</version>
+				<executions>
+					<execution>
+						<id>validate</id>
+						<phase>validate</phase>
+						<goals>
+							<goal>check</goal>
 						</goals>
 					</execution>
 				</executions>
