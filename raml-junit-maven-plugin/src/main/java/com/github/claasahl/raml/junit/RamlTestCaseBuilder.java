@@ -15,7 +15,7 @@ public class RamlTestCaseBuilder {
 	public RamlTestCaseBuilder() {
 		this.testCase = new RamlTestCase();
 	}
-	
+
 	public RamlTestCaseBuilder(RamlTestCase testCase) {
 		this.testCase = testCase;
 	}

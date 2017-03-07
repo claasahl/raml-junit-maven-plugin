@@ -7,7 +7,7 @@ import org.raml.model.parameter.Header;
 import com.github.claasahl.raml.visitor.ResponseVisitorBase;
 
 public class RamlTestCasesResponseVisitor extends ResponseVisitorBase {
-	
+
 	private final RamlTestCaseBuilder builder;
 
 	public RamlTestCasesResponseVisitor(RamlTestCaseBuilder builder) {

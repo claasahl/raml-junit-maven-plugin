@@ -9,17 +9,17 @@ import com.github.claasahl.raml.visitor.ResourceVisitor;
 import com.github.claasahl.raml.visitor.ResponseVisitor;
 
 public class RamlTestCasesVisitorFactory implements RamlVisitorFactory {
-	
+
 	private final Supplier<RamlTestCaseBuilder> builderSupplier;
-	
+
 	public RamlTestCasesVisitorFactory() {
 		this.builderSupplier = RamlTestCaseBuilder::new;
 	}
-	
+
 	private RamlTestCasesVisitorFactory(RamlTestCaseBuilder builder) {
 		this.builderSupplier = () -> new RamlTestCaseBuilder(builder.build());
 	}
-	
+
 	@Override
 	public ActionVisitor createActionVisitor() {
 		RamlTestCaseBuilder builder = builderSupplier.get();
@@ -40,7 +40,7 @@ public class RamlTestCasesVisitorFactory implements RamlVisitorFactory {
 		RamlVisitorFactory factory = new RamlTestCasesVisitorFactory(builder);
 		return new RamlTestCasesResourceVisitor(builder, factory);
 	}
-	
+
 	@Override
 	public ResponseVisitor createResponseVisitor() {
 		RamlTestCaseBuilder builder = builderSupplier.get();

@@ -35,34 +35,34 @@ public class LoadRaml {
 		Raml raml = new RamlDocumentBuilder(loader).build(RAML_SPEC);
 		System.out.println(raml);
 		bb(raml.getResources().values());
-		
+
 		Path ramlPath = Paths.get("src/main/raml", "v1/api.raml");
 		List<RamlTestCase> testCases = generateTestCases(raml, ramlPath);
 		System.out.println(testCases);
-		
+
 		RamlTestCasesVisitorFactory factory = new RamlTestCasesVisitorFactory();
 		factory.createRamlVisitor().visitRaml(raml, ramlPath);
 	}
-	
+
 	private static List<RamlTestCase> generateTestCases(Raml raml, Path ramlPath) {
 		List<RamlTestCase> testCases = new ArrayList<>();
-		for(Resource resource : raml.getResources().values()) {
+		for (Resource resource : raml.getResources().values()) {
 			// generate test case(s) for current resource
 			RamlTestCaseBuilder builder = new RamlTestCaseBuilder();
 			builder.setRaml(raml, ramlPath).setResource(resource);
 
 			testCases.add(builder.build());
-			
+
 			// generate test case(s) for sub-resources
 			// ...
 		}
 		return testCases;
 	}
-	
+
 	private static void generateTestCasesForResource(List<RamlTestCase> testCases, RamlTestCaseBuilder builder) {
-		
+
 	}
-	
+
 	private static void bb(Collection<Resource> resources) {
 		for (Resource resource : resources) {
 			System.out.println("\n//" + resource.getDisplayName());
@@ -96,7 +96,7 @@ public class LoadRaml {
 	}
 
 	private static void responses(Map<String, Response> map) {
-		for(String statusCode : map.keySet()) {
+		for (String statusCode : map.keySet()) {
 			Response response = map.get(statusCode);
 			System.out.println("// " + statusCode);
 			System.out.println("// descr:" + response.getDescription());
