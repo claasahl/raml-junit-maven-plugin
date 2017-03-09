@@ -115,50 +115,68 @@ public class RamlTestCase {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		RamlTestCase other = (RamlTestCase) obj;
 		if (action == null) {
-			if (other.action != null)
+			if (other.action != null) {
 				return false;
-		} else if (!action.equals(other.action))
+			}
+		} else if (!action.equals(other.action)) {
 			return false;
+		}
 		if (mimeType == null) {
-			if (other.mimeType != null)
+			if (other.mimeType != null) {
 				return false;
-		} else if (!mimeType.equals(other.mimeType))
+			}
+		} else if (!mimeType.equals(other.mimeType)) {
 			return false;
-		if (protocol != other.protocol)
+		}
+		if (protocol != other.protocol) {
 			return false;
+		}
 		if (raml == null) {
-			if (other.raml != null)
+			if (other.raml != null) {
 				return false;
-		} else if (!raml.equals(other.raml))
+			}
+		} else if (!raml.equals(other.raml)) {
 			return false;
+		}
 		if (ramlPath == null) {
-			if (other.ramlPath != null)
+			if (other.ramlPath != null) {
 				return false;
-		} else if (!ramlPath.equals(other.ramlPath))
+			}
+		} else if (!ramlPath.equals(other.ramlPath)) {
 			return false;
+		}
 		if (resource == null) {
-			if (other.resource != null)
+			if (other.resource != null) {
 				return false;
-		} else if (!resource.equals(other.resource))
+			}
+		} else if (!resource.equals(other.resource)) {
 			return false;
+		}
 		if (securedBy == null) {
-			if (other.securedBy != null)
+			if (other.securedBy != null) {
 				return false;
-		} else if (!securedBy.equals(other.securedBy))
+			}
+		} else if (!securedBy.equals(other.securedBy)) {
 			return false;
+		}
 		if (statusCode == null) {
-			if (other.statusCode != null)
+			if (other.statusCode != null) {
 				return false;
-		} else if (!statusCode.equals(other.statusCode))
+			}
+		} else if (!statusCode.equals(other.statusCode)) {
 			return false;
+		}
 		return true;
 	}
 
