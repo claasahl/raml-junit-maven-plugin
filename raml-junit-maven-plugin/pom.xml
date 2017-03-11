@@ -157,7 +157,7 @@
 							<goal>check</goal>
 						</goals>
 						<configuration>
-							<configLocation>java_code_style.xml</configLocation>
+							<configLocation>google_checks.xml</configLocation>
 						</configuration>
 					</execution>
 				</executions>
