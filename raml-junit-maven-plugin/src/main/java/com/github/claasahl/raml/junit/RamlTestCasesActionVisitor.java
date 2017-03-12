@@ -19,7 +19,6 @@ public class RamlTestCasesActionVisitor extends ActionVisitorBase {
 
 	@Override
 	public void visitAction(Action action) {
-		System.out.println("RamlTestCasesActionVisitor.visitAction()");
 		this.builder.setAction(action);
 		super.visitAction(action);
 	}

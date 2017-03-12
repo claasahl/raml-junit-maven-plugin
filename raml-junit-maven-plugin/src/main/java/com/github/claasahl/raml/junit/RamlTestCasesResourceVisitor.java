@@ -19,7 +19,6 @@ public class RamlTestCasesResourceVisitor extends ResourceVisitorBase {
 
 	@Override
 	public void visitResource(Resource resource) {
-		System.out.println("RamlTestCasesResourceVisitor.visitResource()");
 		this.builder.setResource(resource);
 		super.visitResource(resource);
 	}

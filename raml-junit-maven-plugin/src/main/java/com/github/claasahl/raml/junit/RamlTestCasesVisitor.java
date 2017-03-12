@@ -20,7 +20,6 @@ public class RamlTestCasesVisitor extends RamlVisitorBase {
 
 	@Override
 	public void visitRaml(Raml raml, Path ramlPath) {
-		System.out.println("RamlTestCasesVisitor.visitRaml()");
 		this.builder.setRaml(raml, ramlPath);
 		super.visitRaml(raml, ramlPath);
 	}

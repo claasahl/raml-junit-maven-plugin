@@ -1,7 +1,6 @@
 package com.github.claasahl.raml.junit;
 
 import org.raml.model.MimeType;
-import org.raml.model.Response;
 import org.raml.model.parameter.Header;
 
 import com.github.claasahl.raml.visitor.ResponseVisitorBase;
@@ -12,12 +11,6 @@ public class RamlTestCasesResponseVisitor extends ResponseVisitorBase {
 
 	public RamlTestCasesResponseVisitor(RamlTestCaseBuilder builder) {
 		this.builder = builder;
-	}
-
-	@Override
-	public void visitResponse(Response response) {
-		System.out.println("RamlTestCasesResponseVisitor.visitResponse()");
-		super.visitResponse(response);
 	}
 
 	@Override
