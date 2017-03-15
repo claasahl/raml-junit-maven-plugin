@@ -30,7 +30,9 @@ public class LoadRaml {
 		List<RamlTestCase> testCases = new ArrayList<>();
 		RamlTestCasesVisitorFactory factory = new RamlTestCasesVisitorFactory(testCases::add);
 		factory.createRamlVisitor().visitRaml(raml, ramlPath);
-		System.out.println(testCases);
+		for(RamlTestCase testCase : testCases) {
+			System.out.println(testCase);
+		}
 	}
 	
 }

@@ -180,4 +180,11 @@ public class RamlTestCase {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "RamlTestCase [raml=" + raml + ", ramlPath=" + ramlPath + ", resource=" + resource + ", action=" + action
+				+ ", protocol=" + protocol + ", mimeType=" + mimeType + ", statusCode=" + statusCode + ", securedBy="
+				+ securedBy + "]";
+	}
+
 }
