@@ -77,6 +77,7 @@ public final class Utils {
 	}
 
 	protected static <T> T createFactory(String propertyKey) {
+		// TODO consider switching to java.util.ServiceLoader / Service Provider
 		String factoryClass = System.getProperty(propertyKey);
 		if (factoryClass != null) {
 			try {
