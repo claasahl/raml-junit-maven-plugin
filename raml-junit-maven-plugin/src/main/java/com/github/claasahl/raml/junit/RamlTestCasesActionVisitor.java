@@ -37,6 +37,7 @@ public class RamlTestCasesActionVisitor extends ActionVisitorBase {
 
 	@Override
 	public void visitResponse(String key, Response response) {
+		this.builder.setStatusCode(key);
 		this.factory.createResponseVisitor().visitResponse(response);
 		super.visitResponse(key, response);
 	}
