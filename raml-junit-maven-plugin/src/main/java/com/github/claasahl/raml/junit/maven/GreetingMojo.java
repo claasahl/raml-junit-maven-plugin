@@ -1,4 +1,4 @@
-package com.github.claasahl.raml.junit;
+package com.github.claasahl.raml.junit.maven;
 
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;

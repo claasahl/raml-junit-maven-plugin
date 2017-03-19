@@ -1,4 +1,4 @@
-package com.github.claasahl.raml.junit;
+package com.github.claasahl.raml.junit.maven;
 
 import java.io.File;
 import java.io.FileWriter;
