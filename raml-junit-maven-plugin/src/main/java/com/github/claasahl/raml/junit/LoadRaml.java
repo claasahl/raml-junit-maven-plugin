@@ -31,15 +31,15 @@ public class LoadRaml {
 
 		Path baseDir = Paths.get("src/main/raml");
 		Stream<Path> stream = findRamlSpecifications(baseDir);
-		stream.map(baseDir::relativize).forEach((Path ramlSpec) -> {
+		stream.map(baseDir::relativize).flatMap((Path ramlSpec) -> {
 			Raml raml = loadRamlSpecification(baseDir, ramlSpec);
 			List<RamlTestCase> testCases = new ArrayList<>();
-			RamlTestCasesVisitorFactory factory = new RamlTestCasesVisitorFactory(testCases::add);
-			factory.createRamlVisitor().visitRaml(raml, ramlSpec);
-			for (RamlTestCase testCase : testCases) {
-				System.out.println(testCase);
+			if (raml != null) {
+				RamlTestCasesVisitorFactory factory = new RamlTestCasesVisitorFactory(testCases::add);
+				factory.createRamlVisitor().visitRaml(raml, ramlSpec);
 			}
-		});
+			return testCases.stream();
+		}).forEach(System.out::println);
 	}
 
 	private static Stream<Path> findRamlSpecifications(Path baseDir) {
@@ -61,8 +61,11 @@ public class LoadRaml {
 			FileInputStream inputStream = new FileInputStream(resolvedPath.toFile());
 			ResourceLoader loader = new FileResourceLoader(resolvedPath.getParent().toFile());
 			List<ValidationResult> results = RamlValidationService.createDefault(loader).validate(inputStream, "");
-			ValidationResult.areValid(results);
-			return new RamlDocumentBuilder(loader).build(resolvedPath.getFileName().toString());
+			if (ValidationResult.areValid(results)) {
+				return new RamlDocumentBuilder(loader).build(resolvedPath.getFileName().toString());
+			} else {
+				return null;
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
