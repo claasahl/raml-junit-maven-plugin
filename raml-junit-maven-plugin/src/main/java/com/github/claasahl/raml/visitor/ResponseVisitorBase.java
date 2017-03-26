@@ -21,7 +21,7 @@ import org.raml.model.parameter.Header;
  * @author Claas
  *
  */
-public class ResponseVisitorBase implements ResponseVisitor {
+public class ResponseVisitorBase {
 
 	/**
 	 * Visits the specified {@link Response}. The default implementation visits
@@ -32,53 +32,48 @@ public class ResponseVisitorBase implements ResponseVisitor {
 	 * 
 	 * @see ResponseVisitor#visitResponse(Response)
 	 */
-	@Override
-	public void visitResponse(Response response) {
-		visitBodies(response);
-		visitHeaders(response);
-	}
-
-	@Override
-	public void visitBody(String key, MimeType mimeType) {
-		// FIXME ???
-	}
-
-	@Override
-	public void visitHeader(String key, Header header) {
-		// empty default implementation
+	public void visitResponse(Response response, ResponseVisitor visitor) {
+		visitBodies(response, visitor);
+		visitHeaders(response, visitor);
 	}
 
 	/**
 	 * A support method for iterating and visiting headers of the specified
-	 * response. This implementation calls {@link #visitHeader(String, Header)}
-	 * for all available headers.
+	 * response. This implementation calls
+	 * {@link ResponseVisitor#visitHeader(String, Header)} for all available
+	 * headers.
 	 * 
 	 * @param response
 	 *            the response
+	 * @param visitor
+	 *            the visitor
 	 * @see Response#getHeaders()
 	 */
-	protected void visitHeaders(Response response) {
+	protected void visitHeaders(Response response, ResponseVisitor visitor) {
 		if (response.getHeaders() == null)
 			return;
 		for (Entry<String, Header> entry : response.getHeaders().entrySet()) {
-			visitHeader(entry.getKey(), entry.getValue());
+			visitor.visitHeader(entry.getKey(), entry.getValue());
 		}
 	}
 
 	/**
 	 * A support method for iterating and visiting (response) bodies of the
 	 * specified response. This implementation calls
-	 * {@link #visitBody(String, MimeType)} for all available bodies.
+	 * {@link ResponseVisitor#visitBody(String, MimeType)} for all available
+	 * bodies.
 	 * 
 	 * @param response
 	 *            the response
+	 * @param visitor
+	 *            the visitor
 	 * @see Response#getBody()
 	 */
-	protected void visitBodies(Response response) {
+	protected void visitBodies(Response response, ResponseVisitor visitor) {
 		if (response.getBody() == null)
 			return;
 		for (Entry<String, MimeType> entry : response.getBody().entrySet()) {
-			visitBody(entry.getKey(), entry.getValue());
+			visitor.visitBody(entry.getKey(), entry.getValue());
 		}
 	}
 
