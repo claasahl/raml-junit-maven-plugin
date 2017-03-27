@@ -24,7 +24,7 @@ import org.raml.model.parameter.UriParameter;
  * @author Claas
  *
  */
-public class ResourceVisitorBase implements ResourceVisitor {
+public class ResourceVisitorBase {
 
 	/**
 	 * Visits the specified {@link Resource}. The default implementation visits
@@ -35,144 +35,132 @@ public class ResourceVisitorBase implements ResourceVisitor {
 	 * 
 	 * @see ResourceVisitor#visitResource(Resource)
 	 */
-	@Override
-	public void visitResource(Resource resource) {
-		visitActions(resource);
-		visitBaseUriParameters(resource);
-		visitResolvedUriParameters(resource);
-		visitUriParameters(resource);
-		visitSecurityReferences(resource);
-		visitSubResources(resource);
-	}
-
-	@Override
-	public void visitAction(ActionType actionType, Action action) {
-		// empty default implementation
-	}
-
-	@Override
-	public void visitBaseUriParameter(String key, List<UriParameter> uriParameters) {
-		// empty default implementation
-	}
-
-	@Override
-	public void visitResolvedUriParameter(String key, UriParameter uriParameters) {
-		// empty default implementation
-	}
-
-	@Override
-	public void visitSecurityReference(SecurityReference securityReference) {
-		// FIXME ???
-	}
-
-	@Override
-	public void visitUriParameter(String key, UriParameter uriParameter) {
-		// empty default implementation
+	public void visitResource(Resource resource, ResourceVisitor visitor) {
+		visitActions(resource, visitor);
+		visitBaseUriParameters(resource, visitor);
+		visitResolvedUriParameters(resource, visitor);
+		visitUriParameters(resource, visitor);
+		visitSecurityReferences(resource, visitor);
+		visitSubResources(resource, visitor);
 	}
 
 	/**
 	 * A support method for iterating and visiting sub-resources of the
 	 * specified resource. This implementation calls
-	 * {@link #visitResource(Resource)} for all available sub-resources.
+	 * {@link ResourceVisitor#visitResource(Resource)} for all available
+	 * sub-resources.
 	 * 
 	 * @param resource
 	 *            the resource
+	 * @param visitor
+	 *            the visitor
 	 * @see Resource#getResources()
 	 */
-	protected void visitSubResources(Resource resource) {
+	protected void visitSubResources(Resource resource, ResourceVisitor visitor) {
 		if (resource.getResources() == null)
 			return;
 		for (Resource subResource : resource.getResources().values()) {
-			visitResource(subResource);
+			visitor.visitResource(subResource);
 		}
 	}
 
 	/**
 	 * A support method for iterating and visiting security references of the
 	 * specified resource. This implementation calls
-	 * {@link #visitSecurityReference(SecurityReference)} for all available
-	 * security references.
+	 * {@link ResourceVisitor#visitSecurityReference(SecurityReference)} for all
+	 * available security references.
 	 * 
 	 * @param resource
 	 *            the resource
+	 * @param visitor
+	 *            the visitor
 	 * @see Resource#getSecuredBy()
 	 */
-	protected void visitSecurityReferences(Resource resource) {
+	protected void visitSecurityReferences(Resource resource, ResourceVisitor visitor) {
 		if (resource.getSecuredBy() == null)
 			return;
 		for (SecurityReference securityReference : resource.getSecuredBy()) {
-			visitSecurityReference(securityReference);
+			visitor.visitSecurityReference(securityReference);
 		}
 	}
 
 	/**
 	 * A support method for iterating and visiting URI parameters of the
 	 * specified resource. This implementation calls
-	 * {@link #visitUriParameter(String, UriParameter)} for all available URI
-	 * parameters.
+	 * {@link ResourceVisitor#visitUriParameter(String, UriParameter)} for all
+	 * available URI parameters.
 	 * 
 	 * @param resource
 	 *            the resource
+	 * @param visitor
+	 *            the visitor
 	 * @see Resource#getUriParameters()
 	 */
-	protected void visitUriParameters(Resource resource) {
+	protected void visitUriParameters(Resource resource, ResourceVisitor visitor) {
 		if (resource.getUriParameters() == null)
 			return;
 		for (Entry<String, UriParameter> entry : resource.getUriParameters().entrySet()) {
-			visitUriParameter(entry.getKey(), entry.getValue());
+			visitor.visitUriParameter(entry.getKey(), entry.getValue());
 		}
 	}
 
 	/**
 	 * A support method for iterating and visiting resolved URI parameters of
 	 * the specified resource. This implementation calls
-	 * {@link #visitResolvedUriParameter(String, UriParameter)} for all
-	 * available resolved URI parameters.
+	 * {@link ResourceVisitor#visitResolvedUriParameter(String, UriParameter)}
+	 * for all available resolved URI parameters.
 	 * 
 	 * @param resource
 	 *            the resource
+	 * @param visitor
+	 *            the visitor
 	 * @see Resource#getResolvedUriParameters()
 	 */
-	protected void visitResolvedUriParameters(Resource resource) {
+	protected void visitResolvedUriParameters(Resource resource, ResourceVisitor visitor) {
 		if (resource.getResolvedUriParameters() == null)
 			return;
 		for (Entry<String, UriParameter> entry : resource.getResolvedUriParameters().entrySet()) {
-			visitResolvedUriParameter(entry.getKey(), entry.getValue());
+			visitor.visitResolvedUriParameter(entry.getKey(), entry.getValue());
 		}
 	}
 
 	/**
 	 * A support method for iterating and visiting base URI parameters of the
 	 * specified resource. This implementation calls
-	 * {@link #visitBaseUriParameter(String, List)} for all available base URI
-	 * parameters.
+	 * {@link ResourceVisitor#visitBaseUriParameter(String, List)} for all
+	 * available base URI parameters.
 	 * 
 	 * @param resource
 	 *            the resource
+	 * @param visitor
+	 *            the visitor
 	 * @see Resource#getBaseUriParameters()
 	 */
-	protected void visitBaseUriParameters(Resource resource) {
+	protected void visitBaseUriParameters(Resource resource, ResourceVisitor visitor) {
 		if (resource.getBaseUriParameters() == null)
 			return;
 		for (Entry<String, List<UriParameter>> entry : resource.getBaseUriParameters().entrySet()) {
-			visitBaseUriParameter(entry.getKey(), entry.getValue());
+			visitor.visitBaseUriParameter(entry.getKey(), entry.getValue());
 		}
 	}
 
 	/**
 	 * A support method for iterating and visiting actions of the specified
 	 * resource. This implementation calls
-	 * {@link #visitAction(ActionType, Action)} for all available actions.
+	 * {@link ResourceVisitor#visitAction(ActionType, Action)} for all available
+	 * actions.
 	 * 
 	 * @param resource
 	 *            the resource
+	 * @param visitor
+	 *            the visitor
 	 * @see Resource#getActions()
 	 */
-	protected void visitActions(Resource resource) {
+	protected void visitActions(Resource resource, ResourceVisitor visitor) {
 		if (resource.getActions() == null)
 			return;
 		for (Entry<ActionType, Action> entry : resource.getActions().entrySet()) {
-			visitAction(entry.getKey(), entry.getValue());
+			visitor.visitAction(entry.getKey(), entry.getValue());
 		}
 	}
 
