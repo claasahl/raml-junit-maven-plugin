@@ -12,7 +12,7 @@ import org.raml.model.parameter.QueryParameter;
 import org.raml.model.parameter.UriParameter;
 
 /**
- * The class {@link ActionVisitorBase}.
+ * The class {@link ActionCoordinator}.
  * <p>
  * A base implementation of the {@link ActionVisitor} interface, which provides
  * default implementations for all methods of the aforementioned interface. The
@@ -26,7 +26,7 @@ import org.raml.model.parameter.UriParameter;
  * @author Claas
  *
  */
-public class ActionVisitorBase {
+public class ActionCoordinator {
 
 	public void visitAction(Action action, ActionVisitor visitor) {
 		visitBaseUriParameters(action, visitor);

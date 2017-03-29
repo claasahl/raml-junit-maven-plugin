@@ -24,7 +24,7 @@ import org.raml.model.parameter.UriParameter;
  * @author Claas
  *
  */
-public class ResourceVisitorBase {
+public class ResourceCoordinator {
 
 	/**
 	 * Visits the specified {@link Resource}. The default implementation visits

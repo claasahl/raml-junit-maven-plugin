@@ -21,7 +21,7 @@ import org.raml.model.parameter.Header;
  * @author Claas
  *
  */
-public class ResponseVisitorBase {
+public class ResponseCoordinator {
 
 	/**
 	 * Visits the specified {@link Response}. The default implementation visits

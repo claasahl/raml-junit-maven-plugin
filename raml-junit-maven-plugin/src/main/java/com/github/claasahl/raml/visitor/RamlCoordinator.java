@@ -28,7 +28,7 @@ import org.raml.model.parameter.UriParameter;
  * @author Claas
  *
  */
-public class RamlVisitorBase {
+public class RamlCoordinator {
 
 	/**
 	 * Visits the specified {@link Raml} specification. The default
