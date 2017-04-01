@@ -14,20 +14,27 @@ import org.raml.model.parameter.UriParameter;
 /**
  * The class {@link ActionCoordinator}.
  * <p>
- * A base implementation of the {@link ActionVisitor} interface, which provides
- * default implementations for all methods of the aforementioned interface. The
- * method {@link #visitAction(Action, ActionVisitor)} already implements a
- * mechanism for visiting all composite fields (e.g. headers or URI parameters).
- * The default implementation of the remaining methods is empty.
+ * An implementation of the {@link Coordinator} pattern, which "iterates" over
+ * relevant attributes of the {@link Action} class and delegates them to their
+ * respective visit-methods of an {@link ActionVisitor}.
  * <p>
- * This visitor is context-free. As such, instances of this class can be used to
- * multiple times (i.e. several actions may be processed).
+ * This coordinator is thread-safe and context-free. As such, instances of this
+ * class can be used multiple times (i.e. several actions may be processed).
  * 
- * @author Claas
+ * @author Claas Ahlrichs
  *
  */
-public class ActionCoordinator {
+public class ActionCoordinator implements Coordinator {
 
+	/**
+	 * Delegates the attributes of the specified action with the specified
+	 * visitor.
+	 * 
+	 * @param action
+	 *            the action
+	 * @param visitor
+	 *            the visitor
+	 */
 	public void visitAction(Action action, ActionVisitor visitor) {
 		visitBaseUriParameters(action, visitor);
 		visitBodies(action, visitor);

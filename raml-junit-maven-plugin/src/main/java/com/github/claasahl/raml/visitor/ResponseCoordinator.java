@@ -7,30 +7,28 @@ import org.raml.model.Response;
 import org.raml.model.parameter.Header;
 
 /**
- * The class {@link ResponseVisitorBase}.
+ * The class {@link ResponseCoordinator}.
  * <p>
- * A base implementation of the {@link ResponseVisitor} interface, which
- * provides default implementations for all methods of the aforementioned
- * interface. The method {@link #visitResponse(Response)} already implements a
- * mechanism for visiting all composite fields (e.g. body contents or headers).
- * The default implementation of the remaining methods is empty.
+ * An implementation of the {@link Coordinator} pattern, which "iterates" over
+ * relevant attributes of the {@link Response} class and delegates them to their
+ * respective visit-methods of an {@link ResponseVisitor}.
  * <p>
- * This visitor is context-free. As such, instances of this class can be used to
- * multiple times (i.e. several responses may be processed).
+ * This coordinator is thread-safe and context-free. As such, instances of this
+ * class can be used multiple times (i.e. several response may be processed).
  * 
- * @author Claas
+ * @author Claas Ahlrichs
  *
  */
 public class ResponseCoordinator {
 
 	/**
-	 * Visits the specified {@link Response}. The default implementation visits
-	 * all composite fields (e.g. body contents or headers).
-	 * <p>
-	 * <b>Hint:</b> When overwriting this method, it is recommended to still
-	 * call this method. Otherwise none of the composite fields may be visited.
+	 * Delegates the attributes of the specified response with the specified
+	 * visitor.
 	 * 
-	 * @see ResponseVisitor#visitResponse(Response)
+	 * @param response
+	 *            the response
+	 * @param visitor
+	 *            the visitor
 	 */
 	public void visitResponse(Response response, ResponseVisitor visitor) {
 		visitBodies(response, visitor);

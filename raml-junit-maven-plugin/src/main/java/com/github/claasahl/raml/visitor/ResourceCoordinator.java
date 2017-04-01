@@ -10,30 +10,28 @@ import org.raml.model.SecurityReference;
 import org.raml.model.parameter.UriParameter;
 
 /**
- * The class {@link ResourceVisitorBase}.
+ * The class {@link ResourceCoordinator}.
  * <p>
- * A base implementation of the {@link ResourceVisitor} interface, which
- * provides default implementations for all methods of the aforementioned
- * interface. The method {@link #visitResource(Resource)} already implements a
- * mechanism for visiting all composite fields (e.g. headers or body contents).
- * The default implementation of the remaining methods is empty.
+ * An implementation of the {@link Coordinator} pattern, which "iterates" over
+ * relevant attributes of the {@link Resource} class and delegates them to their
+ * respective visit-methods of an {@link ResourceVisitor}.
  * <p>
- * This visitor is context-free. As such, instances of this class can be used to
- * multiple times (i.e. several resources may be processed).
+ * This coordinator is thread-safe and context-free. As such, instances of this
+ * class can be used multiple times (i.e. several resources may be processed).
  * 
- * @author Claas
+ * @author Claas Ahlrichs
  *
  */
 public class ResourceCoordinator {
 
 	/**
-	 * Visits the specified {@link Resource}. The default implementation visits
-	 * all composite fields (e.g. headers or body contents).
-	 * <p>
-	 * <b>Hint:</b> When overwriting this method, it is recommended to still
-	 * call this method. Otherwise none of the composite fields may be visited.
+	 * Delegates the attributes of the specified resource with the specified
+	 * visitor.
 	 * 
-	 * @see ResourceVisitor#visitResource(Resource)
+	 * @param resource
+	 *            the resource
+	 * @param visitor
+	 *            the visitor
 	 */
 	public void visitResource(Resource resource, ResourceVisitor visitor) {
 		visitActions(resource, visitor);

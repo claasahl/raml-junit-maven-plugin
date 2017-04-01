@@ -7,38 +7,37 @@ import java.util.Map.Entry;
 import org.raml.model.DocumentationItem;
 import org.raml.model.Raml;
 import org.raml.model.Resource;
-import org.raml.model.Response;
 import org.raml.model.SecurityReference;
 import org.raml.model.SecurityScheme;
 import org.raml.model.Template;
 import org.raml.model.parameter.UriParameter;
 
 /**
- * The class {@link RamlVisitorBase}.
+ * The class {@link RamlCoordinator}.
  * <p>
- * A base implementation of the {@link RamlVisitor} interface, which provides
- * default implementations for all methods of the aforementioned interface. The
- * method {@link #visitResponse(Response)} already implements a mechanism for
- * visiting all composite fields (e.g. URI parameters or resources). The default
- * implementation of the remaining methods is empty.
+ * An implementation of the {@link Coordinator} pattern, which "iterates" over
+ * relevant attributes of the {@link Raml} class and delegates them to their
+ * respective visit-methods of an {@link RamlVisitor}.
  * <p>
- * This visitor is context-free. As such, instances of this class can be used to
- * multiple times (i.e. several RAML specifications may be processed).
+ * This coordinator is thread-safe and context-free. As such, instances of this
+ * class can be used multiple times (i.e. several RAML specification may be
+ * processed).
  * 
- * @author Claas
+ * @author Claas Ahlrichs
  *
  */
 public class RamlCoordinator {
 
 	/**
-	 * Visits the specified {@link Raml} specification. The default
-	 * implementation visits all composite fields (e.g. URI parameters or
-	 * resources).
-	 * <p>
-	 * <b>Hint:</b> When overwriting this method, it is recommended to still
-	 * call this method. Otherwise none of the composite fields may be visited.
+	 * Delegates the attributes of the specified action with the specified
+	 * visitor.
 	 * 
-	 * @see RamlVisitor#visitRaml(Raml, Path)
+	 * @param raml
+	 *            the RAML specification
+	 * @param ramlPath
+	 *            path to the RAML specification
+	 * @param visitor
+	 *            the visitor
 	 */
 	public void visitRaml(Raml raml, Path ramlPath, RamlVisitor visitor) {
 		visitBaseUriParameters(raml, visitor);
