@@ -47,7 +47,7 @@ public class ResponseCoordinator {
 	 *            the visitor
 	 * @see Response#getHeaders()
 	 */
-	protected void visitHeaders(Response response, ResponseVisitor visitor) {
+	protected static void visitHeaders(Response response, ResponseVisitor visitor) {
 		if (response.getHeaders() == null)
 			return;
 		for (Entry<String, Header> entry : response.getHeaders().entrySet()) {
@@ -67,7 +67,7 @@ public class ResponseCoordinator {
 	 *            the visitor
 	 * @see Response#getBody()
 	 */
-	protected void visitBodies(Response response, ResponseVisitor visitor) {
+	protected static void visitBodies(Response response, ResponseVisitor visitor) {
 		if (response.getBody() == null)
 			return;
 		for (Entry<String, MimeType> entry : response.getBody().entrySet()) {

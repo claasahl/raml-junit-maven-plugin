@@ -61,7 +61,7 @@ public class RamlCoordinator {
 	 *            the visitor
 	 * @see Raml#getTraits()
 	 */
-	protected void visitTraits(Raml raml, RamlVisitor visitor) {
+	protected static void visitTraits(Raml raml, RamlVisitor visitor) {
 		if (raml.getTraits() == null)
 			return;
 		for (Map<String, Template> trait : raml.getTraits()) {
@@ -81,7 +81,7 @@ public class RamlCoordinator {
 	 *            the visitor
 	 * @see Raml#getResourceTypes()
 	 */
-	protected void visitResourceTypes(Raml raml, RamlVisitor visitor) {
+	protected static void visitResourceTypes(Raml raml, RamlVisitor visitor) {
 		if (raml.getResourceTypes() == null)
 			return;
 		for (Map<String, Template> resourceType : raml.getResourceTypes()) {
@@ -101,7 +101,7 @@ public class RamlCoordinator {
 	 *            the visitor
 	 * @see Raml#getSecuritySchemes()
 	 */
-	protected void visitSecuritySchemes(Raml raml, RamlVisitor visitor) {
+	protected static void visitSecuritySchemes(Raml raml, RamlVisitor visitor) {
 		if (raml.getSecuritySchemes() == null)
 			return;
 		for (Map<String, SecurityScheme> securityScheme : raml.getSecuritySchemes()) {
@@ -121,7 +121,7 @@ public class RamlCoordinator {
 	 *            the visitor
 	 * @see Raml#getSecuredBy()
 	 */
-	protected void visitSecurityReferences(Raml raml, RamlVisitor visitor) {
+	protected static void visitSecurityReferences(Raml raml, RamlVisitor visitor) {
 		if (raml.getSecuredBy() == null)
 			return;
 		for (SecurityReference securityReference : raml.getSecuredBy()) {
@@ -140,7 +140,7 @@ public class RamlCoordinator {
 	 *            the visitor
 	 * @see Raml#getSchemas()
 	 */
-	protected void visitSchemas(Raml raml, RamlVisitor visitor) {
+	protected static void visitSchemas(Raml raml, RamlVisitor visitor) {
 		if (raml.getSchemas() == null)
 			return;
 		for (Map<String, String> schema : raml.getSchemas()) {
@@ -160,7 +160,7 @@ public class RamlCoordinator {
 	 *            the visitor
 	 * @see Raml#getResources()
 	 */
-	protected void visitResources(Raml raml, RamlVisitor visitor) {
+	protected static void visitResources(Raml raml, RamlVisitor visitor) {
 		if (raml.getResources() == null)
 			return;
 		for (Entry<String, Resource> entry : raml.getResources().entrySet()) {
@@ -200,7 +200,7 @@ public class RamlCoordinator {
 	 *            the visitor
 	 * @see Raml#getBaseUriParameters()
 	 */
-	protected void visitBaseUriParameters(Raml raml, RamlVisitor visitor) {
+	protected static void visitBaseUriParameters(Raml raml, RamlVisitor visitor) {
 		if (raml.getBaseUriParameters() == null)
 			return;
 		for (Entry<String, UriParameter> entry : raml.getBaseUriParameters().entrySet()) {

@@ -54,7 +54,7 @@ public class ResourceCoordinator {
 	 *            the visitor
 	 * @see Resource#getResources()
 	 */
-	protected void visitSubResources(Resource resource, ResourceVisitor visitor) {
+	protected static void visitSubResources(Resource resource, ResourceVisitor visitor) {
 		if (resource.getResources() == null)
 			return;
 		for (Resource subResource : resource.getResources().values()) {
@@ -74,7 +74,7 @@ public class ResourceCoordinator {
 	 *            the visitor
 	 * @see Resource#getSecuredBy()
 	 */
-	protected void visitSecurityReferences(Resource resource, ResourceVisitor visitor) {
+	protected static void visitSecurityReferences(Resource resource, ResourceVisitor visitor) {
 		if (resource.getSecuredBy() == null)
 			return;
 		for (SecurityReference securityReference : resource.getSecuredBy()) {
@@ -94,7 +94,7 @@ public class ResourceCoordinator {
 	 *            the visitor
 	 * @see Resource#getUriParameters()
 	 */
-	protected void visitUriParameters(Resource resource, ResourceVisitor visitor) {
+	protected static void visitUriParameters(Resource resource, ResourceVisitor visitor) {
 		if (resource.getUriParameters() == null)
 			return;
 		for (Entry<String, UriParameter> entry : resource.getUriParameters().entrySet()) {
@@ -114,7 +114,7 @@ public class ResourceCoordinator {
 	 *            the visitor
 	 * @see Resource#getResolvedUriParameters()
 	 */
-	protected void visitResolvedUriParameters(Resource resource, ResourceVisitor visitor) {
+	protected static void visitResolvedUriParameters(Resource resource, ResourceVisitor visitor) {
 		if (resource.getResolvedUriParameters() == null)
 			return;
 		for (Entry<String, UriParameter> entry : resource.getResolvedUriParameters().entrySet()) {
@@ -134,7 +134,7 @@ public class ResourceCoordinator {
 	 *            the visitor
 	 * @see Resource#getBaseUriParameters()
 	 */
-	protected void visitBaseUriParameters(Resource resource, ResourceVisitor visitor) {
+	protected static void visitBaseUriParameters(Resource resource, ResourceVisitor visitor) {
 		if (resource.getBaseUriParameters() == null)
 			return;
 		for (Entry<String, List<UriParameter>> entry : resource.getBaseUriParameters().entrySet()) {
@@ -154,7 +154,7 @@ public class ResourceCoordinator {
 	 *            the visitor
 	 * @see Resource#getActions()
 	 */
-	protected void visitActions(Resource resource, ResourceVisitor visitor) {
+	protected static void visitActions(Resource resource, ResourceVisitor visitor) {
 		if (resource.getActions() == null)
 			return;
 		for (Entry<ActionType, Action> entry : resource.getActions().entrySet()) {

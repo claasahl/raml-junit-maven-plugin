@@ -56,7 +56,7 @@ public class ActionCoordinator implements Coordinator {
 	 *            the visitor
 	 * @see Action#getResponses()
 	 */
-	protected void visitResponses(Action action, ActionVisitor visitor) {
+	protected static void visitResponses(Action action, ActionVisitor visitor) {
 		if (action.getResponses() == null)
 			return;
 		for (Entry<String, Response> entry : action.getResponses().entrySet()) {
@@ -76,7 +76,7 @@ public class ActionCoordinator implements Coordinator {
 	 *            the visitor
 	 * @see Action#getSecuredBy()
 	 */
-	protected void visitSecurityReferences(Action action, ActionVisitor visitor) {
+	protected static void visitSecurityReferences(Action action, ActionVisitor visitor) {
 		if (action.getSecuredBy() == null)
 			return;
 		for (SecurityReference securityReference : action.getSecuredBy()) {
@@ -96,7 +96,7 @@ public class ActionCoordinator implements Coordinator {
 	 *            the visitor
 	 * @see Action#getQueryParameters()
 	 */
-	protected void visitQueryParameters(Action action, ActionVisitor visitor) {
+	protected static void visitQueryParameters(Action action, ActionVisitor visitor) {
 		if (action.getQueryParameters() == null)
 			return;
 		for (Entry<String, QueryParameter> entry : action.getQueryParameters().entrySet()) {
@@ -116,7 +116,7 @@ public class ActionCoordinator implements Coordinator {
 	 *            the visitor
 	 * @see Action#getHeaders()
 	 */
-	protected void visitHeaders(Action action, ActionVisitor visitor) {
+	protected static void visitHeaders(Action action, ActionVisitor visitor) {
 		if (action.getHeaders() == null)
 			return;
 		for (Entry<String, Header> entry : action.getHeaders().entrySet()) {
@@ -136,7 +136,7 @@ public class ActionCoordinator implements Coordinator {
 	 *            the visitor
 	 * @see Action#getBody()
 	 */
-	protected void visitBodies(Action action, ActionVisitor visitor) {
+	protected static void visitBodies(Action action, ActionVisitor visitor) {
 		if (action.getBody() == null)
 			return;
 		for (Entry<String, MimeType> entry : action.getBody().entrySet()) {
@@ -156,7 +156,7 @@ public class ActionCoordinator implements Coordinator {
 	 *            the visitor
 	 * @see Action#getBaseUriParameters()
 	 */
-	protected void visitBaseUriParameters(Action action, ActionVisitor visitor) {
+	protected static void visitBaseUriParameters(Action action, ActionVisitor visitor) {
 		if (action.getBaseUriParameters() == null)
 			return;
 		for (Entry<String, List<UriParameter>> entry : action.getBaseUriParameters().entrySet()) {
