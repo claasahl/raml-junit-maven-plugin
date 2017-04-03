@@ -29,8 +29,8 @@ import org.raml.model.parameter.UriParameter;
 public class RamlCoordinator {
 
 	/**
-	 * Delegates the attributes of the specified action with the specified
-	 * visitor.
+	 * Visits the specified RAML specification and then delegates its attributes
+	 * to with the specified visitor.
 	 * 
 	 * @param raml
 	 *            the RAML specification
@@ -40,6 +40,7 @@ public class RamlCoordinator {
 	 *            the visitor
 	 */
 	public void visitRaml(Raml raml, Path ramlPath, RamlVisitor visitor) {
+		visitor.visitRaml(raml, ramlPath);
 		visitBaseUriParameters(raml, visitor);
 		visitDocumentationItems(raml, visitor);
 		visitResources(raml, visitor);

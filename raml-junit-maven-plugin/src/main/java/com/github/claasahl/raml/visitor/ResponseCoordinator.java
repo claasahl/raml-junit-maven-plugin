@@ -22,8 +22,8 @@ import org.raml.model.parameter.Header;
 public class ResponseCoordinator {
 
 	/**
-	 * Delegates the attributes of the specified response with the specified
-	 * visitor.
+	 * Visits the specified response and then delegates its attributes to with
+	 * the specified visitor.
 	 * 
 	 * @param response
 	 *            the response
@@ -31,6 +31,7 @@ public class ResponseCoordinator {
 	 *            the visitor
 	 */
 	public void visitResponse(Response response, ResponseVisitor visitor) {
+		visitor.visitResponse(response);
 		visitBodies(response, visitor);
 		visitHeaders(response, visitor);
 	}

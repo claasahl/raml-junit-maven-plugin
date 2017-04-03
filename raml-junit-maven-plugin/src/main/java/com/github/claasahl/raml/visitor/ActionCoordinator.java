@@ -27,8 +27,8 @@ import org.raml.model.parameter.UriParameter;
 public class ActionCoordinator implements Coordinator {
 
 	/**
-	 * Delegates the attributes of the specified action with the specified
-	 * visitor.
+	 * Visits the specified action and then delegates its attributes to with the
+	 * specified visitor.
 	 * 
 	 * @param action
 	 *            the action
@@ -36,6 +36,7 @@ public class ActionCoordinator implements Coordinator {
 	 *            the visitor
 	 */
 	public void visitAction(Action action, ActionVisitor visitor) {
+		visitor.visitAction(action);
 		visitBaseUriParameters(action, visitor);
 		visitBodies(action, visitor);
 		visitHeaders(action, visitor);

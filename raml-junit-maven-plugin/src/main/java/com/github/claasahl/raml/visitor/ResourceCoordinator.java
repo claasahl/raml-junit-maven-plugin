@@ -25,8 +25,8 @@ import org.raml.model.parameter.UriParameter;
 public class ResourceCoordinator {
 
 	/**
-	 * Delegates the attributes of the specified resource with the specified
-	 * visitor.
+	 * Visits the specified resource and then delegates its attributes to with
+	 * the specified visitor.
 	 * 
 	 * @param resource
 	 *            the resource
@@ -34,6 +34,7 @@ public class ResourceCoordinator {
 	 *            the visitor
 	 */
 	public void visitResource(Resource resource, ResourceVisitor visitor) {
+		visitor.visitResource(resource);
 		visitActions(resource, visitor);
 		visitBaseUriParameters(resource, visitor);
 		visitResolvedUriParameters(resource, visitor);
