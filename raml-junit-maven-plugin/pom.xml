@@ -34,6 +34,7 @@
 		<version-plugin-annotations>3.2</version-plugin-annotations>
 		<version-plexus-utils>3.0.8</version-plexus-utils>
 		<version-junit>4.8.2</version-junit>
+		<version-mockito>2.6.4</version-mockito>
 		<version-compiler-plugin>3.6.0</version-compiler-plugin>
 		<version-plugin-plugin>3.2</version-plugin-plugin>
 		<version-source-plugin>3.0.1</version-source-plugin>
@@ -76,6 +77,12 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>${version-junit}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${version-mockito}</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
