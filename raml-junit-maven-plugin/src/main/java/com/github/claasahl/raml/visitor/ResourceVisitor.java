@@ -26,6 +26,8 @@ import org.raml.model.parameter.UriParameter;
 public interface ResourceVisitor {
 
 	void visitResource(Resource resource);
+	
+	void visitSubResource(Resource resource);
 
 	void visitAction(ActionType actionType, Action action);
 

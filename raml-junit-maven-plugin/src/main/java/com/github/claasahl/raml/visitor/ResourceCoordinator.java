@@ -35,18 +35,18 @@ public class ResourceCoordinator {
 	 */
 	public void visitResource(Resource resource, ResourceVisitor visitor) {
 		visitor.visitResource(resource);
-		visitActions(resource, visitor);
 		visitBaseUriParameters(resource, visitor);
 		visitResolvedUriParameters(resource, visitor);
 		visitUriParameters(resource, visitor);
 		visitSecurityReferences(resource, visitor);
+		visitActions(resource, visitor);
 		visitSubResources(resource, visitor);
 	}
 
 	/**
 	 * A support method for iterating and visiting sub-resources of the
 	 * specified resource. This implementation calls
-	 * {@link ResourceVisitor#visitResource(Resource)} for all available
+	 * {@link ResourceVisitor#visitSubResource(Resource)} for all available
 	 * sub-resources.
 	 * 
 	 * @param resource
@@ -59,7 +59,7 @@ public class ResourceCoordinator {
 		if (resource.getResources() == null)
 			return;
 		for (Resource subResource : resource.getResources().values()) {
-			visitor.visitResource(subResource);
+			visitor.visitSubResource(subResource);
 		}
 	}
 

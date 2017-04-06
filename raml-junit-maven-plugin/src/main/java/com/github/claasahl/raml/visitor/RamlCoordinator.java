@@ -43,12 +43,12 @@ public class RamlCoordinator {
 		visitor.visitRaml(raml, ramlPath);
 		visitBaseUriParameters(raml, visitor);
 		visitDocumentationItems(raml, visitor);
-		visitResources(raml, visitor);
 		visitSchemas(raml, visitor);
 		visitSecurityReferences(raml, visitor);
 		visitSecuritySchemes(raml, visitor);
 		visitResourceTypes(raml, visitor);
 		visitTraits(raml, visitor);
+		visitResources(raml, visitor);
 	}
 
 	/**
