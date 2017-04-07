@@ -19,6 +19,10 @@ import org.raml.parser.rule.ValidationResult;
 import org.raml.parser.visitor.RamlDocumentBuilder;
 import org.raml.parser.visitor.RamlValidationService;
 
+import com.github.claasahl.raml.visitor.RamlCoordinator;
+import com.github.claasahl.raml.visitor.RamlCoordinatorFactory;
+import com.github.claasahl.raml.visitor.RamlVisitor;
+
 public class LoadRaml {
 
 	public static void main(String[] args) throws FileNotFoundException {
@@ -29,14 +33,17 @@ public class LoadRaml {
 		List<ValidationResult> results = RamlValidationService.createDefault(loader).validate(inputStream, "");
 		ValidationResult.areValid(results);
 
+		RamlCoordinatorFactory coordinatorFactory = new RamlCoordinatorFactory();
 		Path baseDir = Paths.get("src/main/raml");
 		Stream<Path> stream = findRamlSpecifications(baseDir);
 		stream.map(baseDir::relativize).flatMap((Path ramlSpec) -> {
 			Raml raml = loadRamlSpecification(baseDir, ramlSpec);
 			List<RamlTestCase> testCases = new ArrayList<>();
 			if (raml != null) {
-				RamlTestCasesVisitorFactory factory = new RamlTestCasesVisitorFactory(testCases::add);
-				factory.createRamlVisitor().visitRaml(raml, ramlSpec);
+				RamlTestCasesVisitorFactory factory = new RamlTestCasesVisitorFactory(testCases::add, coordinatorFactory);
+				RamlVisitor visitor = factory.createRamlVisitor();
+				RamlCoordinator coordinator = coordinatorFactory.createRamlCoordinator();
+				coordinator.visitRaml(raml, ramlSpec, visitor);
 			}
 			return testCases.stream();
 		}).forEach(System.out::println);
