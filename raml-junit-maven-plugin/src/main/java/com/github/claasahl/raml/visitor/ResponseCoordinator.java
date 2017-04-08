@@ -19,7 +19,7 @@ import org.raml.model.parameter.Header;
  * @author Claas Ahlrichs
  *
  */
-public class ResponseCoordinator {
+public class ResponseCoordinator implements Coordinator {
 
 	/**
 	 * Visits the specified response and then delegates its attributes to with

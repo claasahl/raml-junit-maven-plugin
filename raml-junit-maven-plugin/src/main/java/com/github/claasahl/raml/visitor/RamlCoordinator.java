@@ -26,7 +26,7 @@ import org.raml.model.parameter.UriParameter;
  * @author Claas Ahlrichs
  *
  */
-public class RamlCoordinator {
+public class RamlCoordinator implements Coordinator {
 
 	/**
 	 * Visits the specified RAML specification and then delegates its attributes

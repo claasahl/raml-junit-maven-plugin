@@ -22,7 +22,7 @@ import org.raml.model.parameter.UriParameter;
  * @author Claas Ahlrichs
  *
  */
-public class ResourceCoordinator {
+public class ResourceCoordinator implements Coordinator {
 
 	/**
 	 * Visits the specified resource and then delegates its attributes to with
