@@ -8,11 +8,9 @@ import org.raml.model.Resource;
 import org.raml.model.SecurityReference;
 import org.raml.model.parameter.UriParameter;
 
-import com.github.claasahl.raml.visitor.ActionCoordinator;
 import com.github.claasahl.raml.visitor.ActionVisitor;
 import com.github.claasahl.raml.visitor.RamlCoordinatorFactory;
 import com.github.claasahl.raml.visitor.RamlVisitorFactory;
-import com.github.claasahl.raml.visitor.ResourceCoordinator;
 import com.github.claasahl.raml.visitor.ResourceVisitor;
 
 public class RamlTestCasesResourceVisitor implements ResourceVisitor {
@@ -34,15 +32,13 @@ public class RamlTestCasesResourceVisitor implements ResourceVisitor {
 	@Override
 	public void visitAction(ActionType actionType, Action action) {
 		ActionVisitor visitor = this.visitorFactory.createActionVisitor();
-		ActionCoordinator coordinator = this.coordinatorFactory.createActionCoordinator();
-		coordinator.visitAction(action, visitor);
+		this.coordinatorFactory.visitAction(action, visitor);
 	}
 
 	@Override
 	public void visitSubResource(Resource resource) {
 		ResourceVisitor visitor = this.visitorFactory.createResourceVisitor();
-		ResourceCoordinator coordinator = this.coordinatorFactory.createResourceCoordinator();
-		coordinator.visitResource(resource, visitor);
+		this.coordinatorFactory.visitResource(resource, visitor);
 	}
 	
 	@Override

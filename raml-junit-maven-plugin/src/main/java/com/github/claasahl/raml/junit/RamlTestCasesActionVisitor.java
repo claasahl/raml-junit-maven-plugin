@@ -13,7 +13,6 @@ import org.raml.model.parameter.UriParameter;
 import com.github.claasahl.raml.visitor.ActionVisitor;
 import com.github.claasahl.raml.visitor.RamlCoordinatorFactory;
 import com.github.claasahl.raml.visitor.RamlVisitorFactory;
-import com.github.claasahl.raml.visitor.ResponseCoordinator;
 import com.github.claasahl.raml.visitor.ResponseVisitor;
 
 public class RamlTestCasesActionVisitor implements ActionVisitor {
@@ -47,8 +46,7 @@ public class RamlTestCasesActionVisitor implements ActionVisitor {
 		this.builder.setStatusCode(key);
 		
 		ResponseVisitor visitor = this.visitorFactory.createResponseVisitor();
-		ResponseCoordinator coordinator = this.coordinatorFactory.createResponseCoordinator();
-		coordinator.visitResponse(response, visitor);
+		this.coordinatorFactory.visitResponse(response, visitor);
 	}
 
 	@Override

@@ -14,7 +14,6 @@ import org.raml.model.parameter.UriParameter;
 import com.github.claasahl.raml.visitor.RamlCoordinatorFactory;
 import com.github.claasahl.raml.visitor.RamlVisitor;
 import com.github.claasahl.raml.visitor.RamlVisitorFactory;
-import com.github.claasahl.raml.visitor.ResourceCoordinator;
 import com.github.claasahl.raml.visitor.ResourceVisitor;
 
 public class RamlTestCasesVisitor implements RamlVisitor {
@@ -36,8 +35,7 @@ public class RamlTestCasesVisitor implements RamlVisitor {
 	@Override
 	public void visitResource(String key, Resource resource) {
 		ResourceVisitor visitor = this.visitorFactory.createResourceVisitor();
-		ResourceCoordinator coordinator = this.coordinatorFactory.createResourceCoordinator();
-		coordinator.visitResource(resource, visitor);
+		this.coordinatorFactory.visitResource(resource, visitor);
 	}
 
 	@Override

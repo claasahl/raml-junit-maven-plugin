@@ -19,7 +19,6 @@ import org.raml.parser.rule.ValidationResult;
 import org.raml.parser.visitor.RamlDocumentBuilder;
 import org.raml.parser.visitor.RamlValidationService;
 
-import com.github.claasahl.raml.visitor.RamlCoordinator;
 import com.github.claasahl.raml.visitor.RamlCoordinatorFactory;
 import com.github.claasahl.raml.visitor.RamlVisitor;
 
@@ -42,8 +41,7 @@ public class LoadRaml {
 			if (raml != null) {
 				RamlTestCasesVisitorFactory factory = new RamlTestCasesVisitorFactory(testCases::add, coordinatorFactory);
 				RamlVisitor visitor = factory.createRamlVisitor();
-				RamlCoordinator coordinator = coordinatorFactory.createRamlCoordinator();
-				coordinator.visitRaml(raml, ramlSpec, visitor);
+				coordinatorFactory.visitRaml(raml, ramlSpec, visitor);
 			}
 			return testCases.stream();
 		}).forEach(System.out::println);
