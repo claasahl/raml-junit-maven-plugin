@@ -26,7 +26,9 @@ import org.raml.model.parameter.UriParameter;
  */
 public interface ActionVisitor {
 
-	void visitAction(Action action);
+	void beforeVisit(Action action);
+	
+	void afterVisit(Action action);
 
 	void visitBaseUriParameter(String key, List<UriParameter> uriParameters);
 

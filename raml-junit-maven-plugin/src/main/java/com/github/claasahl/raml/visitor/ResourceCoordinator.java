@@ -34,13 +34,14 @@ public class ResourceCoordinator implements Coordinator {
 	 *            the visitor
 	 */
 	public void visitResource(Resource resource, ResourceVisitor visitor) {
-		visitor.visitResource(resource);
+		visitor.beforeVisit(resource);
 		visitBaseUriParameters(resource, visitor);
 		visitResolvedUriParameters(resource, visitor);
 		visitUriParameters(resource, visitor);
 		visitSecurityReferences(resource, visitor);
 		visitActions(resource, visitor);
 		visitSubResources(resource, visitor);
+		visitor.afterVisit(resource);
 	}
 
 	/**

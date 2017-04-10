@@ -21,7 +21,9 @@ import org.raml.model.parameter.Header;
  */
 public interface ResponseVisitor {
 
-	void visitResponse(Response response);
+	void beforeVisit(Response response);
+	
+	void afterVisit(Response response);
 
 	/**
 	 * 

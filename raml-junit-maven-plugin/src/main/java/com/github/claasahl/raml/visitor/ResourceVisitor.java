@@ -25,7 +25,9 @@ import org.raml.model.parameter.UriParameter;
  */
 public interface ResourceVisitor {
 
-	void visitResource(Resource resource);
+	void beforeVisit(Resource resource);
+	
+	void afterVisit(Resource resource);
 	
 	void visitSubResource(Resource resource);
 

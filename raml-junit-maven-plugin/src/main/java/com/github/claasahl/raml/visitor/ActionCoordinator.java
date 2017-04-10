@@ -36,13 +36,14 @@ public class ActionCoordinator implements Coordinator {
 	 *            the visitor
 	 */
 	public void visitAction(Action action, ActionVisitor visitor) {
-		visitor.visitAction(action);
+		visitor.beforeVisit(action);
 		visitBaseUriParameters(action, visitor);
 		visitBodies(action, visitor);
 		visitHeaders(action, visitor);
 		visitQueryParameters(action, visitor);
 		visitSecurityReferences(action, visitor);
 		visitResponses(action, visitor);
+		visitor.afterVisit(action);
 	}
 
 	/**

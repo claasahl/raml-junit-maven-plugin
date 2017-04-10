@@ -31,9 +31,10 @@ public class ResponseCoordinator implements Coordinator {
 	 *            the visitor
 	 */
 	public void visitResponse(Response response, ResponseVisitor visitor) {
-		visitor.visitResponse(response);
+		visitor.beforeVisit(response);
 		visitBodies(response, visitor);
 		visitHeaders(response, visitor);
+		visitor.afterVisit(response);
 	}
 
 	/**

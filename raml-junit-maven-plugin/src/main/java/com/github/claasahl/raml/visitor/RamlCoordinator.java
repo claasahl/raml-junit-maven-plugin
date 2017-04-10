@@ -40,7 +40,7 @@ public class RamlCoordinator implements Coordinator {
 	 *            the visitor
 	 */
 	public void visitRaml(Raml raml, Path ramlPath, RamlVisitor visitor) {
-		visitor.visitRaml(raml, ramlPath);
+		visitor.beforeVisit(raml, ramlPath);
 		visitBaseUriParameters(raml, visitor);
 		visitDocumentationItems(raml, visitor);
 		visitSchemas(raml, visitor);
@@ -49,6 +49,7 @@ public class RamlCoordinator implements Coordinator {
 		visitResourceTypes(raml, visitor);
 		visitTraits(raml, visitor);
 		visitResources(raml, visitor);
+		visitor.afterVisit(raml, ramlPath);
 	}
 
 	/**
