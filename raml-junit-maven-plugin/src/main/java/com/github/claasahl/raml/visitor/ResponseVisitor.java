@@ -22,7 +22,7 @@ import org.raml.model.parameter.Header;
 public interface ResponseVisitor {
 
 	void beforeVisit(Response response);
-	
+
 	void afterVisit(Response response);
 
 	/**

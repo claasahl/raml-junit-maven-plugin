@@ -28,7 +28,7 @@ import org.raml.model.parameter.UriParameter;
 public interface RamlVisitor {
 
 	void beforeVisit(Raml raml, Path ramlPath);
-	
+
 	void afterVisit(Raml raml, Path ramlPath);
 
 	void visitBaseUriParameter(String key, UriParameter uriParameter);
