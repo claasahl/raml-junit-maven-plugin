@@ -4,11 +4,10 @@ import java.util.function.Consumer;
 
 import org.raml.model.MimeType;
 import org.raml.model.Response;
-import org.raml.model.parameter.Header;
 
-import com.github.claasahl.raml.visitor.ResponseVisitor;
+import com.github.claasahl.raml.visitor.ResponseVisitorBase;
 
-public class RamlTestCasesResponseVisitor implements ResponseVisitor {
+public class RamlTestCasesResponseVisitor extends ResponseVisitorBase {
 
 	private final RamlTestCaseBuilder builder;
 	private final Consumer<RamlTestCase> callback;
@@ -19,22 +18,14 @@ public class RamlTestCasesResponseVisitor implements ResponseVisitor {
 	}
 
 	@Override
-	public void visitResponse(Response response) {
-		// TODO this should be called AFTER visitBody and visitHeader
-		// ... but it is not
+	public void afterVisit(Response response) {
 		RamlTestCase testCase = this.builder.build();
 		callback.accept(testCase);
 	}
-	
+
 	@Override
 	public void visitBody(String key, MimeType mimeType) {
 		this.builder.setMimeType(mimeType);
-	}
-
-
-	@Override
-	public void visitHeader(String key, Header header) {
-		// nothing to be done
 	}
 
 }
