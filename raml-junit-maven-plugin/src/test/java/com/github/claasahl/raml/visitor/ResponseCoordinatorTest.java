@@ -1,7 +1,10 @@
 package com.github.claasahl.raml.visitor;
 
-import static org.junit.Assert.*;
-import static org.mockito.Mockito.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -25,14 +28,13 @@ public class ResponseCoordinatorTest {
 	}
 
 	@Test
-	public void shouldVisitRootObject() {
+	public void shouldVisitBeforeAndAfter() {
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		this.coordinator.visitResponse(this.response, visitor);
 		
 		InOrder inOrder = inOrder(visitor);
-		inOrder.verify(visitor).visitResponse(this.response);
-		inOrder.verify(visitor, never()).visitBody(any(), any());
-		inOrder.verify(visitor, never()).visitHeader(any(), any());
+		inOrder.verify(visitor).beforeVisit(this.response);
+		inOrder.verify(visitor).afterVisit(this.response);
 	}
 	
 	@Test
@@ -52,10 +54,10 @@ public class ResponseCoordinatorTest {
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		this.coordinator.visitResponse(this.response, visitor);
 		
-		InOrder inOrder = inOrder(visitor);
-		inOrder.verify(visitor).visitResponse(this.response);
-		inOrder.verify(visitor).visitBody(type, mimeType);
-		inOrder.verify(visitor).visitHeader(headerName, header);
+		verify(visitor).beforeVisit(this.response);
+		verify(visitor).visitBody(type, mimeType);
+		verify(visitor).visitHeader(headerName, header);
+		verify(visitor).afterVisit(this.response);
 	}
 	
 	@Test
