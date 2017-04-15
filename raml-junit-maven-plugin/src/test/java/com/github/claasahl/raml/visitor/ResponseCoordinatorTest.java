@@ -8,6 +8,7 @@ import static org.mockito.Mockito.verify;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,10 +18,10 @@ import org.raml.model.Response;
 import org.raml.model.parameter.Header;
 
 public class ResponseCoordinatorTest {
-	
+
 	private ResponseCoordinator coordinator;
 	private Response response;
-	
+
 	@Before
 	public void before() {
 		this.coordinator = new ResponseCoordinator();
@@ -31,81 +32,105 @@ public class ResponseCoordinatorTest {
 	public void shouldVisitBeforeAndAfter() {
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		this.coordinator.visitResponse(this.response, visitor);
-		
+
 		InOrder inOrder = inOrder(visitor);
 		inOrder.verify(visitor).beforeVisit(this.response);
 		inOrder.verify(visitor).afterVisit(this.response);
+		verify(visitor, never()).visitBody(any(), any());
+		verify(visitor, never()).visitHeader(any(), any());
 	}
-	
+
 	@Test
 	public void shouldVisitAttributes() {
-		Map<String, MimeType> body = new HashMap<>();
-		String type = "application/json";
-		MimeType mimeType = new MimeType(type);
-		body.put(type, mimeType);
-		this.response.setBody(body);
-		
-		Map<String, Header> headers = new HashMap<>();
-		String headerName = "location";
-		Header header = new Header();
-		headers.put(headerName, header);
+		Map<String, MimeType> bodies = mimeTypes("json");
+		this.response.setBody(bodies);
+		Map<String, Header> headers = headers("a");
 		this.response.setHeaders(headers);
-		
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		this.coordinator.visitResponse(this.response, visitor);
-		
+
 		verify(visitor).beforeVisit(this.response);
-		verify(visitor).visitBody(type, mimeType);
-		verify(visitor).visitHeader(headerName, header);
+		verify(visitor).visitBody(any(), any());
+		verify(visitor).visitHeader(any(), any());
 		verify(visitor).afterVisit(this.response);
 	}
-	
+
 	@Test
 	public void shouldNotVisitHeader() {
+		this.response.setHeaders(null);
+
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		ResponseCoordinator.visitHeaders(this.response, visitor);
 		verify(visitor, never()).visitHeader(any(), any());
 	}
-	
+
 	@Test
-	public void shouldVisitHeader() {
-		Map<String, Header> headers = new HashMap<>();
-		String headerName = "location";
-		Header header = new Header();
-		headers.put(headerName, header);
-		String headerName2 = "location2";
-		Header header2 = new Header();
-		headers.put(headerName2, header2);
+	public void shouldVisitNoHeader() {
+		Map<String, Header> headers = headers();
 		this.response.setHeaders(headers);
-		
+
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		ResponseCoordinator.visitHeaders(this.response, visitor);
-		verify(visitor).visitHeader(headerName, header);
-		verify(visitor).visitHeader(headerName2, header2);
+		verify(visitor, never()).visitHeader(any(), any());
 	}
-	
+
+	@Test
+	public void shouldVisitAllHeaders() {
+		Map<String, Header> headers = headers("a", "b");
+		this.response.setHeaders(headers);
+
+		ResponseVisitor visitor = mock(ResponseVisitor.class);
+		ResponseCoordinator.visitHeaders(this.response, visitor);
+		for (Entry<String, Header> entry : headers.entrySet()) {
+			verify(visitor).visitHeader(entry.getKey(), entry.getValue());
+		}
+	}
+
 	@Test
 	public void shouldNotVisitBody() {
+		this.response.setBody(null);
+
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		ResponseCoordinator.visitHeaders(this.response, visitor);
 		verify(visitor, never()).visitBody(any(), any());
 	}
-	
+
 	@Test
-	public void shouldVisitBody() {
-		Map<String, MimeType> body = new HashMap<>();
-		String type = "application/json";
-		MimeType mimeType = new MimeType(type);
-		body.put(type, mimeType);
-		String type2 = "application/xml";
-		MimeType mimeType2 = new MimeType(type);
-		body.put(type2, mimeType2);
-		this.response.setBody(body);
-		
+	public void shouldVisitNoBody() {
+		Map<String, MimeType> bodies = mimeTypes();
+		this.response.setBody(bodies);
+
+		ResponseVisitor visitor = mock(ResponseVisitor.class);
+		ResponseCoordinator.visitHeaders(this.response, visitor);
+		verify(visitor, never()).visitBody(any(), any());
+	}
+
+	@Test
+	public void shouldVisitAllBodies() {
+		Map<String, MimeType> bodies = mimeTypes("json", "xml");
+		this.response.setBody(bodies);
+
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		ResponseCoordinator.visitBodies(this.response, visitor);
-		verify(visitor).visitBody(type, mimeType);
-		verify(visitor).visitBody(type2, mimeType2);
+		for (Entry<String, MimeType> entry : bodies.entrySet()) {
+			verify(visitor).visitBody(entry.getKey(), entry.getValue());
+		}
+	}
+
+	private static Map<String, Header> headers(String... fieldNames) {
+		Map<String, Header> headers = new HashMap<>();
+		for (String fieldName : fieldNames) {
+			headers.put(fieldName, new Header());
+		}
+		return headers;
+	}
+
+	private static Map<String, MimeType> mimeTypes(String... types) {
+		Map<String, MimeType> mimeTypes = new HashMap<>();
+		for (String type : types) {
+			mimeTypes.put(type, new MimeType(type));
+		}
+		return mimeTypes;
 	}
 
 }
