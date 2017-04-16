@@ -175,7 +175,6 @@
 		<profile>
 			<id>run-its</id>
 			<build>
-
 				<plugins>
 					<plugin>
 						<artifactId>maven-invoker-plugin</artifactId>
