@@ -45,7 +45,7 @@ public class ResourceVisitorBase implements ResourceVisitor {
 	}
 
 	@Override
-	public void visitResolvedUriParameter(String key, UriParameter uriParameters) {
+	public void visitResolvedUriParameter(String key, UriParameter uriParameter) {
 		// empty body
 	}
 

@@ -35,7 +35,7 @@ public interface ResourceVisitor {
 
 	void visitBaseUriParameter(String key, List<UriParameter> uriParameters);
 
-	void visitResolvedUriParameter(String key, UriParameter uriParameters);
+	void visitResolvedUriParameter(String key, UriParameter uriParameter);
 
 	void visitSecurityReference(SecurityReference securityReference);
 
