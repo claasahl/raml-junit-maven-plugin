@@ -17,7 +17,7 @@ import org.raml.model.MimeType;
 import org.raml.model.Response;
 import org.raml.model.parameter.Header;
 
-public class ResponseCoordinatorTest {
+public class ResponseCoordinatorTest extends CoordinatorTest {
 
 	private ResponseCoordinator coordinator;
 	private Response response;
@@ -28,8 +28,8 @@ public class ResponseCoordinatorTest {
 		this.response = new Response();
 	}
 
-	@Test
-	public void shouldVisitBeforeAndAfter() {
+	@Override
+	public void shouldCallBeforeVisitAndAfterVisit() {
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		this.coordinator.visitResponse(this.response, visitor);
 
@@ -40,8 +40,8 @@ public class ResponseCoordinatorTest {
 		verify(visitor, never()).visitHeader(any(), any());
 	}
 
-	@Test
-	public void shouldVisitAttributes() {
+	@Override
+	public void shouldCallAllVisitMethods() {
 		Map<String, MimeType> bodies = mimeTypes("json");
 		this.response.setBody(bodies);
 		Map<String, Header> headers = headers("a");
@@ -101,7 +101,7 @@ public class ResponseCoordinatorTest {
 		this.response.setBody(bodies);
 
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
-		ResponseCoordinator.visitHeaders(this.response, visitor);
+		ResponseCoordinator.visitBodies(this.response, visitor);
 		verify(visitor, never()).visitBody(any(), any());
 	}
 
