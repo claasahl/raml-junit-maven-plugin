@@ -1,11 +1,12 @@
 package com.github.claasahl.raml.visitor;
 
+import static org.junit.Assert.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -17,8 +18,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
-import org.raml.model.Response;
-import org.raml.model.parameter.Header;
 
 @RunWith(Parameterized.class)
 public class VisitMapAttributeTest<R, V, K, W> {
@@ -65,6 +64,7 @@ public class VisitMapAttributeTest<R, V, K, W> {
 	public void shouldVisitAllValues() throws Exception {
 		R resource = resourceSupplier.get();
 		this.attributeSetter.accept(resource, this.values);
+		assertFalse("Must contain values (i.e. may not be empty)", this.values.isEmpty());
 
 		V visitor = mock(visitorClass);
 		this.visitFunction.accept(resource, visitor);
@@ -75,12 +75,10 @@ public class VisitMapAttributeTest<R, V, K, W> {
 
 	@Parameters
 	public static Collection<Object[]> data() {
-		Supplier<Response> supplier = Response::new;
-		BiConsumer<Response, Map<String, Header>> setter = Response::setHeaders;
-		BiConsumer<Response, ResponseVisitor> visit = ResponseCoordinator::visitHeaders;
-		TriConsumer<ResponseVisitor, String, Header> visited = ResponseVisitor::visitHeader;
-		return Arrays.asList(new Object[][] {
-				{ supplier, ResponseCoordinatorTest.headers(), setter, visit, visited, ResponseVisitor.class } });
+		Collection<Object[]> data = new ArrayList<>();
+		data.addAll(ResponseCoordinatorTest.data());
+		data.addAll(ResourceCoordinatorTest.data());
+		return data;
 	}
 
 }
