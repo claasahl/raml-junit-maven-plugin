@@ -3,25 +3,38 @@
 	<!-- pom reference: https://maven.apache.org/pom.html -->
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.claasahl</groupId>
+	<groupId>com.github.claasahl.raml</groupId>
 	<artifactId>raml-junit-maven-plugin</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
 	<name>raml-junit-maven-plugin Maven Plugin</name>
 	<description>TBD</description>
-	<url>https://github.com/claasahl/raml-junit</url>
+	<url>https://github.com/claasahl/raml-junit-maven-plugin</url>
 	<inceptionYear>2017</inceptionYear>
-	<issueManagement>
-		<system>GitHub Issues</system>
-		<url>https://github.com/claasahl/raml-junit/issues</url>
-	</issueManagement>
+	<developers>
+		<developer>
+			<id>claasahl</id>
+			<name>Claas Ahlrichs</name>
+			<email>claasahl__AT_gmail.com</email>
+			<url>https://github.com/claasahl</url>
+		</developer>
+	</developers>
 	<licenses>
 		<license>
-			<name>LGPL-3.0</name>
+			<name>GNU Lesser General Public License (LGPL) - Version 3.0</name>
 			<url>https://www.gnu.org/licenses/lgpl-3.0.en.html</url>
 		</license>
 	</licenses>
+	<scm>
+		<connection>scm:git:git://github.com/claasahl/raml-junit-maven-plugin.git</connection>
+		<developerConnection>scm:git:ssh://github.com:claasahl/raml-junit-maven-plugin.git</developerConnection>
+		<url>http://github.com/claasahl/raml-junit-maven-plugin/tree/master</url>
+	</scm>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/claasahl/raml-junit-maven-plugin/issues</url>
+	</issueManagement>
 	<prerequisites>
 		<maven>${version-maven}</maven>
 	</prerequisites>
