@@ -123,6 +123,31 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>${version-source-plugin}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${version-javadoc-plugin}</version>
+				<executions>
+					<execution>
+						<id>attach-sources</id>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
 				<artifactId>maven-plugin-plugin</artifactId>
 				<version>${version-plugin-plugin}</version>
 				<configuration>
@@ -153,30 +178,6 @@
 				<version>1.1</version>
 				<!-- <executions> <execution> <id>check-plugin-documentation</id> <goals> 
 					<goal>check</goal> </goals> </execution> </executions> -->
-			</plugin>
-			<plugin>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>${version-source-plugin}</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>${version-javadoc-plugin}</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-checkstyle-plugin</artifactId>
