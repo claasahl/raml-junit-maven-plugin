@@ -1,2 +1,2 @@
-# raml-junit-maven-plugin
-TBD
+# RAML-JUnit Maven Plugin
+This maven plugin is intended to generate and execute JUnit test cases for RAML resources. By default, a test case is generated for each combination of resource, mime type and response code. Where available and possible, the example-requests within the RAML specification are utilized. However, the framework provides means to supply custom requests in cases where example-requests are in sufficient.

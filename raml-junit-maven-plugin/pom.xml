@@ -8,8 +8,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>maven-plugin</packaging>
 
-	<name>raml-junit-maven-plugin Maven Plugin</name>
-	<description>TBD</description>
+	<name>RAML-JUnit Maven Plugin</name>
+	<description>This maven plugin is intended to generate and execute JUnit test cases for RAML resources. By default, a test case is generated for each combination of resource, mime type and response code. Where available and possible, the example-requests within the RAML specification are utilized. However, the framework provides means to supply custom requests in cases where example-requests are in sufficient.</description>
 	<url>https://github.com/claasahl/raml-junit-maven-plugin</url>
 	<inceptionYear>2017</inceptionYear>
 	<developers>
