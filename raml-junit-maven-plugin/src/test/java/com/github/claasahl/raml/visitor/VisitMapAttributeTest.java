@@ -78,6 +78,7 @@ public class VisitMapAttributeTest<R, V, K, W> {
 		Collection<Object[]> data = new ArrayList<>();
 		data.addAll(ResponseCoordinatorTest.data());
 		data.addAll(ResourceCoordinatorTest.data());
+		data.addAll(ActionCoordinatorTest.data());
 		return data;
 	}
 
