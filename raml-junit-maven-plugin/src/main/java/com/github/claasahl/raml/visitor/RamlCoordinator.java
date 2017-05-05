@@ -1,15 +1,12 @@
 package com.github.claasahl.raml.visitor;
 
 import java.nio.file.Path;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import org.raml.model.DocumentationItem;
 import org.raml.model.Raml;
 import org.raml.model.Resource;
 import org.raml.model.SecurityReference;
-import org.raml.model.SecurityScheme;
-import org.raml.model.Template;
 import org.raml.model.parameter.UriParameter;
 
 /**
@@ -43,72 +40,9 @@ public class RamlCoordinator implements Coordinator {
 		visitor.beforeVisit(raml, ramlPath);
 		visitBaseUriParameters(raml, visitor);
 		visitDocumentationItems(raml, visitor);
-		visitSchemas(raml, visitor);
 		visitSecurityReferences(raml, visitor);
-		visitSecuritySchemes(raml, visitor);
-		visitResourceTypes(raml, visitor);
-		visitTraits(raml, visitor);
 		visitResources(raml, visitor);
 		visitor.afterVisit(raml, ramlPath);
-	}
-
-	/**
-	 * A support method for iterating and visiting traits of the specified RAML
-	 * specification. This implementation calls
-	 * {@link RamlVisitor#visitTrait(Map)} for all available traits.
-	 * 
-	 * @param raml
-	 *            the RAML specification
-	 * @param visitor
-	 *            the visitor
-	 * @see Raml#getTraits()
-	 */
-	protected static void visitTraits(Raml raml, RamlVisitor visitor) {
-		if (raml.getTraits() == null)
-			return;
-		for (Map<String, Template> trait : raml.getTraits()) {
-			visitor.visitTrait(trait);
-		}
-	}
-
-	/**
-	 * A support method for iterating and visiting resource types of the
-	 * specified RAML specification. This implementation calls
-	 * {@link RamlVisitor#visitResourceType(Map)} for all available resource
-	 * types.
-	 * 
-	 * @param raml
-	 *            the RAML specification
-	 * @param visitor
-	 *            the visitor
-	 * @see Raml#getResourceTypes()
-	 */
-	protected static void visitResourceTypes(Raml raml, RamlVisitor visitor) {
-		if (raml.getResourceTypes() == null)
-			return;
-		for (Map<String, Template> resourceType : raml.getResourceTypes()) {
-			visitor.visitResourceType(resourceType);
-		}
-	}
-
-	/**
-	 * A support method for iterating and visiting security schemes of the
-	 * specified RAML specification. This implementation calls
-	 * {@link RamlVisitor#visitSecurityScheme(Map)} for all available security
-	 * schemes.
-	 * 
-	 * @param raml
-	 *            the RAML specification
-	 * @param visitor
-	 *            the visitor
-	 * @see Raml#getSecuritySchemes()
-	 */
-	protected static void visitSecuritySchemes(Raml raml, RamlVisitor visitor) {
-		if (raml.getSecuritySchemes() == null)
-			return;
-		for (Map<String, SecurityScheme> securityScheme : raml.getSecuritySchemes()) {
-			visitor.visitSecurityScheme(securityScheme);
-		}
 	}
 
 	/**
@@ -128,25 +62,6 @@ public class RamlCoordinator implements Coordinator {
 			return;
 		for (SecurityReference securityReference : raml.getSecuredBy()) {
 			visitor.visitSecurityReference(securityReference);
-		}
-	}
-
-	/**
-	 * A support method for iterating and visiting schemas of the specified RAML
-	 * specification. This implementation calls
-	 * {@link RamlVisitor#visitSchema(Map)} for all available schemas.
-	 * 
-	 * @param raml
-	 *            the RAML specification
-	 * @param visitor
-	 *            the visitor
-	 * @see Raml#getSchemas()
-	 */
-	protected static void visitSchemas(Raml raml, RamlVisitor visitor) {
-		if (raml.getSchemas() == null)
-			return;
-		for (Map<String, String> schema : raml.getSchemas()) {
-			visitor.visitSchema(schema);
 		}
 	}
 

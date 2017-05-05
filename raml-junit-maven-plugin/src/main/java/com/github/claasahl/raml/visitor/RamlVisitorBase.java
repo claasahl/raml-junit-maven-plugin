@@ -1,14 +1,11 @@
 package com.github.claasahl.raml.visitor;
 
 import java.nio.file.Path;
-import java.util.Map;
 
 import org.raml.model.DocumentationItem;
 import org.raml.model.Raml;
 import org.raml.model.Resource;
 import org.raml.model.SecurityReference;
-import org.raml.model.SecurityScheme;
-import org.raml.model.Template;
 import org.raml.model.parameter.UriParameter;
 
 /**
@@ -48,27 +45,7 @@ public class RamlVisitorBase implements RamlVisitor {
 	}
 
 	@Override
-	public void visitSchema(Map<String, String> schema) {
-		// empty body
-	}
-
-	@Override
 	public void visitSecurityReference(SecurityReference securityReference) {
-		// empty body
-	}
-
-	@Override
-	public void visitSecurityScheme(Map<String, SecurityScheme> securityScheme) {
-		// empty body
-	}
-
-	@Override
-	public void visitResourceType(Map<String, Template> resourceType) {
-		// empty body
-	}
-
-	@Override
-	public void visitTrait(Map<String, Template> trait) {
 		// empty body
 	}
 

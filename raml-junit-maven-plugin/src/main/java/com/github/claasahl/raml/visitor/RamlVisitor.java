@@ -1,14 +1,11 @@
 package com.github.claasahl.raml.visitor;
 
 import java.nio.file.Path;
-import java.util.Map;
 
 import org.raml.model.DocumentationItem;
 import org.raml.model.Raml;
 import org.raml.model.Resource;
 import org.raml.model.SecurityReference;
-import org.raml.model.SecurityScheme;
-import org.raml.model.Template;
 import org.raml.model.parameter.UriParameter;
 
 /**
@@ -37,14 +34,6 @@ public interface RamlVisitor {
 
 	void visitResource(String key, Resource resource);
 
-	void visitSchema(Map<String, String> schema);
-
 	void visitSecurityReference(SecurityReference securityReference);
-
-	void visitSecurityScheme(Map<String, SecurityScheme> securityScheme);
-
-	void visitResourceType(Map<String, Template> resourceType);
-
-	void visitTrait(Map<String, Template> trait);
 
 }
