@@ -30,7 +30,7 @@ public class ResourceVisitorBase implements ResourceVisitor {
 	}
 
 	@Override
-	public void visitSubResource(Resource resource) {
+	public void visitSubResource(String key, Resource resource) {
 		// empty body
 	}
 

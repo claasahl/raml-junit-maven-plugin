@@ -29,7 +29,7 @@ public interface ResourceVisitor {
 
 	void afterVisit(Resource resource);
 
-	void visitSubResource(Resource resource);
+	void visitSubResource(String key, Resource resource);
 
 	void visitAction(ActionType actionType, Action action);
 

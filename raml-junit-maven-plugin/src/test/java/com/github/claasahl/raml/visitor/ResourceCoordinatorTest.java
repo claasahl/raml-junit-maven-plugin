@@ -46,7 +46,7 @@ public class ResourceCoordinatorTest extends CoordinatorTest {
 		verify(visitor, never()).visitBaseUriParameter(any(), any());
 		verify(visitor, never()).visitResolvedUriParameter(any(), any());
 		verify(visitor, never()).visitSecurityReference(any());
-		verify(visitor, never()).visitSubResource(any());
+		verify(visitor, never()).visitSubResource(any(), any());
 		verify(visitor, never()).visitUriParameter(any(), any());
 	}
 
@@ -70,7 +70,7 @@ public class ResourceCoordinatorTest extends CoordinatorTest {
 		verify(visitor).visitBaseUriParameter(any(), any());
 		verify(visitor).visitResolvedUriParameter(any(), any());
 		verify(visitor).visitSecurityReference(any());
-		verify(visitor).visitSubResource(any());
+		verify(visitor).visitSubResource(any(), any());
 		verify(visitor).visitUriParameter(any(), any());
 		verify(visitor).afterVisit(this.resource);
 	}
@@ -122,8 +122,6 @@ public class ResourceCoordinatorTest extends CoordinatorTest {
 	protected static Collection<Object[]> data() {
 		// List<SecurityReference> securedBy = securityReference("b");
 		// this.resource.setSecuredBy(securedBy);
-		// Map<String, Resource> resources = resources("/some/resource/path");
-		// this.resource.setResources(resources);
 
 		Supplier<Resource> supplier = Resource::new;
 		return Arrays.asList(new Object[][] {
@@ -146,6 +144,11 @@ public class ResourceCoordinatorTest extends CoordinatorTest {
 						(BiConsumer<Resource, Map<String, UriParameter>>) Resource::setUriParameters,
 						(BiConsumer<Resource, ResourceVisitor>) ResourceCoordinator::visitResolvedUriParameters,
 						(TriConsumer<ResourceVisitor, String, UriParameter>) ResourceVisitor::visitResolvedUriParameter,
+						ResourceVisitor.class },
+				{ supplier, resources("/some/resource/path"),
+						(BiConsumer<Resource, Map<String, Resource>>) Resource::setResources,
+						(BiConsumer<Resource, ResourceVisitor>) ResourceCoordinator::visitSubResources,
+						(TriConsumer<ResourceVisitor, String, Resource>) ResourceVisitor::visitSubResource,
 						ResourceVisitor.class } });
 	}
 

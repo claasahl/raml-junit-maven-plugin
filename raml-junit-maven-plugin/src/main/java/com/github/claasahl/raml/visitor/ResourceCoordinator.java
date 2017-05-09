@@ -47,8 +47,8 @@ public class ResourceCoordinator implements Coordinator {
 	/**
 	 * A support method for iterating and visiting sub-resources of the
 	 * specified resource. This implementation calls
-	 * {@link ResourceVisitor#visitSubResource(Resource)} for all available
-	 * sub-resources.
+	 * {@link ResourceVisitor#visitSubResource(String, Resource)} for all
+	 * available sub-resources.
 	 * 
 	 * @param resource
 	 *            the resource
@@ -59,8 +59,8 @@ public class ResourceCoordinator implements Coordinator {
 	protected static void visitSubResources(Resource resource, ResourceVisitor visitor) {
 		if (resource.getResources() == null)
 			return;
-		for (Resource subResource : resource.getResources().values()) {
-			visitor.visitSubResource(subResource);
+		for (Entry<String, Resource> entry : resource.getResources().entrySet()) {
+			visitor.visitSubResource(entry.getKey(), entry.getValue());
 		}
 	}
 

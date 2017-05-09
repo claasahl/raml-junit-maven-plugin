@@ -35,7 +35,7 @@ public class RamlTestCasesResourceVisitor extends ResourceVisitorBase {
 	}
 
 	@Override
-	public void visitSubResource(Resource resource) {
+	public void visitSubResource(String key, Resource resource) {
 		ResourceVisitor visitor = this.visitorFactory.createResourceVisitor();
 		this.coordinatorFactory.visitResource(resource, visitor);
 	}
