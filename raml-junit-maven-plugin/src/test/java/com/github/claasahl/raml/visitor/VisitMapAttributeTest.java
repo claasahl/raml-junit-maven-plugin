@@ -79,6 +79,7 @@ public class VisitMapAttributeTest<R, V, K, W> {
 		data.addAll(ResponseCoordinatorTest.data());
 		data.addAll(ResourceCoordinatorTest.data());
 		data.addAll(ActionCoordinatorTest.data());
+		data.addAll(RamlCoordinatorTest.data());
 		return data;
 	}
 
