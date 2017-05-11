@@ -6,10 +6,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -54,17 +52,17 @@ public class ActionCoordinatorTest extends CoordinatorTest {
 
 	@Override
 	public void shouldCallAllVisitMethods() {
-		Map<String, List<UriParameter>> baseUriParameters = baseUriParameters("a");
+		Map<String, List<UriParameter>> baseUriParameters = AttributeSupplier.baseUriParameters("a");
 		this.action.setBaseUriParameters(baseUriParameters);
-		Map<String, MimeType> bodies = mimeTypes("json");
+		Map<String, MimeType> bodies = AttributeSupplier.mimeTypes("json");
 		this.action.setBody(bodies);
-		Map<String, Header> headers = headers("b");
+		Map<String, Header> headers = AttributeSupplier.headers("b");
 		this.action.setHeaders(headers);
-		Map<String, QueryParameter> queryParameters = queryParameters("c");
+		Map<String, QueryParameter> queryParameters = AttributeSupplier.queryParameters("c");
 		this.action.setQueryParameters(queryParameters);
-		Map<String, Response> responses = responses("d");
+		Map<String, Response> responses = AttributeSupplier.responses("d");
 		this.action.setResponses(responses);
-		List<SecurityReference> securedBy = securityReference("e");
+		List<SecurityReference> securedBy = AttributeSupplier.securityReference("e");
 		this.action.setSecuredBy(securedBy);
 		ActionVisitor visitor = mock(ActionVisitor.class);
 		this.coordinator.visitAction(this.action, visitor);
@@ -79,81 +77,29 @@ public class ActionCoordinatorTest extends CoordinatorTest {
 		verify(visitor).afterVisit(this.action);
 	}
 
-	private static Map<String, Header> headers(String... fieldNames) {
-		Map<String, Header> headers = new HashMap<>();
-		for (String fieldName : fieldNames) {
-			headers.put(fieldName, new Header());
-		}
-		return headers;
-	}
-
-	private static Map<String, MimeType> mimeTypes(String... types) {
-		Map<String, MimeType> mimeTypes = new HashMap<>();
-		for (String type : types) {
-			mimeTypes.put(type, new MimeType(type));
-		}
-		return mimeTypes;
-	}
-
-	private static Map<String, List<UriParameter>> baseUriParameters(String... names) {
-		Map<String, List<UriParameter>> parameters = new HashMap<>();
-		for (String name : names) {
-			parameters.put(name, Arrays.asList(uriParameter(name)));
-		}
-		return parameters;
-	}
-
-	private static Map<String, QueryParameter> queryParameters(String... names) {
-		Map<String, QueryParameter> parameters = new HashMap<>();
-		for (String name : names) {
-			parameters.put(name, new QueryParameter());
-		}
-		return parameters;
-	}
-
-	private static Map<String, Response> responses(String... names) {
-		Map<String, Response> responses = new HashMap<>();
-		for (String name : names) {
-			responses.put(name, new Response());
-		}
-		return responses;
-	}
-
-	private static List<SecurityReference> securityReference(String... names) {
-		List<SecurityReference> references = new ArrayList<>();
-		for (String name : names) {
-			references.add(new SecurityReference(name));
-		}
-		return references;
-	}
-
-	private static UriParameter uriParameter(String name) {
-		return new UriParameter(name);
-	}
-
 	protected static Collection<Object[]> data() {
 		// List<SecurityReference> securedBy = securityReference("e");
 		// this.action.setSecuredBy(securedBy);
 
 		Supplier<Action> supplier = Action::new;
 		return Arrays.asList(new Object[][] {
-				{ supplier, baseUriParameters("a"),
+				{ supplier, AttributeSupplier.baseUriParameters("a"),
 						(BiConsumer<Action, Map<String, List<UriParameter>>>) Action::setBaseUriParameters,
 						(BiConsumer<Action, ActionVisitor>) ActionCoordinator::visitBaseUriParameters,
 						(TriConsumer<ActionVisitor, String, List<UriParameter>>) ActionVisitor::visitBaseUriParameter,
 						ActionVisitor.class },
-				{ supplier, mimeTypes("json"), (BiConsumer<Action, Map<String, MimeType>>) Action::setBody,
+				{ supplier, AttributeSupplier.mimeTypes("json"), (BiConsumer<Action, Map<String, MimeType>>) Action::setBody,
 						(BiConsumer<Action, ActionVisitor>) ActionCoordinator::visitBodies,
 						(TriConsumer<ActionVisitor, String, MimeType>) ActionVisitor::visitBody, ActionVisitor.class },
-				{ supplier, headers("b"), (BiConsumer<Action, Map<String, Header>>) Action::setHeaders,
+				{ supplier, AttributeSupplier.headers("b"), (BiConsumer<Action, Map<String, Header>>) Action::setHeaders,
 						(BiConsumer<Action, ActionVisitor>) ActionCoordinator::visitHeaders,
 						(TriConsumer<ActionVisitor, String, Header>) ActionVisitor::visitHeader, ActionVisitor.class },
-				{ supplier, queryParameters("c"),
+				{ supplier, AttributeSupplier.queryParameters("c"),
 						(BiConsumer<Action, Map<String, QueryParameter>>) Action::setQueryParameters,
 						(BiConsumer<Action, ActionVisitor>) ActionCoordinator::visitQueryParameters,
 						(TriConsumer<ActionVisitor, String, QueryParameter>) ActionVisitor::visitQueryParameter,
 						ActionVisitor.class },
-				{ supplier, responses("d"), (BiConsumer<Action, Map<String, Response>>) Action::setResponses,
+				{ supplier, AttributeSupplier.responses("d"), (BiConsumer<Action, Map<String, Response>>) Action::setResponses,
 						(BiConsumer<Action, ActionVisitor>) ActionCoordinator::visitResponses,
 						(TriConsumer<ActionVisitor, String, Response>) ActionVisitor::visitResponse,
 						ActionVisitor.class }, });
