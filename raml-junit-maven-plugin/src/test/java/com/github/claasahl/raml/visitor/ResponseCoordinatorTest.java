@@ -8,7 +8,6 @@ import static org.mockito.Mockito.verify;
 
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
 import java.util.function.Supplier;
@@ -44,9 +43,9 @@ public class ResponseCoordinatorTest extends CoordinatorTest {
 
 	@Override
 	public void shouldCallAllVisitMethods() {
-		Map<String, MimeType> bodies = mimeTypes("json");
+		Map<String, MimeType> bodies = AttributeSupplier.mimeTypes("json");
 		this.response.setBody(bodies);
-		Map<String, Header> headers = headers("a");
+		Map<String, Header> headers = AttributeSupplier.headers("a");
 		this.response.setHeaders(headers);
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		this.coordinator.visitResponse(this.response, visitor);
@@ -57,30 +56,14 @@ public class ResponseCoordinatorTest extends CoordinatorTest {
 		verify(visitor).afterVisit(this.response);
 	}
 
-	private static Map<String, Header> headers(String... fieldNames) {
-		Map<String, Header> headers = new HashMap<>();
-		for (String fieldName : fieldNames) {
-			headers.put(fieldName, new Header());
-		}
-		return headers;
-	}
-
-	private static Map<String, MimeType> mimeTypes(String... types) {
-		Map<String, MimeType> mimeTypes = new HashMap<>();
-		for (String type : types) {
-			mimeTypes.put(type, new MimeType(type));
-		}
-		return mimeTypes;
-	}
-
 	protected static Collection<Object[]> data() {
 		Supplier<Response> supplier = Response::new;
 		return Arrays.asList(new Object[][] {
-				{ supplier, headers("a", "b"), (BiConsumer<Response, Map<String, Header>>) Response::setHeaders,
+				{ supplier, AttributeSupplier.headers("a", "b"), (BiConsumer<Response, Map<String, Header>>) Response::setHeaders,
 						(BiConsumer<Response, ResponseVisitor>) ResponseCoordinator::visitHeaders,
 						(TriConsumer<ResponseVisitor, String, Header>) ResponseVisitor::visitHeader,
 						ResponseVisitor.class },
-				{ supplier, mimeTypes("json", "xml"), (BiConsumer<Response, Map<String, MimeType>>) Response::setBody,
+				{ supplier, AttributeSupplier.mimeTypes("json", "xml"), (BiConsumer<Response, Map<String, MimeType>>) Response::setBody,
 						(BiConsumer<Response, ResponseVisitor>) ResponseCoordinator::visitBodies,
 						(TriConsumer<ResponseVisitor, String, MimeType>) ResponseVisitor::visitBody,
 						ResponseVisitor.class } });
