@@ -6,7 +6,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.raml.model.Action;
+import org.raml.model.ActionType;
 import org.raml.model.MimeType;
+import org.raml.model.Resource;
 import org.raml.model.Response;
 import org.raml.model.SecurityReference;
 import org.raml.model.parameter.Header;
@@ -65,6 +68,30 @@ public final class AttributeSupplier {
 
 	public final static UriParameter uriParameter(String name) {
 		return new UriParameter(name);
+	}
+
+	public final static Map<ActionType, Action> actions(ActionType... types) {
+		Map<ActionType, Action> actions = new HashMap<>();
+		for (ActionType type : types) {
+			actions.put(type, new Action());
+		}
+		return actions;
+	}
+
+	public final static Map<String, Resource> resources(String... resourcePaths) {
+		Map<String, Resource> resources = new HashMap<>();
+		for (String resourcePath : resourcePaths) {
+			resources.put(resourcePath, new Resource());
+		}
+		return resources;
+	}
+
+	public final static Map<String, UriParameter> uriParameters(String... names) {
+		Map<String, UriParameter> parameters = new HashMap<>();
+		for (String name : names) {
+			parameters.put(name, AttributeSupplier.uriParameter(name));
+		}
+		return parameters;
 	}
 
 }

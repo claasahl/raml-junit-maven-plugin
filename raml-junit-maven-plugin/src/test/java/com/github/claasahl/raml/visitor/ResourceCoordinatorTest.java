@@ -6,10 +6,8 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiConsumer;
@@ -52,15 +50,15 @@ public class ResourceCoordinatorTest extends CoordinatorTest {
 
 	@Override
 	public void shouldCallAllVisitMethods() {
-		Map<ActionType, Action> actions = actions(ActionType.GET);
+		Map<ActionType, Action> actions = AttributeSupplier.actions(ActionType.GET);
 		this.resource.setActions(actions);
-		Map<String, List<UriParameter>> baseUriParameters = baseUriParameters("a");
+		Map<String, List<UriParameter>> baseUriParameters = AttributeSupplier.baseUriParameters("a");
 		this.resource.setBaseUriParameters(baseUriParameters);
-		List<SecurityReference> securedBy = securityReference("b");
+		List<SecurityReference> securedBy = AttributeSupplier.securityReference("b");
 		this.resource.setSecuredBy(securedBy);
-		Map<String, Resource> resources = resources("/some/resource/path");
+		Map<String, Resource> resources = AttributeSupplier.resources("/some/resource/path");
 		this.resource.setResources(resources);
-		Map<String, UriParameter> uriParameters = uriParameters("c");
+		Map<String, UriParameter> uriParameters = AttributeSupplier.uriParameters("c");
 		this.resource.setUriParameters(uriParameters);
 		ResourceVisitor visitor = mock(ResourceVisitor.class);
 		this.coordinator.visitResource(this.resource, visitor);
@@ -75,77 +73,33 @@ public class ResourceCoordinatorTest extends CoordinatorTest {
 		verify(visitor).afterVisit(this.resource);
 	}
 
-	private static Map<ActionType, Action> actions(ActionType... types) {
-		Map<ActionType, Action> actions = new HashMap<>();
-		for (ActionType type : types) {
-			actions.put(type, new Action());
-		}
-		return actions;
-	}
-
-	private static Map<String, Resource> resources(String... resourcePaths) {
-		Map<String, Resource> resources = new HashMap<>();
-		for (String resourcePath : resourcePaths) {
-			resources.put(resourcePath, new Resource());
-		}
-		return resources;
-	}
-
-	private static Map<String, List<UriParameter>> baseUriParameters(String... names) {
-		Map<String, List<UriParameter>> parameters = new HashMap<>();
-		for (String name : names) {
-			parameters.put(name, Arrays.asList(uriParameter(name)));
-		}
-		return parameters;
-	}
-
-	private static Map<String, UriParameter> uriParameters(String... names) {
-		Map<String, UriParameter> parameters = new HashMap<>();
-		for (String name : names) {
-			parameters.put(name, uriParameter(name));
-		}
-		return parameters;
-	}
-
-	private static UriParameter uriParameter(String name) {
-		return new UriParameter(name);
-	}
-
-	private static List<SecurityReference> securityReference(String... names) {
-		List<SecurityReference> references = new ArrayList<>();
-		for (String name : names) {
-			references.add(new SecurityReference(name));
-		}
-		return references;
-	}
-
 	protected static Collection<Object[]> data() {
 		// List<SecurityReference> securedBy = securityReference("b");
 		// this.resource.setSecuredBy(securedBy);
 
 		Supplier<Resource> supplier = Resource::new;
 		return Arrays.asList(new Object[][] {
-				{ supplier, actions(ActionType.GET),
+				{ supplier, AttributeSupplier.actions(ActionType.GET),
 						(BiConsumer<Resource, Map<ActionType, Action>>) Resource::setActions,
 						(BiConsumer<Resource, ResourceVisitor>) ResourceCoordinator::visitActions,
 						(TriConsumer<ResourceVisitor, ActionType, Action>) ResourceVisitor::visitAction,
 						ResourceVisitor.class },
-				{ supplier, baseUriParameters("a"),
+				{ supplier, AttributeSupplier.baseUriParameters("a"),
 						(BiConsumer<Resource, Map<String, List<UriParameter>>>) Resource::setBaseUriParameters,
 						(BiConsumer<Resource, ResourceVisitor>) ResourceCoordinator::visitBaseUriParameters,
 						(TriConsumer<ResourceVisitor, String, List<UriParameter>>) ResourceVisitor::visitBaseUriParameter,
 						ResourceVisitor.class },
-				{ supplier, uriParameters("c"),
+				{ supplier, AttributeSupplier.uriParameters("c"),
 						(BiConsumer<Resource, Map<String, UriParameter>>) Resource::setUriParameters,
 						(BiConsumer<Resource, ResourceVisitor>) ResourceCoordinator::visitUriParameters,
 						(TriConsumer<ResourceVisitor, String, UriParameter>) ResourceVisitor::visitUriParameter,
 						ResourceVisitor.class },
-				{ supplier, uriParameters("d"),
+				{ supplier, AttributeSupplier.uriParameters("d"),
 						(BiConsumer<Resource, Map<String, UriParameter>>) Resource::setUriParameters,
 						(BiConsumer<Resource, ResourceVisitor>) ResourceCoordinator::visitResolvedUriParameters,
 						(TriConsumer<ResourceVisitor, String, UriParameter>) ResourceVisitor::visitResolvedUriParameter,
 						ResourceVisitor.class },
-				{ supplier, resources("/some/resource/path"),
+				{ supplier, AttributeSupplier.resources("/some/resource/path"),
 						(BiConsumer<Resource, Map<String, Resource>>) Resource::setResources,
 						(BiConsumer<Resource, ResourceVisitor>) ResourceCoordinator::visitSubResources,
 						(TriConsumer<ResourceVisitor, String, Resource>) ResourceVisitor::visitSubResource,
