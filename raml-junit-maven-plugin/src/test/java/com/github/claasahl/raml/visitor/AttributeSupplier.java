@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.raml.model.Action;
 import org.raml.model.ActionType;
+import org.raml.model.DocumentationItem;
 import org.raml.model.MimeType;
 import org.raml.model.Resource;
 import org.raml.model.Response;
@@ -92,6 +93,16 @@ public final class AttributeSupplier {
 			parameters.put(name, AttributeSupplier.uriParameter(name));
 		}
 		return parameters;
+	}
+
+	public final static List<DocumentationItem> documentationItems(String... names) {
+		List<DocumentationItem> items = new ArrayList<>();
+		for (String name : names) {
+			DocumentationItem item = new DocumentationItem();
+			item.setTitle(name);
+			items.add(item);	
+		}
+		return items;
 	}
 
 }
