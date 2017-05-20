@@ -76,7 +76,6 @@ public class VisitMapAttributeTest<R, V, K, W> {
 	@Parameters
 	public static Collection<Object[]> data() {
 		Collection<Object[]> data = new ArrayList<>();
-		data.addAll(ResponseCoordinatorTest.data());
 		data.addAll(ResourceCoordinatorTest.data());
 		data.addAll(ActionCoordinatorTest.data());
 		data.addAll(RamlCoordinatorTest.data());

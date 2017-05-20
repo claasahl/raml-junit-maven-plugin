@@ -1,18 +1,18 @@
 package com.github.claasahl.raml.visitor;
 
+import static org.junit.Assert.assertFalse;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.inOrder;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.function.BiConsumer;
-import java.util.function.Supplier;
+import java.util.Map.Entry;
 
 import org.junit.Before;
+import org.junit.Test;
 import org.mockito.InOrder;
 import org.raml.model.MimeType;
 import org.raml.model.Response;
@@ -56,17 +56,66 @@ public class ResponseCoordinatorTest extends CoordinatorTest {
 		verify(visitor).afterVisit(this.response);
 	}
 
-	protected static Collection<Object[]> data() {
-		Supplier<Response> supplier = Response::new;
-		return Arrays.asList(new Object[][] {
-				{ supplier, AttributeSupplier.headers("a", "b"), (BiConsumer<Response, Map<String, Header>>) Response::setHeaders,
-						(BiConsumer<Response, ResponseVisitor>) ResponseCoordinator::visitHeaders,
-						(TriConsumer<ResponseVisitor, String, Header>) ResponseVisitor::visitHeader,
-						ResponseVisitor.class },
-				{ supplier, AttributeSupplier.mimeTypes("json", "xml"), (BiConsumer<Response, Map<String, MimeType>>) Response::setBody,
-						(BiConsumer<Response, ResponseVisitor>) ResponseCoordinator::visitBodies,
-						(TriConsumer<ResponseVisitor, String, MimeType>) ResponseVisitor::visitBody,
-						ResponseVisitor.class } });
+	@Test
+	public void shouldHandleNullHeaders() {
+		this.response.setHeaders(null);
+
+		ResponseVisitor visitor = mock(ResponseVisitor.class);
+		ResponseCoordinator.visitHeaders(this.response, visitor);
+		verify(visitor, never()).visitHeader(any(), any());
+	}
+
+	@Test
+	public void shouldNotVisitHeader() throws Exception {
+		this.response.setHeaders(new HashMap<>());
+
+		ResponseVisitor visitor = mock(ResponseVisitor.class);
+		ResponseCoordinator.visitHeaders(this.response, visitor);
+		verify(visitor, never()).visitHeader(any(), any());
+	}
+
+	@Test
+	public void shouldVisitHeader() throws Exception {
+		Map<String, Header> values = AttributeSupplier.headers("a", "b");
+		assertFalse("Must contain values (i.e. may not be empty)", values.isEmpty());
+		this.response.setHeaders(values);
+
+		ResponseVisitor visitor = mock(ResponseVisitor.class);
+		ResponseCoordinator.visitHeaders(this.response, visitor);
+		for (Entry<String, Header> entry : values.entrySet()) {
+			verify(visitor).visitHeader(entry.getKey(), entry.getValue());
+		}
+	}
+	
+	@Test
+	public void shouldHandleNullBodies() {
+		this.response.setBody(null);
+
+		ResponseVisitor visitor = mock(ResponseVisitor.class);
+		ResponseCoordinator.visitBodies(this.response, visitor);
+		verify(visitor, never()).visitBody(any(), any());
+	}
+
+	@Test
+	public void shouldNotVisitBody() throws Exception {
+		this.response.setBody(new HashMap<>());
+
+		ResponseVisitor visitor = mock(ResponseVisitor.class);
+		ResponseCoordinator.visitBodies(this.response, visitor);
+		verify(visitor, never()).visitBody(any(), any());
+	}
+
+	@Test
+	public void shouldVisiBody() throws Exception {
+		Map<String, MimeType> values = AttributeSupplier.mimeTypes("json", "xml");
+		assertFalse("Must contain values (i.e. may not be empty)", values.isEmpty());
+		this.response.setBody(values);
+
+		ResponseVisitor visitor = mock(ResponseVisitor.class);
+		ResponseCoordinator.visitBodies(this.response, visitor);
+		for (Entry<String, MimeType> entry : values.entrySet()) {
+			verify(visitor).visitBody(entry.getKey(), entry.getValue());
+		}
 	}
 
 }
