@@ -55,17 +55,17 @@
 		<version-maven>3.0</version-maven>
 		<version-codemodel>2.6</version-codemodel>
 		<version-raml-parser>0.8.17</version-raml-parser>
-		<version-plugin-api>2.0</version-plugin-api>
-		<version-plugin-annotations>3.2</version-plugin-annotations>
-		<version-plexus-utils>3.0.8</version-plexus-utils>
-		<version-junit>4.8.2</version-junit>
+		<version-plugin-api>3.3.9</version-plugin-api>
+		<version-plugin-annotations>3.5</version-plugin-annotations>
+		<version-plexus-utils>3.0.24</version-plexus-utils>
+		<version-junit>4.12</version-junit>
 		<version-mockito>2.6.4</version-mockito>
-		<version-compiler-plugin>3.6.0</version-compiler-plugin>
-		<version-plugin-plugin>3.2</version-plugin-plugin>
+		<version-compiler-plugin>3.6.1</version-compiler-plugin>
+		<version-plugin-plugin>3.5</version-plugin-plugin>
 		<version-source-plugin>3.0.1</version-source-plugin>
 		<version-javadoc-plugin>2.10.4</version-javadoc-plugin>
 		<version-checkstyle-plugin>2.17</version-checkstyle-plugin>
-		<version-invoker-plugin>1.7</version-invoker-plugin>
+		<version-invoker-plugin>2.0.0</version-invoker-plugin>
 		<version-java>1.8</version-java>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
