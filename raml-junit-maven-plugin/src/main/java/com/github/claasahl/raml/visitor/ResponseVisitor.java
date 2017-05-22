@@ -25,13 +25,6 @@ public interface ResponseVisitor {
 
 	void afterVisit(Response response);
 
-	/**
-	 * 
-	 * @param key
-	 * @param mimeType
-	 * 
-	 * @see Response#getBody()
-	 */
 	void visitBody(String key, MimeType mimeType);
 
 	void visitHeader(String key, Header header);

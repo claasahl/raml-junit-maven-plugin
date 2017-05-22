@@ -69,8 +69,8 @@ public class ActionCoordinator implements Coordinator {
 	/**
 	 * A support method for iterating and visiting security references of the
 	 * specified action. This implementation calls
-	 * {@link ActionVisitor#visitSecurityReferences(Action)} for all available
-	 * security references.
+	 * {@link ActionVisitor#visitSecurityReference(SecurityReference)} for all
+	 * available security references.
 	 * 
 	 * @param action
 	 *            the action
