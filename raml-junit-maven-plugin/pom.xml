@@ -152,7 +152,6 @@
 				<version>${version-plugin-plugin}</version>
 				<configuration>
 					<goalPrefix>raml-junit</goalPrefix>
-					<skipErrorNoDescriptorsFound>true</skipErrorNoDescriptorsFound>
 				</configuration>
 				<executions>
 					<execution>
@@ -160,15 +159,13 @@
 						<goals>
 							<goal>descriptor</goal>
 						</goals>
-						<configuration>
-							<skip>true</skip>
-						</configuration>
 					</execution>
-					<!-- Causes problems with javadoc plugin, because the generated HelpMojo 
-						class does not have a valid java documentation (i.e. empty author tag, empty 
-						version tag and self-closing br tag) -->
-					<!-- <execution> <id>help-goal</id> <goals> <goal>helpmojo</goal> </goals> 
-						</execution> -->
+					<execution>
+						<id>help-goal</id>
+						<goals>
+							<goal>helpmojo</goal>
+						</goals>
+					</execution>
 				</executions>
 			</plugin>
 			<plugin>
