@@ -35,7 +35,7 @@ public class ActionCoordinatorTest extends CoordinatorTest {
 	}
 
 	@Override
-	public void shouldCallBeforeVisitAndAfterVisit() {
+	public void shouldCallBeforeVisitThenAfterVisit() {
 		ActionVisitor visitor = mock(ActionVisitor.class);
 		this.coordinator.visitAction(this.action, visitor);
 

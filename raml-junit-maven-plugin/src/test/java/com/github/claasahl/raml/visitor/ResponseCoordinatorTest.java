@@ -30,7 +30,7 @@ public class ResponseCoordinatorTest extends CoordinatorTest {
 	}
 
 	@Override
-	public void shouldCallBeforeVisitAndAfterVisit() {
+	public void shouldCallBeforeVisitThenAfterVisit() {
 		ResponseVisitor visitor = mock(ResponseVisitor.class);
 		this.coordinator.visitResponse(this.response, visitor);
 

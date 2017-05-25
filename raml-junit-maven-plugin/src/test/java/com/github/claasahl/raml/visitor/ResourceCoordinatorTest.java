@@ -33,7 +33,7 @@ public class ResourceCoordinatorTest extends CoordinatorTest {
 	}
 
 	@Override
-	public void shouldCallBeforeVisitAndAfterVisit() {
+	public void shouldCallBeforeVisitThenAfterVisit() {
 		ResourceVisitor visitor = mock(ResourceVisitor.class);
 		this.coordinator.visitResource(this.resource, visitor);
 

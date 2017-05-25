@@ -38,7 +38,7 @@ public class RamlCoordinatorTest extends CoordinatorTest {
 	}
 
 	@Override
-	public void shouldCallBeforeVisitAndAfterVisit() {
+	public void shouldCallBeforeVisitThenAfterVisit() {
 		RamlVisitor visitor = mock(RamlVisitor.class);
 		this.coordinator.visitRaml(this.raml, this.ramlPath, visitor);
 
