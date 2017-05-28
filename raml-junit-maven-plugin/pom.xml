@@ -54,10 +54,11 @@
 	<properties>
 		<version-maven>3.0</version-maven>
 		<version-codemodel>2.6</version-codemodel>
-		<version-raml-parser>0.8.17</version-raml-parser>
+		<version-raml-parser>1.0.6</version-raml-parser>
 		<version-plugin-api>3.3.9</version-plugin-api>
 		<version-plugin-annotations>3.5</version-plugin-annotations>
 		<version-plexus-utils>3.0.24</version-plexus-utils>
+		<version-rest-assured>3.0.1</version-rest-assured>
 		<version-junit>4.12</version-junit>
 		<version-mockito>2.6.4</version-mockito>
 		<version-compiler-plugin>3.6.1</version-compiler-plugin>
@@ -79,7 +80,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.raml</groupId>
-			<artifactId>raml-parser</artifactId>
+			<artifactId>raml-parser-2</artifactId>
 			<version>${version-raml-parser}</version>
 		</dependency>
 		<dependency>
@@ -97,6 +98,18 @@
 			<groupId>org.codehaus.plexus</groupId>
 			<artifactId>plexus-utils</artifactId>
 			<version>${version-plexus-utils}</version>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>rest-assured</artifactId>
+			<version>${version-rest-assured}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.rest-assured</groupId>
+			<artifactId>json-schema-validator</artifactId>
+			<version>${version-rest-assured}</version>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
