@@ -1,0 +1,76 @@
+#%RAML 0.8
+title: A CRUD API for licenses.
+version: v12
+mediaType: application/json
+baseUri: http://localhost:8080/patterns/api/{version}/
+documentation: 
+  -
+    title: Getting Started
+    content: TBD
+schemas: 
+  - licenses: !include schemas/licenses.json
+  - license: !include schemas/license.json
+  - licenseNew: !include schemas/license-new.json
+/licenses:
+    description: The collection of licenses.
+    get:
+      description: Retrieve all licenses, optionally filtered.
+      responses:
+        200:
+          description: If the licenses were successfully retrieved.
+          body:
+            schema: licenses
+            example: !include examples/licenses.json
+    post:
+      description: Create a new license.
+      body: 
+        schema: licenseNew
+        example: !include examples/license-new.json
+      responses:
+        201:
+          description: If the license was successfully created.
+          headers: 
+            Location:
+              description: Link to the newly created license.
+              example:  /licenses/23
+        400:
+          description: If the supplied data is invalid (e.g. missing data or incorrect data types).
+        409:
+          description: If the license already exists.
+    /{id}:
+      uriParameters: 
+        id: 
+          displayName: Identifier
+          description: Identifies a single license.
+          type: integer
+          example: 23
+      description: The item license.
+      get:
+        description: Retrieve the identified license.
+        responses:
+          200:
+            description: If the identified license was retrieved.
+            body:
+              schema: license
+              example: !include examples/license.json
+          404:
+            description: If the license was not found.
+      put:
+        description: Update the identified license.
+        body:
+          schema: license
+          example: !include examples/license.json
+        responses:
+          204:
+            description: If the identified license was updated.
+          400:
+            description: If the supplied data is invalid (e.g. missing data or incorrect data types).
+          404:
+            description: If the license was not found.
+      delete:
+        description: Delete the identified license.
+        responses:
+          204:
+            description: If the identified license was deleted.
+          404:
+            description: If the license was not found.
