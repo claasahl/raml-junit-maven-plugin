@@ -27,9 +27,9 @@ import java.util.Map;
  */
 public interface VisitorStrategy<T> {
 	/**
-	 * Called before {@link #visit(Object)}. This method provides a callback for
-	 * arbitrary actions that need to be performed before the visitee is being
-	 * visited.
+	 * Called before (composite) fields are being visited. This method provides
+	 * a callback for arbitrary actions that need to be performed before the
+	 * visitee is being visited.
 	 * <p>
 	 * This method will typically be used for preparing the (upcoming) visit.
 	 * 
@@ -39,21 +39,9 @@ public interface VisitorStrategy<T> {
 	void beforeVisit(T visitee);
 
 	/**
-	 * Visits the referenced object and its composite fields. This method
-	 * provides a common entry-point for accessing composite fields (e.g.
-	 * {@link Collection}-based or {@link Map}-based fields) and calling their
-	 * respective visit-methods. Concrete implementations may also choose to
-	 * process other non-composite fields as part of this method.
-	 * 
-	 * @param visitee
-	 *            the object being visited
-	 */
-	void visit(T visitee);
-
-	/**
-	 * Called after {@link #visit(Object)}. This method provides a callback for
-	 * arbitrary actions that need to be performed after the visitee has been
-	 * visited.
+	 * Called after (composite) fields have been visited. This method provides a
+	 * callback for arbitrary actions that need to be performed after the
+	 * visitee has been visited.
 	 * <p>
 	 * This method will typically be used for cleaning up operations.
 	 * 
