@@ -23,6 +23,16 @@ package com.github.claasahl.raml.common.visitor;
  * @author Claas Ahlrichs
  *
  */
-public interface Coordinator {
+public interface Coordinator<T, V extends VisitorStrategy<T>> {
 
+	/**
+	 * Visits the specified RAML specification and then delegates its attributes
+	 * to with the specified visitor.
+	 * 
+	 * @param visitee
+	 *            the object being visited
+	 * @param visitor
+	 *            the visitor
+	 */
+	void coordinate(T visitee, V visitor);
 }
