@@ -39,7 +39,7 @@ public interface MethodVisitor extends VisitorStrategy<Method> {
 	 * @param response
 	 *            a response
 	 */
-	void visitResponses(Response response);
+	void visitResponse(Response response);
 
 	/**
 	 * Visit method for bodies returned by {@link Method#body()}.
@@ -55,7 +55,7 @@ public interface MethodVisitor extends VisitorStrategy<Method> {
 	 * @param protocol
 	 *            a protocol
 	 */
-	void visitProtocols(String protocol);
+	void visitProtocol(String protocol);
 
 	/**
 	 * Visit method for security schemes returned by {@link Method#securedBy()}.
@@ -72,7 +72,7 @@ public interface MethodVisitor extends VisitorStrategy<Method> {
 	 * @param baseUriParameter
 	 *            a base URI parameter
 	 */
-	void visitBaseUriParameters(Parameter baseUriParameter);
+	void visitBaseUriParameter(Parameter baseUriParameter);
 
 	/**
 	 * Visit method for query parameters returned by
@@ -81,7 +81,7 @@ public interface MethodVisitor extends VisitorStrategy<Method> {
 	 * @param queryParameter
 	 *            a query parameter
 	 */
-	void visitQueryParameters(Parameter queryParameter);
+	void visitQueryParameter(Parameter queryParameter);
 
 	/**
 	 * Visit method for headers returned by {@link Method#headers()}.
@@ -89,5 +89,5 @@ public interface MethodVisitor extends VisitorStrategy<Method> {
 	 * @param header
 	 *            a header
 	 */
-	void visitHeaders(Parameter header);
+	void visitHeader(Parameter header);
 }

@@ -66,7 +66,7 @@ public interface ResourceVisitor extends VisitorStrategy<Resource> {
 	 * @param resource
 	 *            a sub-resource
 	 */
-	void visitSubResources(Resource resource);
+	void visitSubResource(Resource resource);
 
 	/**
 	 * Visit method for base URI parameters returned by
@@ -75,5 +75,5 @@ public interface ResourceVisitor extends VisitorStrategy<Resource> {
 	 * @param baseUriParameter
 	 *            a base URI parameter
 	 */
-	void visitBaseUriParameters(Parameter baseUriParameter);
+	void visitBaseUriParameter(Parameter baseUriParameter);
 }

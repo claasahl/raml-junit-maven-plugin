@@ -29,7 +29,7 @@ public interface ResponseVisitor extends VisitorStrategy<Response> {
 	 * @param header
 	 *            a header
 	 */
-	void visitHeaders(Parameter header);
+	void visitHeader(Parameter header);
 
 	/**
 	 * Visit method for bodies returned by {@link Response#body()}.
