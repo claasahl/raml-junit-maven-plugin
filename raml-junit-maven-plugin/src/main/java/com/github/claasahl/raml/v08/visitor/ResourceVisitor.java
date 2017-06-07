@@ -58,7 +58,7 @@ public interface ResourceVisitor extends VisitorStrategy<Resource> {
 	 * @param method
 	 *            a method
 	 */
-	void visitMethod(List<Method> method);
+	void visitMethod(Method method);
 
 	/**
 	 * Visit method for sub-resources returned by {@link Resource#resources()}.
