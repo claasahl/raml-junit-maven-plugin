@@ -1,6 +1,4 @@
-package com.github.claasahl.raml.v08.visitor;
-
-import java.util.List;
+	package com.github.claasahl.raml.v08.visitor;
 
 import org.raml.v2.api.model.v08.methods.Method;
 import org.raml.v2.api.model.v08.methods.TraitRef;
