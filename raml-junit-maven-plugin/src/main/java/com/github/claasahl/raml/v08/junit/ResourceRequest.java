@@ -4,6 +4,12 @@ import java.util.Collection;
 
 import javax.annotation.Nonnull;
 
+/**
+ * The interface {@link ResourceRequest}.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
 public interface ResourceRequest {
 	// TODO implement sanity check for duplicate parameter names
 	// TODO implement sanity check for null-values in parameter collection
@@ -78,19 +84,37 @@ public interface ResourceRequest {
 	@Nonnull
 	Collection<Parameter> getCookies();
 
+	/**
+	 * Returns the HTTP verb of the request. This may be any valid HTTP verb,
+	 * but most commonly one of <i>get</i>, <i>post</i>, <i>put</i> or
+	 * <i>delete</i>.
+	 * 
+	 * @return the HTTP verb of the request
+	 */
 	@Nonnull
 	String getVerb();
 
+	/**
+	 * Returns the (fully-qualified) URL of the request.
+	 * 
+	 * @return the URL of the request
+	 */
 	@Nonnull
-	String getPath();
+	String getUrl();
 
 	/**
-	 * Returns the content type to send with the request.
+	 * Returns the content type of the request.
 	 * 
-	 * @return the content type to send with the request
+	 * @return the content type of the request
 	 */
 	@Nonnull
 	String getContentType();
 
+	/**
+	 * Returns the body of the request, if appropriate. In cases where no body
+	 * is to be sent with the request, <code>null</code> must be returned.
+	 * 
+	 * @return the body of the request
+	 */
 	String getBody();
 }
