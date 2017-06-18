@@ -14,6 +14,8 @@ public interface ResourceRequest {
 	// TODO implement sanity check for duplicate parameter names
 	// TODO implement sanity check for null-values in parameter collection
 	// TODO implement sanity check for multiple values (see path parameters)
+	// TODO implement sanity check that verifies values for parameters (make sure that they are valid)
+	// TODO implement sanity check that verifies the body (i.e. make sure that it is valid)
 
 	/**
 	 * Returns the <b>query</b> parameter names and their values to send with
