@@ -109,7 +109,6 @@ public interface ResourceRequest {
 	 * 
 	 * @return the content type of the request
 	 */
-	@Nonnull
 	String getContentType();
 
 	/**
