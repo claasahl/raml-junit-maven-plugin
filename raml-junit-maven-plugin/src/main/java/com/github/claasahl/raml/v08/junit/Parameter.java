@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import javax.annotation.Nonnull;
+
 /**
  * The class {@link Parameter}.
  * 
@@ -16,7 +18,7 @@ public class Parameter {
 	private final List<String> values;
 
 	/**
-	 * Creates a new parameter.
+	 * Creates a new parameter with the specified parameters.
 	 * 
 	 * @param name
 	 *            the parameter's name
@@ -31,7 +33,7 @@ public class Parameter {
 	}
 
 	/**
-	 * Creates a new parameter.
+	 * Creates a new parameter with the specified parameters.
 	 * 
 	 * @param name
 	 *            the parameter's name
@@ -50,6 +52,7 @@ public class Parameter {
 	 * 
 	 * @return the parameter's name
 	 */
+	@Nonnull
 	public String getName() {
 		return name;
 	}
@@ -73,6 +76,7 @@ public class Parameter {
 	 * 
 	 * @return the parameter's values
 	 */
+	@Nonnull
 	public List<String> getValues() {
 		return values;
 	}

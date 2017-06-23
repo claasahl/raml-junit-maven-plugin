@@ -60,21 +60,13 @@ public class ResourceRequestV08 implements ResourceRequest {
 	}
 
 	@Override
-	public String getContentType() {
+	public Body getBody() {
 		if (body != null) {
-			return body.name();
-		} else {
-			return null;
-		}
-	}
-
-	@Override
-	public String getBody() {
-		if (body != null) {
+			String contentType = body.name();
 			if (body.example() != null) {
-				return body.example().value();
+				return new Body(contentType, body.example().value());
 			} else {
-				return "";
+				return new Body(contentType, "");
 			}
 		} else {
 			return null;
@@ -86,7 +78,7 @@ public class ResourceRequestV08 implements ResourceRequest {
 		return "ResourceRequestV08 [getQueryParameters()=" + getQueryParameters() + ", getFormParameters()="
 				+ getFormParameters() + ", getPathParameters()=" + getPathParameters() + ", getHeaders()="
 				+ getHeaders() + ", getCookies()=" + getCookies() + ", getVerb()=" + getVerb() + ", getUrl()="
-				+ getUrl() + ", getContentType()=" + getContentType() + ", getBody()=" + getBody() + "]";
+				+ getUrl() + ", getBody()=" + getBody() + "]";
 	}
 
 	private static Collection<Parameter> getParameters(List<org.raml.v2.api.model.v08.parameters.Parameter> params) {

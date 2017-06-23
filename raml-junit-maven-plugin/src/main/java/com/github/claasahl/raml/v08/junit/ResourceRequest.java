@@ -105,17 +105,10 @@ public interface ResourceRequest {
 	String getUrl();
 
 	/**
-	 * Returns the content type of the request.
-	 * 
-	 * @return the content type of the request
-	 */
-	String getContentType();
-
-	/**
 	 * Returns the body of the request, if appropriate. In cases where no body
 	 * is to be sent with the request, <code>null</code> must be returned.
 	 * 
 	 * @return the body of the request
 	 */
-	String getBody();
+	Body getBody();
 }
