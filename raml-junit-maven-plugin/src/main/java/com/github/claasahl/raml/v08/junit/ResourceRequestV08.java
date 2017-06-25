@@ -20,12 +20,12 @@ public class ResourceRequestV08 implements ResourceRequest {
 	}
 
 	@Override
-	public Collection<Parameter> getQueryParameters() {
+	public Collection<Parameter> getRequestQueryParameters() {
 		return getParameters(method.queryParameters());
 	}
 
 	@Override
-	public Collection<Parameter> getFormParameters() {
+	public Collection<Parameter> getRequestFormParameters() {
 		if (body != null) {
 			return getParameters(body.formParameters());
 		} else {
@@ -34,33 +34,33 @@ public class ResourceRequestV08 implements ResourceRequest {
 	}
 
 	@Override
-	public Collection<Parameter> getPathParameters() {
+	public Collection<Parameter> getRequestPathParameters() {
 		// TODO append method.baseUriParameters()?
 		return getParameters(method.resource().uriParameters());
 	}
 
 	@Override
-	public Collection<Parameter> getHeaders() {
+	public Collection<Parameter> getRequestHeaders() {
 		return getParameters(method.headers());
 	}
 
 	@Override
-	public Collection<Parameter> getCookies() {
+	public Collection<Parameter> getRequestCookies() {
 		return getParameters(new ArrayList<>());
 	}
 
 	@Override
-	public String getVerb() {
+	public String getRequestVerb() {
 		return method.method();
 	}
 
 	@Override
-	public String getUrl() {
+	public String getRequestUrl() {
 		return method.resource().resourcePath();
 	}
 
 	@Override
-	public Body getBody() {
+	public Body getRequestBody() {
 		if (body != null) {
 			String contentType = body.name();
 			if (body.example() != null) {
@@ -75,10 +75,10 @@ public class ResourceRequestV08 implements ResourceRequest {
 
 	@Override
 	public String toString() {
-		return "ResourceRequestV08 [getQueryParameters()=" + getQueryParameters() + ", getFormParameters()="
-				+ getFormParameters() + ", getPathParameters()=" + getPathParameters() + ", getHeaders()="
-				+ getHeaders() + ", getCookies()=" + getCookies() + ", getVerb()=" + getVerb() + ", getUrl()="
-				+ getUrl() + ", getBody()=" + getBody() + "]";
+		return "ResourceRequestV08 [getQueryParameters()=" + getRequestQueryParameters() + ", getFormParameters()="
+				+ getRequestFormParameters() + ", getPathParameters()=" + getRequestPathParameters() + ", getHeaders()="
+				+ getRequestHeaders() + ", getCookies()=" + getRequestCookies() + ", getVerb()=" + getRequestVerb()
+				+ ", getUrl()=" + getRequestUrl() + ", getBody()=" + getRequestBody() + "]";
 	}
 
 	private static Collection<Parameter> getParameters(List<org.raml.v2.api.model.v08.parameters.Parameter> params) {

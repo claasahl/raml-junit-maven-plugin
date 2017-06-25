@@ -26,7 +26,7 @@ public interface ResourceResponse {
 	 * @return the header names and their values to receive with the response
 	 */
 	@Nonnull
-	Collection<Parameter> getHeaders();
+	Collection<Parameter> getResponseHeaders();
 
 	/**
 	 * Returns the (expected) <b>cookie</b> names and their values to receive
@@ -39,7 +39,7 @@ public interface ResourceResponse {
 	 * @return the cookie names and their values to receive with the response
 	 */
 	@Nonnull
-	Collection<Parameter> getCookies();
+	Collection<Parameter> getResponseCookies();
 	
 	/**
 	 * Returns the (expected) status code of the response.
@@ -47,7 +47,7 @@ public interface ResourceResponse {
 	 * @return the status code of the response
 	 */
 	@Nonnull
-	String getStatusCode();
+	String getResponseStatusCode();
 
 	/**
 	 * Returns the (expected) body of the response, if appropriate. In cases
@@ -56,5 +56,5 @@ public interface ResourceResponse {
 	 * 
 	 * @return the body of the response
 	 */
-	Body getBody();
+	Body getResponseBody();
 }

@@ -29,7 +29,7 @@ public interface ResourceRequest {
 	 *         request
 	 */
 	@Nonnull
-	Collection<Parameter> getQueryParameters();
+	Collection<Parameter> getRequestQueryParameters();
 
 	/**
 	 * Returns the <b>form</b> parameter names and their values to send with the
@@ -43,7 +43,7 @@ public interface ResourceRequest {
 	 *         request
 	 */
 	@Nonnull
-	Collection<Parameter> getFormParameters();
+	Collection<Parameter> getRequestFormParameters();
 
 	/**
 	 * Returns the <b>path</b> parameter names and their values to send with the
@@ -58,7 +58,7 @@ public interface ResourceRequest {
 	 *         request
 	 */
 	@Nonnull
-	Collection<Parameter> getPathParameters();
+	Collection<Parameter> getRequestPathParameters();
 
 	/**
 	 * Returns the <b>header</b> names and their values to send with the
@@ -71,7 +71,7 @@ public interface ResourceRequest {
 	 * @return the header names and their values to send with the request
 	 */
 	@Nonnull
-	Collection<Parameter> getHeaders();
+	Collection<Parameter> getRequestHeaders();
 
 	/**
 	 * Returns the <b>cookie</b> names and their values to send with the
@@ -84,7 +84,7 @@ public interface ResourceRequest {
 	 * @return the cookie names and their values to send with the request
 	 */
 	@Nonnull
-	Collection<Parameter> getCookies();
+	Collection<Parameter> getRequestCookies();
 
 	/**
 	 * Returns the HTTP verb of the request. This may be any valid HTTP verb,
@@ -94,7 +94,7 @@ public interface ResourceRequest {
 	 * @return the HTTP verb of the request
 	 */
 	@Nonnull
-	String getVerb();
+	String getRequestVerb();
 
 	/**
 	 * Returns the (fully-qualified) URL of the request.
@@ -102,7 +102,7 @@ public interface ResourceRequest {
 	 * @return the URL of the request
 	 */
 	@Nonnull
-	String getUrl();
+	String getRequestUrl();
 
 	/**
 	 * Returns the body of the request, if appropriate. In cases where no body
@@ -110,5 +110,5 @@ public interface ResourceRequest {
 	 * 
 	 * @return the body of the request
 	 */
-	Body getBody();
+	Body getRequestBody();
 }
