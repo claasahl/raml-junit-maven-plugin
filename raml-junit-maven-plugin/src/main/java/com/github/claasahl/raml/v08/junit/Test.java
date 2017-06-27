@@ -7,7 +7,7 @@ import org.raml.v2.api.RamlModelBuilder;
 import org.raml.v2.api.RamlModelResult;
 import org.raml.v2.api.model.common.ValidationResult;
 import org.raml.v2.api.model.v08.api.Api;
-import org.raml.v2.api.model.v08.bodies.BodyLike;
+import org.raml.v2.api.model.v08.bodies.Response;
 import org.raml.v2.api.model.v08.methods.Method;
 import org.raml.v2.api.model.v08.resources.Resource;
 
@@ -32,8 +32,8 @@ public class Test {
 	}
 
 	private static void v08(Api api) {
-		Stream.of(api).flatMap(Test::resources).flatMap(Test::resources).flatMap(Test::methods)
-				.map(Test::consume);
+		Stream.of(api).flatMap(Test::resources).flatMap(Test::resources).flatMap(Test::methods).flatMap(Test::consume)
+				.forEach(System.out::println);
 	}
 
 	private static Stream<Resource> resources(Api api) {
@@ -47,17 +47,30 @@ public class Test {
 	private static Stream<Method> methods(Resource resource) {
 		return resource.methods().stream();
 	}
-	
-	private static ApiTestCase consume(Method method) {
-		System.out.format("%s - %s\n", method.method(), method.resource().resourcePath());
-		// TODO request body
-		// TODO request headers
-		method.baseUriParameters().stream().forEach(System.out::println);
-		method.resource().uriParameters().stream().map(p -> p.displayName()).forEach(System.out::println);
-		method.protocols().stream().forEach(System.out::println);
-		method.queryParameters().stream().forEach(System.out::println);
-		method.responses().stream().map(r -> r.code().value() + "--" + r.description().value()).forEach(System.out::println);
-		return null;
+
+	private static Stream<ResourceRequest> consume(Method method) {
+		return method.responses().stream().flatMap(response -> t(method, response));
+	}
+
+	private static Stream<ResourceRequest> t(Method method, Response response) {
+		if (method.body().isEmpty()) {
+			if (response.body().isEmpty()) {
+				return Stream.of(new ResourceRequestV08(method, null, response, null));
+			} else {
+				return response.body().stream()
+						.map(responseBody -> new ResourceRequestV08(method, null, response, responseBody));
+			}
+		} else {
+			return method.body().stream().flatMap(requestBody -> {
+				if (response.body().isEmpty()) {
+					return Stream.of(new ResourceRequestV08(method, requestBody, response, null));
+				} else {
+					return response.body().stream()
+							.filter(responseBody -> requestBody.name().equals(responseBody.name()))
+							.map(responseBody -> new ResourceRequestV08(method, requestBody, response, responseBody));
+				}
+			});
+		}
 	}
 
 }

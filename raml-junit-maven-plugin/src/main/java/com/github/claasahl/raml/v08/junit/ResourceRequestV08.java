@@ -7,16 +7,21 @@ import java.util.List;
 import java.util.Map;
 
 import org.raml.v2.api.model.v08.bodies.BodyLike;
+import org.raml.v2.api.model.v08.bodies.Response;
 import org.raml.v2.api.model.v08.methods.Method;
 
 public class ResourceRequestV08 implements ResourceRequest {
 
 	private final Method method;
-	private final BodyLike body;
+	private final BodyLike requestBody;
+	private final Response response;
+	private final BodyLike responseBody;
 
-	public ResourceRequestV08(Method method, BodyLike body) {
+	public ResourceRequestV08(Method method, BodyLike requestBody, Response response, BodyLike responseBody) {
 		this.method = method;
-		this.body = body;
+		this.requestBody = requestBody;
+		this.response = response;
+		this.responseBody = responseBody;
 	}
 
 	@Override
@@ -26,8 +31,8 @@ public class ResourceRequestV08 implements ResourceRequest {
 
 	@Override
 	public Collection<Parameter> getRequestFormParameters() {
-		if (body != null) {
-			return getParameters(body.formParameters());
+		if (requestBody != null) {
+			return getParameters(requestBody.formParameters());
 		} else {
 			return new ArrayList<>();
 		}
@@ -46,7 +51,7 @@ public class ResourceRequestV08 implements ResourceRequest {
 
 	@Override
 	public Collection<Parameter> getRequestCookies() {
-		return getParameters(new ArrayList<>());
+		return new ArrayList<>();
 	}
 
 	@Override
@@ -61,24 +66,39 @@ public class ResourceRequestV08 implements ResourceRequest {
 
 	@Override
 	public Body getRequestBody() {
-		if (body != null) {
-			String contentType = body.name();
-			if (body.example() != null) {
-				return new Body(contentType, body.example().value());
-			} else {
-				return new Body(contentType, "");
-			}
-		} else {
-			return null;
-		}
+		return getBody(requestBody);
 	}
 
 	@Override
+	public Collection<Parameter> getResponseHeaders() {
+		return getParameters(response.headers());
+	}
+
+	@Override
+	public Collection<Parameter> getResponseCookies() {
+		return new ArrayList<>();
+	}
+
+	@Override
+	public String getResponseStatusCode() {
+		return response.code().value();
+	}
+
+	@Override
+	public Body getResponseBody() {
+		return getBody(responseBody);
+	}
+
+	
+	@Override
 	public String toString() {
-		return "ResourceRequestV08 [getQueryParameters()=" + getRequestQueryParameters() + ", getFormParameters()="
-				+ getRequestFormParameters() + ", getPathParameters()=" + getRequestPathParameters() + ", getHeaders()="
-				+ getRequestHeaders() + ", getCookies()=" + getRequestCookies() + ", getVerb()=" + getRequestVerb()
-				+ ", getUrl()=" + getRequestUrl() + ", getBody()=" + getRequestBody() + "]";
+		return "ResourceRequestV08 [getRequestQueryParameters()=" + getRequestQueryParameters()
+				+ ", getRequestFormParameters()=" + getRequestFormParameters() + ", getRequestPathParameters()="
+				+ getRequestPathParameters() + ", getRequestHeaders()=" + getRequestHeaders() + ", getRequestCookies()="
+				+ getRequestCookies() + ", getRequestVerb()=" + getRequestVerb() + ", getRequestUrl()="
+				+ getRequestUrl() + ", getRequestBody()=" + getRequestBody() + ", getResponseHeaders()="
+				+ getResponseHeaders() + ", getResponseCookies()=" + getResponseCookies() + ", getResponseStatusCode()="
+				+ getResponseStatusCode() + ", getResponseBody()=" + getResponseBody() + "]";
 	}
 
 	private static Collection<Parameter> getParameters(List<org.raml.v2.api.model.v08.parameters.Parameter> params) {
@@ -109,6 +129,19 @@ public class ResourceRequestV08 implements ResourceRequest {
 			}
 		}
 		return parameters.values();
+	}
+
+	private static Body getBody(BodyLike body) {
+		if (body != null) {
+			String contentType = body.name();
+			if (body.example() != null) {
+				return new Body(contentType, body.example().value());
+			} else {
+				return new Body(contentType, "");
+			}
+		} else {
+			return null;
+		}
 	}
 
 }
