@@ -11,6 +11,7 @@ import javax.annotation.Nonnull;
  *
  */
 public interface ResourceRequest {
+	// TODO separate validation constraints (i.e. details from RAML) from the part that actually picks concrete values (i.e. the latter should be easily "swapable")
 	// TODO implement sanity check for duplicate parameter names
 	// TODO implement sanity check for null-values in parameter collection
 	// TODO implement sanity check for multiple values (see path parameters)
