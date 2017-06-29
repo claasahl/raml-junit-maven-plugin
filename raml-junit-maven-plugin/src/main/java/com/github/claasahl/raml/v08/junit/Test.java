@@ -48,26 +48,26 @@ public class Test {
 		return resource.methods().stream();
 	}
 
-	private static Stream<ResourceRequest> consume(Method method) {
+	private static Stream<TestCaseConstraints> consume(Method method) {
 		return method.responses().stream().flatMap(response -> t(method, response));
 	}
 
-	private static Stream<ResourceRequest> t(Method method, Response response) {
+	private static Stream<TestCaseConstraints> t(Method method, Response response) {
 		if (method.body().isEmpty()) {
 			if (response.body().isEmpty()) {
-				return Stream.of(new ResourceRequestV08(method, null, response, null));
+				return Stream.of(new TestCaseContraintsV08(method, null, response, null));
 			} else {
 				return response.body().stream()
-						.map(responseBody -> new ResourceRequestV08(method, null, response, responseBody));
+						.map(responseBody -> new TestCaseContraintsV08(method, null, response, responseBody));
 			}
 		} else {
 			return method.body().stream().flatMap(requestBody -> {
 				if (response.body().isEmpty()) {
-					return Stream.of(new ResourceRequestV08(method, requestBody, response, null));
+					return Stream.of(new TestCaseContraintsV08(method, requestBody, response, null));
 				} else {
 					return response.body().stream()
 							.filter(responseBody -> requestBody.name().equals(responseBody.name()))
-							.map(responseBody -> new ResourceRequestV08(method, requestBody, response, responseBody));
+							.map(responseBody -> new TestCaseContraintsV08(method, requestBody, response, responseBody));
 				}
 			});
 		}

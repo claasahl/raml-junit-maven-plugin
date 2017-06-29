@@ -10,14 +10,14 @@ import org.raml.v2.api.model.v08.bodies.BodyLike;
 import org.raml.v2.api.model.v08.bodies.Response;
 import org.raml.v2.api.model.v08.methods.Method;
 
-public class ResourceRequestV08 implements ResourceRequest {
+public class TestCaseContraintsV08 implements TestCaseConstraints {
 
 	private final Method method;
 	private final BodyLike requestBody;
 	private final Response response;
 	private final BodyLike responseBody;
 
-	public ResourceRequestV08(Method method, BodyLike requestBody, Response response, BodyLike responseBody) {
+	public TestCaseContraintsV08(Method method, BodyLike requestBody, Response response, BodyLike responseBody) {
 		this.method = method;
 		this.requestBody = requestBody;
 		this.response = response;
