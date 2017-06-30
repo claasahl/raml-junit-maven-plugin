@@ -89,16 +89,13 @@ public class TestCaseContraintsV08 implements TestCaseConstraints {
 		return getBody(responseBody);
 	}
 
-	
 	@Override
 	public String toString() {
-		return "ResourceRequestV08 [getRequestQueryParameters()=" + getRequestQueryParameters()
-				+ ", getRequestFormParameters()=" + getRequestFormParameters() + ", getRequestPathParameters()="
-				+ getRequestPathParameters() + ", getRequestHeaders()=" + getRequestHeaders() + ", getRequestCookies()="
-				+ getRequestCookies() + ", getRequestVerb()=" + getRequestVerb() + ", getRequestUrl()="
-				+ getRequestUrl() + ", getRequestBody()=" + getRequestBody() + ", getResponseHeaders()="
-				+ getResponseHeaders() + ", getResponseCookies()=" + getResponseCookies() + ", getResponseStatusCode()="
-				+ getResponseStatusCode() + ", getResponseBody()=" + getResponseBody() + "]";
+		return "TestCaseContraintsV08 [getRequestVerb()=" + getRequestVerb() + ", getRequestUrl()=" + getRequestUrl()
+				+ ", getRequestBody().getContentType()="
+				+ (getRequestBody() != null ? getRequestBody().getContentType() : null) + ", getResponseStatusCode()="
+				+ getResponseStatusCode() + ", getResponseBody().getContentType()="
+				+ (getResponseBody() != null ? getResponseBody().getContentType() : null) + "]";
 	}
 
 	private static Collection<Parameter> getParameters(List<org.raml.v2.api.model.v08.parameters.Parameter> params) {
