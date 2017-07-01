@@ -58,11 +58,11 @@ public class Parameter {
 	}
 
 	/**
-	 * Returns the parameter's values. The returned list is immutable and
-	 * non-null. Typically, the list contains a single item (i.e. a direct
-	 * mapping between the parameter's name and it's value). The cases where the
-	 * parameter does not have a value or where the parameter has several values
-	 * are covered as well.
+	 * Returns the parameter's values. The returned list is immutable.
+	 * Typically, the list contains a single item (i.e. a direct mapping between
+	 * the parameter's name and it's value). The cases where the parameter does
+	 * not have a value or where the parameter has several values are covered as
+	 * well.
 	 * <p/>
 	 * <b>Examples:</b>
 	 * <ul>
