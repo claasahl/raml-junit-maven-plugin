@@ -2,22 +2,29 @@ package com.github.claasahl.raml.junit.api;
 
 import javax.annotation.Nonnull;
 
+import com.github.claasahl.raml.junit.api.factories.ConstraintsFactory;
 import com.github.claasahl.raml.junit.api.factories.RequestFactory;
 
 /**
  * The class {@link TestCaseKey}.
  * <p/>
- * This class is meant to uniquely identify a (single) test case for a resource
- * and RAML specification. As such, a test case can be identified for each
- * combination of RAML specification (i.e. reference to the RAML document),
- * request verb (i.e. HTTP verb of the HTTP request), request URL (i.e. URL of
- * the HTTP request) and response code (i.e. status code of HTTP response).
+ * This class is meant to uniquely identify a test case for a resource and RAML
+ * specification. As such, a test case is defined as the combination of RAML
+ * specification (i.e. reference to the RAML document), request verb (i.e. HTTP
+ * verb of the HTTP request), request URL (i.e. URL of the HTTP request) and
+ * response code (i.e. status code of HTTP response).
+ * <p/>
+ * The factories {@link RequestFactory} and {@link ConstraintsFactory} use this
+ * class to generate HTTP requests (i.e. by looking up concrete values for
+ * headers, parameters and body) and to identify the constraints on HTTP
+ * requests / responses.
  * 
  * @author Claas Ahlrichs
  *
  */
 public class TestCaseKey {
 	// TODO what is the "validation phase"? Define it in a document.
+	// TODO security settings should also be included here
 
 	private final String ramlPath;
 	private final String requestVerb;
@@ -25,7 +32,7 @@ public class TestCaseKey {
 	private final int responseCode;
 
 	/**
-	 * Creates a (unique) test case with the specified parameters.
+	 * Creates a test case with the specified parameters.
 	 * 
 	 * @param ramlPath
 	 *            the path to the RAML specification
@@ -44,14 +51,14 @@ public class TestCaseKey {
 	}
 
 	/**
-	 * Returns the path to the RAML specification on which the test case is
-	 * base. This information will be used to retrieve constraints for both the
-	 * HTTP request and the HTTP response for this test case. Some
-	 * implementations of {@link RequestFactory} may also use this information
-	 * to generate a concrete HTTP request (e.g. by extracting example requests
-	 * or default values).
+	 * Returns the path to the RAML document on which the test case is base.
+	 * This information will be used to retrieve constraints for both the HTTP
+	 * request and the HTTP response for this test case. Some implementations of
+	 * {@link RequestFactory} may also use this information to generate a
+	 * concrete HTTP request (e.g. by extracting example requests or default
+	 * values).
 	 * 
-	 * @return the path to the RAML specification on which the test case is base
+	 * @return the path to the RAML document on which the test case is base
 	 */
 	@Nonnull
 	public String getRamlPath() {
