@@ -32,16 +32,16 @@ public class TestCaseKey {
 	private final int responseCode;
 
 	/**
-	 * Creates a test case with the specified parameters.
+	 * Creates a test case.
 	 * 
 	 * @param ramlPath
-	 *            the path to the RAML specification
+	 *            the test case's path to the RAML document
 	 * @param requestVerb
-	 *            the HTTP verb
+	 *            the test case's request verb
 	 * @param requestUrl
-	 *            the (fully-qualified) URL
+	 *            the test case's request URL
 	 * @param responseCode
-	 *            the status code
+	 *            the test case's status code
 	 */
 	public TestCaseKey(String ramlPath, String requestVerb, String requestUrl, int responseCode) {
 		this.ramlPath = ramlPath;
@@ -51,7 +51,7 @@ public class TestCaseKey {
 	}
 
 	/**
-	 * Returns the path to the RAML document on which the test case is base.
+	 * Returns the path to the RAML document on which the test case is based.
 	 * This information will be used to retrieve constraints for both the HTTP
 	 * request and the HTTP response for this test case. Some implementations of
 	 * {@link RequestFactory} may also use this information to generate a
