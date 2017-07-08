@@ -16,7 +16,7 @@ public class BodyConstraints {
 	private final Matcher<String> matcher;
 
 	/**
-	 * Creates a constraint body.
+	 * Creates a new constraint body.
 	 * 
 	 * @param contentType
 	 *            the body's content type

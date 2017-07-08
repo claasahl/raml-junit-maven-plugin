@@ -12,6 +12,8 @@ import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
  * This interface provides a customizable hook for generating constraints. Thus
  * allowing to easily replace the default strategy with a more specialized,
  * suitable strategy, if the need arises.
+ * <p/>
+ * Implementing classes must provide a zero-argument constructor.
  * 
  * @author Claas Ahlrichs
  *

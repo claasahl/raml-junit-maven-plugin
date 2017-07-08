@@ -22,7 +22,7 @@ public interface ResponseConstraints {
 	// it is valid)
 
 	/**
-	 * Returns constraints of the (expected) <b>headers</b> to receive with the response.
+	 * Returns constraints of the <b>headers</b> to receive with the response.
 	 * The header's name is expected to be unique within the returned
 	 * collection.
 	 * <p/>
@@ -35,7 +35,7 @@ public interface ResponseConstraints {
 	Collection<ParameterConstraints> getResponseHeaders();
 
 	/**
-	 * Returns constraints of the (expected) <b>cookies</b> to receive with the response.
+	 * Returns constraints of the <b>cookies</b> to receive with the response.
 	 * The cookie's name is expected to be unique within the returned
 	 * collection.
 	 * <p/>
@@ -48,7 +48,7 @@ public interface ResponseConstraints {
 	Collection<ParameterConstraints> getResponseCookies();
 
 	/**
-	 * Returns constraints of the (expected) body of the response, if appropriate. In cases
+	 * Returns constraints of the body of the response, if appropriate. In cases
 	 * where no body is expected with the response, <code>null</code> must be
 	 * returned.
 	 * 

@@ -8,7 +8,7 @@ import com.github.claasahl.raml.junit.api.factories.RequestFactory;
 /**
  * The class {@link TestCaseKey}.
  * <p/>
- * This class is meant to uniquely identify a test case for a resource and RAML
+ * This class identifies individual test cases for resources within a RAML
  * specification. As such, a test case is defined as the combination of RAML
  * specification (i.e. reference to the RAML document), request verb (i.e. HTTP
  * verb of the HTTP request), request URL (i.e. URL of the HTTP request) and
@@ -17,13 +17,12 @@ import com.github.claasahl.raml.junit.api.factories.RequestFactory;
  * The factories {@link RequestFactory} and {@link ConstraintsFactory} use this
  * class to generate HTTP requests (i.e. by looking up concrete values for
  * headers, parameters and body) and to identify the constraints on HTTP
- * requests / responses.
+ * requests / responses as specified in the RAML document.
  * 
  * @author Claas Ahlrichs
  *
  */
-public class TestCaseKey {
-	// TODO what is the "validation phase"? Define it in a document.
+public final class TestCaseKey {
 	// TODO security settings should also be included here
 
 	private final String ramlPath;
@@ -41,7 +40,7 @@ public class TestCaseKey {
 	 * @param requestUrl
 	 *            the test case's request URL
 	 * @param responseCode
-	 *            the test case's status code
+	 *            the test case's response code
 	 */
 	public TestCaseKey(String ramlPath, String requestVerb, String requestUrl, int responseCode) {
 		this.ramlPath = ramlPath;
@@ -58,7 +57,7 @@ public class TestCaseKey {
 	 * concrete HTTP request (e.g. by extracting example requests or default
 	 * values).
 	 * 
-	 * @return the path to the RAML document on which the test case is base
+	 * @return the path to the RAML document on which the test case is based
 	 */
 	@Nonnull
 	public String getRamlPath() {
@@ -66,11 +65,10 @@ public class TestCaseKey {
 	}
 
 	/**
-	 * Returns the (fully-qualified) URL of the test case.
-	 * <p/>
-	 * In the validation phase, the HTTP request will use this URL.
+	 * Returns the (fully-qualified) request URL (i.e. URL of HTTP request) of
+	 * the test case.
 	 * 
-	 * @return the URL of the test case
+	 * @return the request URL of the test case
 	 */
 	@Nonnull
 	public String getRequestUrl() {
@@ -78,13 +76,11 @@ public class TestCaseKey {
 	}
 
 	/**
-	 * Returns the HTTP verb of the test case. This may be any valid HTTP verb,
-	 * but most commonly one of <i>get</i>, <i>post</i>, <i>put</i> or
-	 * <i>delete</i>.
-	 * <p/>
-	 * In the validation phase, the HTTP request will use this verb.
+	 * Returns the request verb (i.e. verb of HTTP request) of the test case.
+	 * This may be any valid HTTP verb, but most commonly one of <i>get</i>,
+	 * <i>post</i>, <i>put</i> or <i>delete</i>.
 	 * 
-	 * @return the HTTP verb of the test case
+	 * @return the request verb of the test case
 	 */
 	@Nonnull
 	public String getRequestVerb() {
@@ -92,12 +88,9 @@ public class TestCaseKey {
 	}
 
 	/**
-	 * Returns the status code of the test case.
-	 * <p/>
-	 * In the validation phase, the HTTP response is expected to have this
-	 * status code.
+	 * Returns the response code (i.e. HTTP status code) of the test case.
 	 * 
-	 * @return the status code of the test case
+	 * @return the response code of the test case
 	 */
 	@Nonnull
 	public int getResponseCode() {

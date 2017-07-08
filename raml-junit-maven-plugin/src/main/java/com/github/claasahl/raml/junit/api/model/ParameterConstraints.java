@@ -16,7 +16,7 @@ public class ParameterConstraints {
 	private final Matcher<String> matcher;
 
 	/**
-	 * Creates a constraint parameter.
+	 * Creates a new constraint parameter.
 	 * 
 	 * @param name
 	 *            the parameter's name
