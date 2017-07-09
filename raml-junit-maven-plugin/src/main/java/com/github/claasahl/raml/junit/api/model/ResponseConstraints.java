@@ -4,9 +4,6 @@ import java.util.Collection;
 
 import javax.annotation.Nonnull;
 
-import com.github.claasahl.raml.v08.junit.BodyConstraints;
-import com.github.claasahl.raml.v08.junit.ParameterConstraints;
-
 /**
  * The interface {@link ResponseConstraints}.
  * 
