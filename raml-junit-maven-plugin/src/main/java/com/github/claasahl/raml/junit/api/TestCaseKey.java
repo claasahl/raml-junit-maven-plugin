@@ -11,8 +11,9 @@ import com.github.claasahl.raml.junit.api.factories.RequestFactory;
  * This class identifies individual test cases for resources within a RAML
  * specification. As such, a test case is defined as the combination of RAML
  * specification (i.e. reference to the RAML document), request verb (i.e. HTTP
- * verb of the HTTP request), request URL (i.e. URL of the HTTP request) and
- * response code (i.e. status code of HTTP response).
+ * verb of the HTTP request), request URL (i.e. URL of the HTTP request),
+ * response code (i.e. status code of HTTP response) and content type (i.e.
+ * content / media type of HTTP request and HTTP response).
  * <p/>
  * The factories {@link RequestFactory} and {@link ConstraintsFactory} use this
  * class to generate HTTP requests (i.e. by looking up concrete values for
@@ -24,11 +25,13 @@ import com.github.claasahl.raml.junit.api.factories.RequestFactory;
  */
 public final class TestCaseKey {
 	// TODO security settings should also be included here
+	// TODO does RAML enforce the same content type for requests and responses?
 
 	private final String ramlPath;
 	private final String requestVerb;
 	private final String requestUrl;
-	private final int responseCode;
+	private final String responseCode;
+	private final String contentType;
 
 	/**
 	 * Creates a test case.
@@ -41,12 +44,16 @@ public final class TestCaseKey {
 	 *            the test case's request URL
 	 * @param responseCode
 	 *            the test case's response code
+	 * @param contentType
+	 *            the test case's content type
 	 */
-	public TestCaseKey(String ramlPath, String requestVerb, String requestUrl, int responseCode) {
+	public TestCaseKey(String ramlPath, String requestVerb, String requestUrl, String responseCode,
+			String contentType) {
 		this.ramlPath = ramlPath;
 		this.requestVerb = requestVerb;
 		this.requestUrl = requestUrl;
 		this.responseCode = responseCode;
+		this.contentType = contentType;
 	}
 
 	/**
@@ -93,7 +100,18 @@ public final class TestCaseKey {
 	 * @return the response code of the test case
 	 */
 	@Nonnull
-	public int getResponseCode() {
+	public String getResponseCode() {
 		return responseCode;
+	}
+
+	/**
+	 * Returns the content type (i.e. content / media type of HTTP request and
+	 * HTTP response) of the test case. If no content type is required, then
+	 * <code>null</code> may be returned.
+	 * 
+	 * @return the content type of the test case
+	 */
+	public String getContentType() {
+		return contentType;
 	}
 }
