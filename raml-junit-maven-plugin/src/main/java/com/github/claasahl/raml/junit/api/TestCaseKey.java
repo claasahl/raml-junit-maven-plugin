@@ -114,4 +114,10 @@ public final class TestCaseKey {
 	public String getContentType() {
 		return contentType;
 	}
+
+	@Override
+	public String toString() {
+		return "TestCaseKey [ramlPath=" + ramlPath + ", requestVerb=" + requestVerb + ", requestUrl=" + requestUrl
+				+ ", responseCode=" + responseCode + ", contentType=" + contentType + "]";
+	}
 }
