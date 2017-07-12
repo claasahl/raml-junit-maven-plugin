@@ -26,6 +26,7 @@ import com.github.claasahl.raml.junit.api.factories.RequestFactory;
 public final class TestCaseKey {
 	// TODO security settings should also be included here
 	// TODO does RAML enforce the same content type for requests and responses?
+	// TODO replace ramlPath with ramlUrl
 
 	private final String ramlPath;
 	private final String requestVerb;
