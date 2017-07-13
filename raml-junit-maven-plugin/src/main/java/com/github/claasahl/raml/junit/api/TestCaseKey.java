@@ -1,5 +1,7 @@
 package com.github.claasahl.raml.junit.api;
 
+import java.net.URL;
+
 import javax.annotation.Nonnull;
 
 import com.github.claasahl.raml.junit.api.factories.ConstraintsFactory;
@@ -26,9 +28,8 @@ import com.github.claasahl.raml.junit.api.factories.RequestFactory;
 public final class TestCaseKey {
 	// TODO security settings should also be included here
 	// TODO does RAML enforce the same content type for requests and responses?
-	// TODO replace ramlPath with ramlUrl
 
-	private final String ramlPath;
+	private final URL ramlUrl;
 	private final String requestVerb;
 	private final String requestUrl;
 	private final String responseCode;
@@ -37,8 +38,8 @@ public final class TestCaseKey {
 	/**
 	 * Creates a test case.
 	 * 
-	 * @param ramlPath
-	 *            the test case's path to the RAML document
+	 * @param ramlUrl
+	 *            the test case's URL to the RAML document
 	 * @param requestVerb
 	 *            the test case's request verb
 	 * @param requestUrl
@@ -48,9 +49,8 @@ public final class TestCaseKey {
 	 * @param contentType
 	 *            the test case's content type
 	 */
-	public TestCaseKey(String ramlPath, String requestVerb, String requestUrl, String responseCode,
-			String contentType) {
-		this.ramlPath = ramlPath;
+	public TestCaseKey(URL ramlUrl, String requestVerb, String requestUrl, String responseCode, String contentType) {
+		this.ramlUrl = ramlUrl;
 		this.requestVerb = requestVerb;
 		this.requestUrl = requestUrl;
 		this.responseCode = responseCode;
@@ -58,18 +58,18 @@ public final class TestCaseKey {
 	}
 
 	/**
-	 * Returns the path to the RAML document on which the test case is based.
+	 * Returns the URL to the RAML document on which the test case is based.
 	 * This information will be used to retrieve constraints for both the HTTP
 	 * request and the HTTP response for this test case. Some implementations of
 	 * {@link RequestFactory} may also use this information to generate a
 	 * concrete HTTP request (e.g. by extracting example requests or default
 	 * values).
 	 * 
-	 * @return the path to the RAML document on which the test case is based
+	 * @return the URL to the RAML document on which the test case is based
 	 */
 	@Nonnull
-	public String getRamlPath() {
-		return ramlPath;
+	public URL getRamlUrl() {
+		return ramlUrl;
 	}
 
 	/**
@@ -118,7 +118,7 @@ public final class TestCaseKey {
 
 	@Override
 	public String toString() {
-		return "TestCaseKey [ramlPath=" + ramlPath + ", requestVerb=" + requestVerb + ", requestUrl=" + requestUrl
+		return "TestCaseKey [ramlPath=" + ramlUrl + ", requestVerb=" + requestVerb + ", requestUrl=" + requestUrl
 				+ ", responseCode=" + responseCode + ", contentType=" + contentType + "]";
 	}
 }
