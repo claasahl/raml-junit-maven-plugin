@@ -1,5 +1,6 @@
 package com.github.claasahl.raml.junit.api.factories;
 
+import java.net.URL;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -25,15 +26,15 @@ public interface TestCaseFactory {
 	/**
 	 * Returns test cases for the referenced RAML document. The returned test
 	 * cases are expected to be based on the referenced RAML document only (i.e.
-	 * {@link TestCaseKey#getRamlPath()} must be equal to the specified RAML
+	 * {@link TestCaseKey#getRamlUrl()} must be equal to the specified RAML
 	 * document).
 	 * <p/>
 	 * <b>Note:</b> The returned list may not contain <code>null</code> values.
 	 * 
-	 * @param ramlPath
-	 *            the path to the RAML document
+	 * @param ramlUrl
+	 *            the URL to the RAML document
 	 * @return test cases for the referenced RAML document
 	 */
 	@Nonnull
-	List<TestCaseKey> createTestCases(String ramlPath);
+	List<TestCaseKey> createTestCases(URL ramlUrl);
 }

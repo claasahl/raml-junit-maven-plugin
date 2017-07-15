@@ -118,7 +118,7 @@ public final class TestCaseKey {
 
 	@Override
 	public String toString() {
-		return "TestCaseKey [ramlPath=" + ramlUrl + ", requestVerb=" + requestVerb + ", requestUrl=" + requestUrl
+		return "TestCaseKey [ramlUrl=" + ramlUrl + ", requestVerb=" + requestVerb + ", requestUrl=" + requestUrl
 				+ ", responseCode=" + responseCode + ", contentType=" + contentType + "]";
 	}
 }

@@ -1,5 +1,6 @@
 package com.github.claasahl.raml.junit.internal.v00;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +19,7 @@ import com.github.claasahl.raml.junit.api.factories.TestCaseFactory;
 public class EmptyTestCaseFactory implements TestCaseFactory {
 
 	@Override
-	public List<TestCaseKey> createTestCases(String ramlPath) {
+	public List<TestCaseKey> createTestCases(URL ramlUrl) {
 		return new ArrayList<>();
 	}
 
