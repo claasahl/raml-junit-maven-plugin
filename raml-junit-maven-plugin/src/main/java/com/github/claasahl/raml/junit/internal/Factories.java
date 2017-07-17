@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 import com.github.claasahl.raml.junit.api.TestCaseKey;
 import com.github.claasahl.raml.junit.api.factories.ConstraintsFactory;
@@ -61,14 +62,14 @@ public final class Factories implements TestCaseFactory, ConstraintsFactory, Req
 	}
 
 	private static Factories createFactory(String ramlVersion) {
-		TestCaseFactory testCaseFactory = createFactory(TEST_CASE_FACTORY + ramlVersion, new EmptyTestCaseFactory());
+		TestCaseFactory testCaseFactory = createFactory(TEST_CASE_FACTORY + ramlVersion, EmptyTestCaseFactory::new);
 		ConstraintsFactory constraintsFactory = createFactory(CONSTRAINTS_FACTORY + ramlVersion,
-				new EmptyContraintsFactory());
-		RequestFactory requestFactory = createFactory(REQUEST_FACTORY + ramlVersion, new EmptyRequestFactory());
+				EmptyContraintsFactory::new);
+		RequestFactory requestFactory = createFactory(REQUEST_FACTORY + ramlVersion, EmptyRequestFactory::new);
 		return new Factories(testCaseFactory, constraintsFactory, requestFactory);
 	}
 
-	private static <T> T createFactory(String propertyKey, T defaultFactory) {
+	private static <T> T createFactory(String propertyKey, Supplier<T> defaultFactory) {
 		String factoryClass = System.getProperty(propertyKey);
 		if (factoryClass != null) {
 			try {
@@ -80,7 +81,7 @@ public final class Factories implements TestCaseFactory, ConstraintsFactory, Req
 				return null;
 			}
 		} else {
-			return defaultFactory;
+			return defaultFactory.get();
 		}
 	}
 
