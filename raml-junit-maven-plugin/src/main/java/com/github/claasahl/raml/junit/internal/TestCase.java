@@ -23,21 +23,21 @@ public class TestCase {
 
 	public RequestConstraints getRequestConstraints() {
 		if (this.requestConstraints == null) {
-			this.requestConstraints = Factories.getInstance(this.ramlVersion).createRequestConstraints(this.key);
+			this.requestConstraints = Factories.getFactories(this.ramlVersion).createRequestConstraints(this.key);
 		}
 		return this.requestConstraints;
 	}
 
 	public ResponseConstraints getResponseConstraints() {
 		if (this.responseConstraints == null) {
-			this.responseConstraints = Factories.getInstance(this.ramlVersion).createResponseConstraints(this.key);
+			this.responseConstraints = Factories.getFactories(this.ramlVersion).createResponseConstraints(this.key);
 		}
 		return responseConstraints;
 	}
 
 	public Request getRequest() {
 		if (this.request == null) {
-			this.request = Factories.getInstance(this.ramlVersion).createRequest(this.key);
+			this.request = Factories.getFactories(this.ramlVersion).createRequest(this.key);
 		}
 		return request;
 	}

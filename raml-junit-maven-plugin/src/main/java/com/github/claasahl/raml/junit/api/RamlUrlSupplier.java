@@ -1,4 +1,4 @@
-package com.github.claasahl.raml.junit.api.factories;
+package com.github.claasahl.raml.junit.api;
 
 import java.net.URL;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.Nonnull;
 
 /**
- * The interface {@link RamlUrlFactory}.
+ * The interface {@link RamlUrlSupplier}.
  * <p/>
  * This interface provides a customizable hook for looking up URLs to RAML
  * documents. Thus allowing to easily replace the default strategy with a more
@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
  * @author Claas Ahlrichs
  *
  */
-public interface RamlUrlFactory {
+public interface RamlUrlSupplier {
 
 	/**
 	 * Returns URLs to RAML documents.
