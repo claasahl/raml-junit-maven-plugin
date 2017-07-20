@@ -10,6 +10,11 @@ import org.raml.v2.api.RamlModelResult;
 import org.raml.v2.api.model.common.ValidationResult;
 
 public final class Utils {
+	
+	public static boolean isRamlUrl(URL ramlUrl) {
+		RamlModelResult ramlModelResult = buildApi(ramlUrl);
+		return ramlModelResult != null;
+	}
 
 	public static String getRamlVersion(URL ramlUrl) {
 		RamlModelResult ramlModelResult = buildApi(ramlUrl);
