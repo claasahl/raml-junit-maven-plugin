@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
+import java.util.stream.Stream;
 
 import org.raml.v2.api.RamlModelBuilder;
 import org.raml.v2.api.RamlModelResult;
@@ -48,6 +49,13 @@ public final class Utils {
 			// TODO write error message to logger
 			return null;
 		}
+	}
+	
+	public static Stream<TestCase> getTestCases() {
+		return Factories.getRamlUrls().stream().flatMap(u -> {
+			String ramlVersion = Utils.getRamlVersion(u);
+			return Factories.getFactories(ramlVersion).createTestCases(u).stream();
+		}).map(TestCase::new);
 	}
 
 }
