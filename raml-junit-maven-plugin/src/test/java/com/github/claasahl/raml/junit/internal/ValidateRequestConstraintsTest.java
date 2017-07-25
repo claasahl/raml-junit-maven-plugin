@@ -1,4 +1,4 @@
-package com.github.claasahl.raml.junit.api;
+package com.github.claasahl.raml.junit.internal;
 
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.hasSize;
