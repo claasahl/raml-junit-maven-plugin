@@ -1,27 +1,21 @@
 package com.github.claasahl.raml.junit.internal;
 
-import static org.hamcrest.Matchers.everyItem;
-import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.junit.Assert.assertThat;
-
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.github.claasahl.raml.junit.api.model.ParameterConstraints;
-import com.github.claasahl.raml.junit.internal.TestCase;
-import com.github.claasahl.raml.junit.internal.Utils;
+import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
 
 @RunWith(Parameterized.class)
-public class ValidateResponseConstraintsTest {
+public class ValidateResponseConstraintsTest extends ValidateBase {
 	private final TestCase testCase;
+	private ResponseConstraints constraints;
 
 	public ValidateResponseConstraintsTest(TestCase testCase) {
 		this.testCase = testCase;
@@ -32,32 +26,29 @@ public class ValidateResponseConstraintsTest {
 		return Utils.getTestCases().map(t -> new Object[] { t }).collect(Collectors.toList());
 	}
 
+	@Before
+	public void before() {
+		this.constraints = this.testCase.getResponseConstraints();
+	}
+
 	@Test
 	public void headersMustBeUnique() {
-		Collection<ParameterConstraints> parameters = this.testCase.getResponseConstraints().getResponseHeaders();
-		List<String> distinctNames = parameters.stream().map(ParameterConstraints::getName).distinct()
-				.collect(Collectors.toList());
-		assertThat(distinctNames, hasSize(parameters.size()));
+		parametersMustBeUnique(this.constraints.getResponseHeaders(), ParameterConstraints::getName);
 	}
 
 	@Test
 	public void cookiesMustBeUnique() {
-		Collection<ParameterConstraints> parameters = this.testCase.getResponseConstraints().getResponseCookies();
-		List<String> distinctNames = parameters.stream().map(ParameterConstraints::getName).distinct()
-				.collect(Collectors.toList());
-		assertThat(distinctNames, hasSize(parameters.size()));
+		parametersMustBeUnique(this.constraints.getResponseCookies(), ParameterConstraints::getName);
 	}
 
 	@Test
 	public void headersMustNotBeNull() {
-		Collection<ParameterConstraints> parameters = this.testCase.getResponseConstraints().getResponseHeaders();
-		assertThat(new ArrayList<>(parameters), everyItem(notNullValue()));
+		parametersMustNotBeNull(this.constraints.getResponseHeaders());
 	}
 
 	@Test
 	public void cookiesMustNotBeNull() {
-		Collection<ParameterConstraints> parameters = this.testCase.getResponseConstraints().getResponseCookies();
-		assertThat(new ArrayList<>(parameters), everyItem(notNullValue()));
+		parametersMustNotBeNull(this.constraints.getResponseCookies());
 	}
 
 }
