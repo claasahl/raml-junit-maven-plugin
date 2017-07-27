@@ -14,7 +14,7 @@ public class TestMain {
 		Factories.getRamlUrls().stream().flatMap(u -> {
 			String ramlVersion = Utils.getRamlVersion(u);
 			return Factories.getFactories(ramlVersion).createTestCases(u).stream();
-		}).map(TestCase::new).collect(Collectors.toList()).forEach(System.out::println);
+		}).forEach(System.out::println);
 	}
 
 }
