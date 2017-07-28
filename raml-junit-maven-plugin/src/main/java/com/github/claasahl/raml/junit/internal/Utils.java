@@ -57,5 +57,23 @@ public final class Utils {
 			return Factories.getFactories(ramlVersion).createTestCases(u).stream();
 		}).map(TestCase::new);
 	}
+	
+	public static org.raml.v2.api.model.v08.api.Api buildApiV08(URL ramlUrl) {
+		RamlModelResult ramlModelResult = buildApi(ramlUrl);
+		if(ramlModelResult != null) {
+			return ramlModelResult.getApiV08();
+		} else {
+			return null;
+		}
+	}
+	
+	public static org.raml.v2.api.model.v10.api.Api buildApiV10(URL ramlUrl) {
+		RamlModelResult ramlModelResult = buildApi(ramlUrl);
+		if(ramlModelResult != null) {
+			return ramlModelResult.getApiV10();
+		} else {
+			return null;
+		}
+	}
 
 }
