@@ -11,8 +11,6 @@ import javax.annotation.Nonnull;
  *
  */
 public interface RequestConstraints {
-	// TODO implement sanity check that verifies values for parameters (make
-	// sure that they are valid)
 	// TODO implement sanity check that verifies the body (i.e. make sure that
 	// it is valid)
 
