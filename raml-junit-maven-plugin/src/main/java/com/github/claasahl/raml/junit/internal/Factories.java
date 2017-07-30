@@ -22,7 +22,7 @@ import com.github.claasahl.raml.junit.internal.v00.EmptyTestCaseFactory;
 public final class Factories implements TestCaseFactory, ConstraintsFactory, RequestFactory {
 
 	private static final String TEST_CASE_FACTORY = "raml.junit.test_case_factory.";
-	private static final String CONSTRAINTS_FACTORY = "raml.junit.constraint_factory.";
+	private static final String CONSTRAINTS_FACTORY = "raml.junit.constraints_factory.";
 	private static final String REQUEST_FACTORY = "raml.junit.request_factory.";
 	private static final String RAML_URL_SUPPLIER = "raml.junit.raml_url_supplier";
 	private static final Map<String, Factories> instances = new HashMap<>();
