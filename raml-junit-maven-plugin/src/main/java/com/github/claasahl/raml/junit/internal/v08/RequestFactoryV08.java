@@ -8,8 +8,7 @@ public class RequestFactoryV08 implements RequestFactory {
 
 	@Override
 	public Request createRequest(TestCaseKey testCase) {
-		// TODO Auto-generated method stub
-		return null;
+		return new RequestV08(testCase);
 	}
 
 }
