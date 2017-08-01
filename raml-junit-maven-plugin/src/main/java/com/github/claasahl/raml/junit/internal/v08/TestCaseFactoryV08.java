@@ -30,7 +30,7 @@ public class TestCaseFactoryV08 implements TestCaseFactory {
 				}
 			} else if (ramlModelResult.isVersion08()) {
 				return Stream.of(ramlModelResult.getApiV08()).flatMap(api -> api.resources().stream())
-						.flatMap(resource -> Stream.concat(Stream.of(resource), resource.resources().stream()))
+						.flatMap(resource -> Stream.concat(Stream.of(resource), resource.resources().stream()))// <- not recursive
 						.flatMap(resource -> resource.methods().stream()).flatMap(method -> method.responses().stream()
 								.flatMap(response -> t(ramlUrl, method, response)))
 						.collect(Collectors.toList());
