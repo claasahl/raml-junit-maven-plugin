@@ -9,8 +9,7 @@ public class ContraintsFactoryV08 implements ConstraintsFactory{
 
 	@Override
 	public RequestConstraints createRequestConstraints(TestCaseKey testCase) {
-		// TODO Auto-generated method stub
-		return null;
+		return new RequestConstraintsV08(testCase);
 	}
 
 	@Override
