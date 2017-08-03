@@ -58,6 +58,10 @@ public class BTest extends ValidateBase {
 		validateConstraints(this.testCase.getRequest().getRequestCookies(),
 				this.testCase.getRequestConstraints().getRequestCookies());
 	}
+	
+	// TODO validate headers, cookies from response
+	// TODO validate body of request and response
+	
 
 	@Test
 	public void requestWithoutBody() {
