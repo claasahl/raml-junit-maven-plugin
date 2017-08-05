@@ -14,7 +14,8 @@ public class ParameterConstraints {
 
 	private final String name;
 	private final boolean required;
-	private final boolean repeatable;
+	private final int minValues;
+	private final int maxValues;
 	private final Matcher<String> matcher;
 
 	/**
@@ -24,15 +25,18 @@ public class ParameterConstraints {
 	 *            the parameter's name
 	 * @param required
 	 *            whether the parameter is required
-	 * @param repeatable
-	 *            whether the parameter may be repeated
+	 * @param minValues
+	 *            the minimum number of values for the parameter
+	 * @param maxValues
+	 *            the maximum number of values for the parameter
 	 * @param matcher
 	 *            the parameter's constraints
 	 */
-	public ParameterConstraints(String name, boolean required, boolean repeatable, Matcher<String> matcher) {
+	public ParameterConstraints(String name, boolean required, int minValues, int maxValues, Matcher<String> matcher) {
 		this.name = name;
 		this.required = required;
-		this.repeatable = repeatable;
+		this.minValues = minValues;
+		this.maxValues = maxValues;
 		this.matcher = matcher;
 	}
 
@@ -57,13 +61,27 @@ public class ParameterConstraints {
 	}
 
 	/**
-	 * Returns <code>true</code> if the parameter may be repeated.
+	 * Returns the minimum number of values for the parameter. If no values were
+	 * required, then 0 (zero) is returned. If at least 1 (or 5) values were
+	 * required, then 1 (or 5) is returned. The returned value may not be
+	 * negative.
 	 * 
-	 * @return <code>true</code> if the parameter may be repeated, otherwise
-	 *         <code>false</code>
+	 * @return the minimum number of values for the parameter
 	 */
-	public boolean isRepeatable() {
-		return repeatable;
+	public int getMinValues() {
+		return minValues;
+	}
+
+	/**
+	 * Returns the maximum number of values for the parameter. If no values were
+	 * allowed, then 0 (zero) is returned. If at most 1 (or 5) values were
+	 * allowed, then 1 (or 5) is returned. If there were no upper limited, then
+	 * {@link Integer#MAX_VALUE} is returned.
+	 * 
+	 * @return the maximum number of values for the parameter
+	 */
+	public int getMaxValues() {
+		return maxValues;
 	}
 
 	/**
