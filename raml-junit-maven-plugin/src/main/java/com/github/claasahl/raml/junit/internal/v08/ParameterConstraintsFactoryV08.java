@@ -1,12 +1,14 @@
 package com.github.claasahl.raml.junit.internal.v08;
 
-import static org.hamcrest.Matchers.anything;
-import static org.hamcrest.Matchers.*;
+import static com.github.claasahl.raml.junit.internal.matchers.Matchers.hasLength;
+import static com.github.claasahl.raml.junit.internal.matchers.Matchers.toDouble;
+import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
@@ -44,40 +46,26 @@ public final class ParameterConstraintsFactoryV08 {
 			System.err.println(parameter.type());
 			return null;
 		}
-		return new ParameterConstraints(name, required, repeatable, matcher);
+		return new ParameterConstraints(name, required, 1, repeatable ? Integer.MAX_VALUE : 1, matcher);
 	}
 
 	private static Matcher<String> createConstraints(final IntegerTypeDeclaration parameter) {
-		final Matcher<?> boudary;
-		if (parameter.minimum() != null && parameter.maximum() != null) {
-			boudary = both(lessThanOrEqualTo(parameter.minimum())).and(greaterThanOrEqualTo(parameter.maximum()));
-		} else if (parameter.minimum() != null && parameter.maximum() == null) {
-			boudary = lessThanOrEqualTo(parameter.minimum());
-		} else if (parameter.minimum() == null && parameter.maximum() != null) {
-			boudary = greaterThanOrEqualTo(parameter.maximum());
-		} else {
-			boudary = anything();
+		List<Matcher<? super String>> matchers = new ArrayList<>();
+		matchers.add(toDouble(lessThanOrEqualTo(2d)));
+		if (parameter.minimum() != null) {
+			matchers.add(toDouble(greaterThanOrEqualTo(parameter.minimum())));
+		}
+		if (parameter.maximum() != null) {
+			matchers.add(toDouble(lessThanOrEqualTo(parameter.maximum())));
 		}
 
-		return new TypeSafeMatcher<String>() {
-
-			@Override
-			public void describeTo(Description description) {
-				boudary.describeTo(description);
-			}
-
-			@Override
-			protected boolean matchesSafely(String item) {
-				Integer number = Integer.valueOf(item);
-				return boudary.matches(number);
-			}
-		};
+		return allOf(matchers);
 	}
 
 	private static Matcher<String> createConstraints(final StringTypeDeclaration parameter) {
-		final Matcher<?> pattern;
-		if(parameter.pattern() != null) {
-			pattern = new TypeSafeMatcher<String>() {
+		List<Matcher<? super String>> matchers = new ArrayList<>();
+		if (parameter.pattern() != null) {
+			matchers.add(new TypeSafeMatcher<String>() {
 
 				@Override
 				public void describeTo(Description description) {
@@ -88,34 +76,15 @@ public final class ParameterConstraintsFactoryV08 {
 				protected boolean matchesSafely(String item) {
 					return item.matches(parameter.pattern());
 				}
-			};
-		} else {
-			pattern = anything();
+			});
 		}
-		
-		final Matcher<?> length;
-		if (parameter.minLength() != null && parameter.maxLength() != null) {
-			length = both(lessThanOrEqualTo(parameter.minLength())).and(greaterThanOrEqualTo(parameter.maxLength()));
-		} else if (parameter.minLength() != null && parameter.maxLength() == null) {
-			length = lessThanOrEqualTo(parameter.minLength());
-		} else if (parameter.minLength() == null && parameter.maxLength() != null) {
-			length = greaterThanOrEqualTo(parameter.maxLength());
-		} else {
-			length = anything();
+		matchers.add(hasLength(lessThanOrEqualTo(2)));
+		if (parameter.minLength() != null) {
+			matchers.add(hasLength(greaterThanOrEqualTo(parameter.minLength())));
 		}
-		
-		return new TypeSafeMatcher<String>() {
-
-			@Override
-			public void describeTo(Description description) {
-				pattern.describeTo(description);
-				length.describeTo(description);
-			}
-
-			@Override
-			protected boolean matchesSafely(String item) {
-				return pattern.matches(item) && length.matches(item.length());
-			}
-		};
+		if (parameter.maxLength() != null) {
+			matchers.add(hasLength(lessThanOrEqualTo(parameter.maxLength())));
+		}
+		return allOf(matchers);
 	}
 }

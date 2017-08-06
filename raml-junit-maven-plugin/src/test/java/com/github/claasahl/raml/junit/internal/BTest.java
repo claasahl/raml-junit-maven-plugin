@@ -31,37 +31,36 @@ public class BTest extends ValidateBase {
 
 	@Test
 	public void validateConstraintsForRequestQueryParameters() {
-		validateConstraints(this.testCase.getRequest().getRequestQueryParameters(),
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestQueryParameters(),
 				this.testCase.getRequestConstraints().getRequestQueryParameters());
 	}
-	
+
 	@Test
 	public void validateConstraintsForRequestFormParameters() {
-		validateConstraints(this.testCase.getRequest().getRequestFormParameters(),
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestFormParameters(),
 				this.testCase.getRequestConstraints().getRequestFormParameters());
 	}
-	
+
 	@Test
 	public void validateConstraintsForRequestPathParameters() {
-		validateConstraints(this.testCase.getRequest().getRequestPathParameters(),
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestPathParameters(),
 				this.testCase.getRequestConstraints().getRequestPathParameters());
 	}
-	
+
 	@Test
 	public void validateConstraintsForRequestHeaders() {
-		validateConstraints(this.testCase.getRequest().getRequestHeaders(),
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestHeaders(),
 				this.testCase.getRequestConstraints().getRequestHeaders());
 	}
-	
+
 	@Test
 	public void validateConstraintsForRequestCookies() {
-		validateConstraints(this.testCase.getRequest().getRequestCookies(),
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestCookies(),
 				this.testCase.getRequestConstraints().getRequestCookies());
 	}
-	
+
 	// TODO validate headers, cookies from response
 	// TODO validate body of request and response
-	
 
 	@Test
 	public void requestWithoutBody() {
