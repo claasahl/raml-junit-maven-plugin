@@ -24,12 +24,12 @@ public class IsParameterWithValues extends FeatureMatcher<Parameter, List<String
 	 * <code>getValues()</code> method returns a value that satisfies the
 	 * specified matcher.
 	 * 
-	 * @param valuesMatcher
+	 * @param matcher
 	 *            a matcher for the values of an examined {@link Parameter}
 	 */
 	@Factory
-	public static Matcher<Parameter> hasValues(Matcher<? super List<String>> valuesMatcher) {
-		return new IsParameterWithValues(valuesMatcher);
+	public static Matcher<Parameter> hasValues(Matcher<? super List<String>> matcher) {
+		return new IsParameterWithValues(matcher);
 	}
 
 }

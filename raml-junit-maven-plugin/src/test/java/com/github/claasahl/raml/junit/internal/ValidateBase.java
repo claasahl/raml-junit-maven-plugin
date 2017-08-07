@@ -1,12 +1,7 @@
 package com.github.claasahl.raml.junit.internal;
 
-import static com.github.claasahl.raml.junit.internal.matchers.Matchers.hasValues;
-import static com.github.claasahl.raml.junit.internal.matchers.Matchers.isRequired;
-import static org.hamcrest.Matchers.both;
 import static org.hamcrest.Matchers.everyItem;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
 
@@ -16,6 +11,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import org.hamcrest.Matcher;
 
 import com.github.claasahl.raml.junit.api.model.Parameter;
 import com.github.claasahl.raml.junit.api.model.ParameterConstraints;
@@ -43,20 +40,9 @@ public class ValidateBase {
 	private final void validateParameter(TestCase testCase, Parameter parameter, ParameterConstraints constraints) {
 		String reason = String.format("Parameter '%s' for %s failed validation.", constraints.getName(),
 				testCase.getKey());
-
-		// required vs. optional parameters
-		if (constraints.isRequired()) {
-			assertThat(reason, parameter, isRequired());
-		} else if (parameter == null) {
-			return;
+		for (Matcher<Parameter> matcher : constraints.getMatchers()) {
+			assertThat(reason, parameter, matcher);
 		}
-
-		// singular vs. repeatable parameters
-		assertThat(reason, parameter, hasValues(hasSize(both(greaterThanOrEqualTo(constraints.getMinValues()))
-				.and(lessThanOrEqualTo(constraints.getMaxValues())))));
-
-		// additional constraints
-		assertThat(reason, parameter, hasValues(everyItem(constraints.getMatcher())));
 	}
 
 }

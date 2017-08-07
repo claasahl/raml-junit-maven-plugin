@@ -15,11 +15,36 @@ public final class Matchers {
 	 * <code>getValues()</code> method returns a value that satisfies the
 	 * specified matcher.
 	 * 
-	 * @param valuesMatcher
+	 * @param matcher
 	 *            a matcher for the values of an examined {@link Parameter}
 	 */
-	public static Matcher<Parameter> hasValues(Matcher<? super List<String>> valuesMatcher) {
-		return IsParameterWithValues.hasValues(valuesMatcher);
+	public static Matcher<Parameter> hasValues(Matcher<? super List<String>> matcher) {
+		return IsParameterWithValues.hasValues(matcher);
+	}
+	
+	/**
+	 * Creates a matcher for {@link Parameter}s that matches when the
+	 * <code>getName()</code> method returns a value that satisfies the
+	 * specified matcher.
+	 * 
+	 * @param matcher
+	 *            a matcher for the name of an examined {@link Parameter}
+	 */
+	public static Matcher<Parameter> hasName(Matcher<? super String> matcher) {
+		return IsParameterWithName.hasName(matcher);
+	}
+	
+	/**
+	 * Creates a matcher for {@link Parameter}s that only matches when a single
+	 * pass over the examined {@link Parameter} yields values that are all
+	 * matched by the specified <code>matcher</code>.
+	 * 
+	 * @param matcher
+	 *            the matcher to apply to every value provided by the examined
+	 *            {@link Parameter}
+	 */
+	public static Matcher<Parameter> everyValue(final Matcher<String> matcher) {
+		return EveryValue.everyValue(matcher);	
 	}
 
 	/**
@@ -60,6 +85,10 @@ public final class Matchers {
 
 	public static Matcher<Parameter> isRequired() {
 		return notNullValue(Parameter.class);
+	}
+	
+	public static Matcher<String> isInteger() {
+		return IsInteger.
 	}
 
 }

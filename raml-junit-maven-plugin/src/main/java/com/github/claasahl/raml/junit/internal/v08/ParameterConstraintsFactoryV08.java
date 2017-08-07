@@ -1,10 +1,10 @@
 package com.github.claasahl.raml.junit.internal.v08;
 
 import static com.github.claasahl.raml.junit.internal.matchers.Matchers.hasLength;
-import static com.github.claasahl.raml.junit.internal.matchers.Matchers.toDouble;
+import static com.github.claasahl.raml.junit.internal.matchers.Matchers.*;
 import static org.hamcrest.Matchers.allOf;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.Matchers.*;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,39 +14,43 @@ import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.raml.v2.api.model.v08.parameters.IntegerTypeDeclaration;
-import org.raml.v2.api.model.v08.parameters.Parameter;
 import org.raml.v2.api.model.v08.parameters.StringTypeDeclaration;
 
+import com.github.claasahl.raml.junit.api.model.Parameter;
 import com.github.claasahl.raml.junit.api.model.ParameterConstraints;
 
 public final class ParameterConstraintsFactoryV08 {
 
-	public static Collection<ParameterConstraints> createConstraints(Collection<Parameter> parameters) {
+	public static Collection<ParameterConstraints> createConstraints(Collection<org.raml.v2.api.model.v08.parameters.Parameter> parameters) {
 		Collection<ParameterConstraints> constraints = new ArrayList<>();
-		for (Parameter parameter : parameters) {
+		for (org.raml.v2.api.model.v08.parameters.Parameter parameter : parameters) {
 			constraints.add(createConstraints(parameter));
 		}
 		return constraints;
 	}
 
-	private static ParameterConstraints createConstraints(Parameter parameter) {
-		String name = parameter.name();
-		boolean required = Boolean.TRUE.equals(parameter.required());
-		boolean repeatable = Boolean.TRUE.equals(parameter.repeat());
-		Matcher<String> matcher = null;
+	private static ParameterConstraints createConstraints(org.raml.v2.api.model.v08.parameters.Parameter parameter) {
+		List<Matcher<Parameter>> matchers = new ArrayList<>();
+		if(Boolean.TRUE.equals(parameter.required())) {
+			matchers.add(isRequired());
+		}
+		matchers.add(hasName(equalTo(parameter.name())));
+		if(Boolean.TRUE.equals(parameter.repeat())) {
+			matchers.add(hasValues(hasSize(greaterThanOrEqualTo(1))));
+		}
 
 		switch (parameter.type()) {
 		case "integer":
-			matcher = createConstraints((IntegerTypeDeclaration) parameter);
+			matchers.addAll(createMatchers((IntegerTypeDeclaration) parameter));
 			break;
 		case "string":
-			matcher = createConstraints((StringTypeDeclaration) parameter);
+			matchers.addAll(createMatchers((StringTypeDeclaration) parameter));
 			break;
 		default:
 			System.err.println(parameter.type());
-			return null;
 		}
-		return new ParameterConstraints(name, required, 1, repeatable ? Integer.MAX_VALUE : 1, matcher);
+		
+		return new ParameterConstraints(parameter.name(), matchers);
 	}
 
 	private static Matcher<String> createConstraints(final IntegerTypeDeclaration parameter) {
@@ -60,6 +64,21 @@ public final class ParameterConstraintsFactoryV08 {
 		}
 
 		return allOf(matchers);
+	}
+	
+	private static List<Matcher<Parameter>> createMatchers(IntegerTypeDeclaration parameter) {
+		List<Matcher<Parameter>> matchers = new ArrayList<>();
+		matchers.add(everyValue(isInteger()));
+		matchers.add(toDouble(lessThanOrEqualTo(2d)));
+		if (parameter.minimum() != null) {
+			matchers.add(toDouble(greaterThanOrEqualTo(parameter.minimum())));
+		}
+		everyItem(itemMatcher)
+		if (parameter.maximum() != null) {
+			matchers.add(toDouble(lessThanOrEqualTo(parameter.maximum())));
+		}
+
+		return matchers;
 	}
 
 	private static Matcher<String> createConstraints(final StringTypeDeclaration parameter) {
