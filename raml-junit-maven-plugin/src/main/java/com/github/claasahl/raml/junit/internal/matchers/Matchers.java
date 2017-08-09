@@ -65,19 +65,19 @@ public final class Matchers {
 	 * specified matcher.
 	 * 
 	 * @param matcher
-	 *            a matcher for the length of an examined {@link String}
+	 *            a matcher for the examined {@link Integer}
 	 */
 	public static Matcher<String> toInteger(Matcher<? super Integer> matcher) {
 		return FromStringToInteger.toInteger(matcher);
 	}
 	
 	/**
-	 * Creates a matcher for {@link String}s that converts them into an
-	 * {@link Integer} and matches when the resulting number satisfies the
+	 * Creates a matcher for {@link String}s that converts them into a
+	 * {@link Double} and matches when the resulting number satisfies the
 	 * specified matcher.
 	 * 
 	 * @param matcher
-	 *            a matcher for the length of an examined {@link String}
+	 *            a matcher for the an examined {@link Double}
 	 */
 	public static Matcher<String> toDouble(Matcher<? super Double> matcher) {
 		return FromStringToDouble.toDouble(matcher);

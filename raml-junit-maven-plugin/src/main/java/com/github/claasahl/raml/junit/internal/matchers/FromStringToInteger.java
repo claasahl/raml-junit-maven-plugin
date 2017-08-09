@@ -21,7 +21,7 @@ public class FromStringToInteger extends FeatureMatcher<String, Integer>{
 	 * specified matcher.
 	 * 
 	 * @param matcher
-	 *            a matcher for the length of an examined {@link String}
+	 *            a matcher for the examined {@link Integer}
 	 */
 	@Factory
 	public static Matcher<String> toInteger(Matcher<? super Integer> matcher) {

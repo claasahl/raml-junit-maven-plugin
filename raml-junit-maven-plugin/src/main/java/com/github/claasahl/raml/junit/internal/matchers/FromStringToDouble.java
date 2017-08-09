@@ -16,12 +16,12 @@ public class FromStringToDouble extends FeatureMatcher<String, Double>{
 	}
 	
 	/**
-	 * Creates a matcher for {@link String}s that converts them into an
+	 * Creates a matcher for {@link String}s that converts them into a
 	 * {@link Double} and matches when the resulting number satisfies the
 	 * specified matcher.
 	 * 
 	 * @param matcher
-	 *            a matcher for the length of an examined {@link String}
+	 *            a matcher for the examined {@link Double}
 	 */
 	@Factory
 	public static Matcher<String> toDouble(Matcher<? super Double> matcher) {
