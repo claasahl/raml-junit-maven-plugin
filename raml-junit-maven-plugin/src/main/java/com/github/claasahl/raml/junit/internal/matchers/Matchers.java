@@ -46,7 +46,7 @@ public final class Matchers {
 	public static Matcher<Parameter> everyValue(final Matcher<String> matcher) {
 		return EveryValue.everyValue(matcher);	
 	}
-
+	
 	/**
 	 * Creates a matcher for {@link String}s that matches when the
 	 * <code>length()</code> method returns a value that satisfies the specified
@@ -58,7 +58,7 @@ public final class Matchers {
 	public static Matcher<String> hasLength(Matcher<? super Integer> lengthMatcher) {
 		return IsStringWithLength.hasLength(lengthMatcher);
 	}
-
+	
 	/**
 	 * Creates a matcher for {@link String}s that converts them into an
 	 * {@link Integer} and matches when the resulting number satisfies the
@@ -67,8 +67,8 @@ public final class Matchers {
 	 * @param matcher
 	 *            a matcher for the examined {@link Integer}
 	 */
-	public static Matcher<String> toInteger(Matcher<? super Integer> matcher) {
-		return FromStringToInteger.toInteger(matcher);
+	public static Matcher<String> toInteger(Matcher<Integer> matcher) {
+		return Map.map(Integer::valueOf, matcher);
 	}
 	
 	/**
@@ -77,18 +77,13 @@ public final class Matchers {
 	 * specified matcher.
 	 * 
 	 * @param matcher
-	 *            a matcher for the an examined {@link Double}
+	 *            a matcher for the examined {@link Double}
 	 */
-	public static Matcher<String> toDouble(Matcher<? super Double> matcher) {
-		return FromStringToDouble.toDouble(matcher);
+	public static Matcher<String> toDouble(Matcher<Double> matcher) {
+		return Map.map(Double::valueOf, matcher);
 	}
 
 	public static Matcher<Parameter> isRequired() {
 		return notNullValue(Parameter.class);
 	}
-	
-	public static Matcher<String> isInteger() {
-		return IsInteger.
-	}
-
 }
