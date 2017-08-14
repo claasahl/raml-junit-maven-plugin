@@ -20,12 +20,12 @@ public class IsStringWithLength extends FeatureMatcher<String, Integer> {
 	 * <code>length()</code> method returns a value that satisfies the specified
 	 * matcher.
 	 * 
-	 * @param lengthMatcher
+	 * @param matcher
 	 *            a matcher for the length of an examined {@link String}
 	 */
 	@Factory
-	public static Matcher<String> hasLength(Matcher<? super Integer> lengthMatcher) {
-		return new IsStringWithLength(lengthMatcher);
+	public static Matcher<String> hasLength(Matcher<? super Integer> matcher) {
+		return new IsStringWithLength(matcher);
 	}
 
 }
