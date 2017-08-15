@@ -82,8 +82,23 @@ public final class Matchers {
 	public static Matcher<String> toDouble(Matcher<Double> matcher) {
 		return Map.map(Double::valueOf, matcher);
 	}
+	
+	/**
+	 * Creates a matcher for {@link String}s that matches when the string
+	 * satisfies the specified pattern / regular expression.
+	 * 
+	 * @param pattern
+	 *            the regular expression to which this string is to be matched
+	 */
+	public static Matcher<String> pattern(String pattern) {
+		return Pattern.pattern(pattern);
+	}
 
 	public static Matcher<Parameter> isRequired() {
 		return notNullValue(Parameter.class);
+	}
+	
+	public static Matcher<String> isInteger() {
+		return toInteger(notNullValue(Integer.class));
 	}
 }
