@@ -52,7 +52,7 @@ public class RequestConstraintsV08 implements RequestConstraints {
 
 	@Override
 	public Collection<ParameterConstraints> getRequestHeaders() {
-		return ParameterConstraintsFactoryV08.createConstraints(this.response.headers());
+		return ParameterConstraintsFactoryV08.createConstraints(this.method.headers());
 	}
 
 	@Override
