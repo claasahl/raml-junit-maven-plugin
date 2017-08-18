@@ -14,8 +14,7 @@ public class ContraintsFactoryV08 implements ConstraintsFactory{
 
 	@Override
 	public ResponseConstraints createResponseConstraints(TestCaseKey testCase) {
-		// TODO Auto-generated method stub
-		return null;
+		return new ResponseConstraintsV08(testCase);
 	}
 	
 }
