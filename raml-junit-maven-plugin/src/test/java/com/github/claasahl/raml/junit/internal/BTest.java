@@ -8,7 +8,6 @@ import static org.junit.Assume.assumeThat;
 
 import java.util.Collection;
 import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.junit.Test;
@@ -101,7 +100,7 @@ public class BTest extends ValidateBase {
 	}
 
 	private static Map<String, ?> parameters(Collection<Parameter> parameters) {
-		return parameters.stream().collect(Collectors.toMap(Parameter::getName, Function.identity()));
+		return parameters.stream().collect(Collectors.toMap(Parameter::getName, Parameter::getValues));
 	}
 
 }
