@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 
+import com.github.claasahl.raml.junit.api.model.Body;
 import com.github.claasahl.raml.junit.api.model.Parameter;
 
 public final class Matchers {
@@ -100,5 +101,17 @@ public final class Matchers {
 	
 	public static Matcher<String> isInteger() {
 		return toInteger(notNullValue(Integer.class));
+	}
+	
+	/**
+	 * Creates a matcher for {@link Body}s that matches when the
+	 * <code>getContentType()</code> method returns a value that satisfies the
+	 * specified matcher.
+	 * 
+	 * @param matcher
+	 *            a matcher for the content type of an examined {@link Body}
+	 */
+	public static Matcher<Body> hasContentType(Matcher<? super String> matcher) {
+		return IsBodyWithContentType.hasContentType(matcher);
 	}
 }

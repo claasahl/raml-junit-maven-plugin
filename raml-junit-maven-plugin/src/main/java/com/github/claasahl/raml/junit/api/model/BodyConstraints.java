@@ -1,5 +1,7 @@
 package com.github.claasahl.raml.junit.api.model;
 
+import java.util.List;
+
 import javax.annotation.Nonnull;
 
 import org.hamcrest.Matcher;
@@ -13,19 +15,19 @@ import org.hamcrest.Matcher;
 public class BodyConstraints {
 
 	private final String contentType;
-	private final Matcher<String> matcher;
+	private final List<Matcher<Body>> matchers;
 
 	/**
 	 * Creates a new constraint body.
 	 * 
 	 * @param contentType
 	 *            the body's content type
-	 * @param matcher
+	 * @param matchers
 	 *            the body's constraints
 	 */
-	public BodyConstraints(String contentType, Matcher<String> matcher) {
+	public BodyConstraints(String contentType, List<Matcher<Body>> matchers) {
 		this.contentType = contentType;
-		this.matcher = matcher;
+		this.matchers = matchers;
 	}
 
 	/**
@@ -39,14 +41,16 @@ public class BodyConstraints {
 	}
 
 	/**
-	 * Returns the Hamcrest matcher for validating the body's content. The
-	 * returned matcher is expected to handle all aspects of validation (e.g.
-	 * whether the content matches a schema).
+	 * Returns the list of Hamcrest matcher for validating the body's content.
+	 * Each matcher is evaluated individually. Together, the returned matchers
+	 * are expected expected to handle all aspects of validation (e.g. whether
+	 * the content type matches, whether the content matches a schema and so
+	 * forth).
 	 * 
-	 * @return the Hamcrest matcher for validating the body's content
+	 * @return the list of Hamcrest matcher for validating the body's content
 	 */
-	public Matcher<String> getMatcher() {
-		return matcher;
+	public List<Matcher<Body>> getMatchers() {
+		return matchers;
 	}
 
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.raml.v2.api.model.v08.bodies.BodyLike;
 import org.raml.v2.api.model.v08.parameters.Parameter;
 
 import com.github.claasahl.raml.junit.api.TestCaseKey;
@@ -13,8 +14,11 @@ import com.github.claasahl.raml.junit.api.model.RequestConstraints;
 
 public class RequestConstraintsV08 extends ConstraintsBase implements RequestConstraints {
 
+	private final BodyLike body;
+
 	public RequestConstraintsV08(TestCaseKey key) {
 		super(key);
+		this.body = body(getKey().getContentType(), getMethod().body());
 	}
 
 	@Override
@@ -47,7 +51,6 @@ public class RequestConstraintsV08 extends ConstraintsBase implements RequestCon
 
 	@Override
 	public BodyConstraints getRequestBody() {
-		// TODO Auto-generated method stub
-		return null;
+		return BodyConstraintsFactoryV08.createConstraints(this.body);
 	}
 }

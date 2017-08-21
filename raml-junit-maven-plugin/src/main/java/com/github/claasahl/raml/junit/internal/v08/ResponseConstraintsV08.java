@@ -3,6 +3,8 @@ package com.github.claasahl.raml.junit.internal.v08;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.raml.v2.api.model.v08.bodies.BodyLike;
+
 import com.github.claasahl.raml.junit.api.TestCaseKey;
 import com.github.claasahl.raml.junit.api.model.BodyConstraints;
 import com.github.claasahl.raml.junit.api.model.ParameterConstraints;
@@ -10,8 +12,11 @@ import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
 
 public class ResponseConstraintsV08 extends ConstraintsBase implements ResponseConstraints {
 
+	private final BodyLike body;
+
 	public ResponseConstraintsV08(TestCaseKey key) {
 		super(key);
+		this.body = body(getKey().getContentType(), getResponse().body());
 	}
 
 	@Override
@@ -26,8 +31,7 @@ public class ResponseConstraintsV08 extends ConstraintsBase implements ResponseC
 
 	@Override
 	public BodyConstraints getResponseBody() {
-		// TODO Auto-generated method stub
-		return null;
+		return BodyConstraintsFactoryV08.createConstraints(this.body);
 	}
 
 }

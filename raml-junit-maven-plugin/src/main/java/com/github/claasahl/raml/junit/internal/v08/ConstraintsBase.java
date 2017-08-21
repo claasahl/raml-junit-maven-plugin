@@ -3,6 +3,7 @@ package com.github.claasahl.raml.junit.internal.v08;
 import java.util.List;
 
 import org.raml.v2.api.model.v08.api.Api;
+import org.raml.v2.api.model.v08.bodies.BodyLike;
 import org.raml.v2.api.model.v08.bodies.Response;
 import org.raml.v2.api.model.v08.methods.Method;
 import org.raml.v2.api.model.v08.resources.Resource;
@@ -46,7 +47,7 @@ public class ConstraintsBase {
 		return response;
 	}
 
-	protected static Resource resource(String resourcePath, List<Resource> resources) {
+	private static Resource resource(String resourcePath, List<Resource> resources) {
 		for (Resource resource : resources) {
 			if (resourcePath.equals(resource.resourcePath())) {
 				return resource;
@@ -57,7 +58,7 @@ public class ConstraintsBase {
 		return null;
 	}
 
-	protected static Method method(String requestVerb, List<Method> methods) {
+	private static Method method(String requestVerb, List<Method> methods) {
 		for (Method method : methods) {
 			if (requestVerb.equals(method.method())) {
 				return method;
@@ -70,6 +71,15 @@ public class ConstraintsBase {
 		for (Response response : responses) {
 			if (responseCode.equals(response.code().value())) {
 				return response;
+			}
+		}
+		return null;
+	}
+
+	protected static BodyLike body(String contentType, List<BodyLike> bodies) {
+		for (BodyLike body : bodies) {
+			if (body.name().equals(contentType)) {
+				return body;
 			}
 		}
 		return null;
