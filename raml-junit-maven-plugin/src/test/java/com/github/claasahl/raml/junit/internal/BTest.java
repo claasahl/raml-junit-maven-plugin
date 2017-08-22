@@ -30,36 +30,43 @@ public class BTest extends ValidateBase {
 
 	@Test
 	public void validateConstraintsForRequestQueryParameters() {
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestQueryParameters(),
+		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestQueryParameters(),
 				this.testCase.getRequestConstraints().getRequestQueryParameters());
 	}
 
 	@Test
 	public void validateConstraintsForRequestFormParameters() {
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestFormParameters(),
+		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestFormParameters(),
 				this.testCase.getRequestConstraints().getRequestFormParameters());
 	}
 
 	@Test
 	public void validateConstraintsForRequestPathParameters() {
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestPathParameters(),
+		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestPathParameters(),
 				this.testCase.getRequestConstraints().getRequestPathParameters());
 	}
 
 	@Test
 	public void validateConstraintsForRequestHeaders() {
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestHeaders(),
+		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestHeaders(),
 				this.testCase.getRequestConstraints().getRequestHeaders());
 	}
 
 	@Test
 	public void validateConstraintsForRequestCookies() {
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestCookies(),
+		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestCookies(),
 				this.testCase.getRequestConstraints().getRequestCookies());
+	}
+	
+	@Test
+	public void validateConstraintsForRequestBody() {
+		assumeThat(this.testCase.getRequest().getRequestBody(), notNullValue());
+		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestBody(),
+				this.testCase.getRequestConstraints().getRequestBody());
 	}
 
 	// TODO validate headers, cookies from response
-	// TODO validate body of request and response
+	// TODO validate body of response
 
 	@Test
 	public void requestWithoutBody() {
