@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -43,7 +44,7 @@ public class TestCaseFactoryV08 implements TestCaseFactory {
 		} catch (IOException e) {
 			// TODO write error message to logger
 		}
-		return null;
+		return new ArrayList<>();
 	}
 
 	private static Stream<TestCaseKey> t(URL ramlPath, Method method, Response response) {
