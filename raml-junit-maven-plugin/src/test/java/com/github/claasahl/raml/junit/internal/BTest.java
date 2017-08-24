@@ -1,7 +1,6 @@
 package com.github.claasahl.raml.junit.internal;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.Matchers.is;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.nullValue;
 import static org.junit.Assume.assumeThat;
@@ -60,7 +59,7 @@ public class BTest extends ValidateBase {
 	
 	@Test
 	public void validateConstraintsForRequestBody() {
-		assumeThat(this.testCase.getRequest().getRequestBody(), notNullValue());
+		assumeThat(this.testCase.getRequestConstraints().getRequestBody(), notNullValue());
 		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestBody(),
 				this.testCase.getRequestConstraints().getRequestBody());
 	}
@@ -74,7 +73,7 @@ public class BTest extends ValidateBase {
 		String method = this.testCase.getKey().getRequestVerb();
 		String path = this.testCase.getKey().getRequestUrl();
 		Body body = request.getRequestBody();
-		assumeThat(body, is(nullValue()));
+		assumeThat(body, nullValue());
 
 		given().queryParams(parameters(request.getRequestQueryParameters()))
 				.formParams(parameters(request.getRequestFormParameters()))
@@ -89,7 +88,7 @@ public class BTest extends ValidateBase {
 		String method = this.testCase.getKey().getRequestVerb();
 		String path = this.testCase.getKey().getRequestUrl();
 		Body body = request.getRequestBody();
-		assumeThat(body, is(notNullValue()));
+		assumeThat(body, notNullValue());
 
 		given().queryParams(parameters(request.getRequestQueryParameters()))
 				.formParams(parameters(request.getRequestFormParameters()))

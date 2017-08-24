@@ -51,6 +51,6 @@ public class RequestConstraintsV08 extends ConstraintsBase implements RequestCon
 
 	@Override
 	public BodyConstraints getRequestBody() {
-		return BodyConstraintsFactoryV08.createConstraints(this.body);
+		return this.body == null ? null : BodyConstraintsFactoryV08.createConstraints(this.body);
 	}
 }

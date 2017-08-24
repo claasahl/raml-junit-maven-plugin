@@ -11,9 +11,6 @@ import javax.annotation.Nonnull;
  *
  */
 public interface RequestConstraints {
-	// TODO implement sanity check that verifies the body (i.e. make sure that
-	// it is valid)
-
 	/**
 	 * Returns constraints of the <b>query</b> parameters to send with the request. The
 	 * parameter's name is expected to be unique within the returned collection.

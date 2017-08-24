@@ -31,7 +31,7 @@ public class ResponseConstraintsV08 extends ConstraintsBase implements ResponseC
 
 	@Override
 	public BodyConstraints getResponseBody() {
-		return BodyConstraintsFactoryV08.createConstraints(this.body);
+		return this.body == null ? null : BodyConstraintsFactoryV08.createConstraints(this.body);
 	}
 
 }
