@@ -11,11 +11,6 @@ import javax.annotation.Nonnull;
  *
  */
 public interface ResponseConstraints {
-	// TODO implement sanity check that verifies values for parameters (make
-	// sure that they are valid)
-	// TODO implement sanity check that verifies the body (i.e. make sure that
-	// it is valid)
-
 	/**
 	 * Returns constraints of the <b>headers</b> to receive with the response.
 	 * The header's name is expected to be unique within the returned
