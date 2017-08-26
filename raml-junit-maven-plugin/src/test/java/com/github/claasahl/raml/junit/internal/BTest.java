@@ -27,7 +27,7 @@ import io.restassured.specification.RequestSpecification;
 public class BTest extends ValidateBase {
 
 	private final TestCase testCase;
-	private final Response response;
+	private Response response;
 
 	public BTest(TestCase testCase) {
 		this.testCase = testCase;
@@ -36,39 +36,33 @@ public class BTest extends ValidateBase {
 
 	@Test
 	public void validateConstraintsForRequestQueryParameters() {
-		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestQueryParameters(),
-				this.testCase.getRequestConstraints().getRequestQueryParameters());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestQueryParameters(), this.testCase.getRequestConstraints().getRequestQueryParameters());
 	}
 
 	@Test
 	public void validateConstraintsForRequestFormParameters() {
-		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestFormParameters(),
-				this.testCase.getRequestConstraints().getRequestFormParameters());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestFormParameters(), this.testCase.getRequestConstraints().getRequestFormParameters());
 	}
 
 	@Test
 	public void validateConstraintsForRequestPathParameters() {
-		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestPathParameters(),
-				this.testCase.getRequestConstraints().getRequestPathParameters());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestPathParameters(), this.testCase.getRequestConstraints().getRequestPathParameters());
 	}
 
 	@Test
 	public void validateConstraintsForRequestHeaders() {
-		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestHeaders(),
-				this.testCase.getRequestConstraints().getRequestHeaders());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestHeaders(), this.testCase.getRequestConstraints().getRequestHeaders());
 	}
 
 	@Test
 	public void validateConstraintsForRequestCookies() {
-		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestCookies(),
-				this.testCase.getRequestConstraints().getRequestCookies());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestCookies(), this.testCase.getRequestConstraints().getRequestCookies());
 	}
 
 	@Test
 	public void validateConstraintsForRequestBody() {
 		assumeThat(this.testCase.getRequestConstraints().getRequestBody(), notNullValue());
-		validateConstraints(true, this.testCase, this.testCase.getRequest().getRequestBody(),
-				this.testCase.getRequestConstraints().getRequestBody());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestBody(), this.testCase.getRequestConstraints().getRequestBody());
 	}
 
 	@Test
@@ -77,7 +71,7 @@ public class BTest extends ValidateBase {
 
 		List<Parameter> headers = this.response.getHeaders().asList().stream().map(h -> h.getName()).distinct()
 				.map(h -> new Parameter(h, this.response.getHeaders().getValues(h))).collect(Collectors.toList());
-		validateConstraints(true, this.testCase, headers, this.testCase.getRequestConstraints().getRequestHeaders());
+		validateConstraints(this.testCase, headers, this.testCase.getRequestConstraints().getRequestHeaders());
 	}
 
 	@Test
@@ -87,7 +81,7 @@ public class BTest extends ValidateBase {
 		List<Parameter> cookies = StreamSupport.stream(this.response.getDetailedCookies().spliterator(), false)
 				.map(c -> c.getName()).map(c -> new Parameter(c, this.response.getDetailedCookies().getValues(c)))
 				.collect(Collectors.toList());
-		validateConstraints(true, this.testCase, cookies, this.testCase.getRequestConstraints().getRequestCookies());
+		validateConstraints(this.testCase, cookies, this.testCase.getRequestConstraints().getRequestCookies());
 	}
 
 	@Test
@@ -96,7 +90,7 @@ public class BTest extends ValidateBase {
 
 		assumeThat(this.testCase.getResponseConstraints().getResponseBody(), notNullValue());
 		Body body = new Body(this.response.getContentType(), this.response.getBody().asString());
-		validateConstraints(true, this.testCase, body, this.testCase.getResponseConstraints().getResponseBody());
+		validateConstraints(this.testCase, body, this.testCase.getResponseConstraints().getResponseBody());
 	}
 
 	@Parameters

@@ -30,28 +30,26 @@ public class ValidateBase {
 		assertThat(new ArrayList<>(parameters), everyItem(notNullValue()));
 	}
 
-	protected final void validateConstraints(boolean isRequest, TestCase testCase, Collection<Parameter> parameters,
+	protected final void validateConstraints(TestCase testCase, Collection<Parameter> parameters,
 			Collection<ParameterConstraints> constraints) {
 		for (ParameterConstraints constraint : constraints) {
 			Optional<Parameter> parameter = parameters.stream().filter(p -> constraint.getName().equals(p.getName()))
 					.findFirst();
-			validateParameter(isRequest, testCase, parameter.orElse(null), constraint);
+			validateParameter(testCase, parameter.orElse(null), constraint);
 		}
 	}
 
-	protected final void validateConstraints(boolean isRequest, TestCase testCase, Body body,
-			BodyConstraints constraints) {
-		String reason = String.format("%s body of type '%s' for %s failed validation.",
-				isRequest ? "Request" : "Response", constraints.getContentType(), testCase.getKey());
+	protected final void validateConstraints(TestCase testCase, Body body, BodyConstraints constraints) {
+		String reason = String.format("Body of type '%s' for %s failed validation.", constraints.getContentType(),
+				testCase.getKey());
 		for (Matcher<Body> matcher : constraints.getMatchers()) {
 			assertThat(reason, body, matcher);
 		}
 	}
 
-	private final void validateParameter(boolean isRequest, TestCase testCase, Parameter parameter,
-			ParameterConstraints constraints) {
-		String reason = String.format("%s parameter '%s' for %s failed validation.", isRequest ? "Request" : "Response",
-				constraints.getName(), testCase.getKey());
+	private final void validateParameter(TestCase testCase, Parameter parameter, ParameterConstraints constraints) {
+		String reason = String.format("Parameter '%s' for %s failed validation.", constraints.getName(),
+				testCase.getKey());
 		for (Matcher<Parameter> matcher : constraints.getMatchers()) {
 			assertThat(reason, parameter, matcher);
 		}
