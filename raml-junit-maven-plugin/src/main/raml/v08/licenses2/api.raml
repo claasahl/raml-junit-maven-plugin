@@ -3,6 +3,12 @@ title: A CRUD API for licenses.
 version: v12
 mediaType: application/json
 baseUri: http://localhost:8080/patterns/api/{version}/
+baseUriParameters:
+  version:
+    displayName: Version
+    description: Identifies the version of this API.
+    type: string
+    example: v01
 documentation: 
   -
     title: Getting Started
