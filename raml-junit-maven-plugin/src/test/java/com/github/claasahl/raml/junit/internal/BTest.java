@@ -36,33 +36,39 @@ public class BTest extends ValidateBase {
 
 	@Test
 	public void validateConstraintsForRequestQueryParameters() {
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestQueryParameters(), this.testCase.getRequestConstraints().getRequestQueryParameters());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestQueryParameters(),
+				this.testCase.getRequestConstraints().getRequestQueryParameters());
 	}
 
 	@Test
 	public void validateConstraintsForRequestFormParameters() {
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestFormParameters(), this.testCase.getRequestConstraints().getRequestFormParameters());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestFormParameters(),
+				this.testCase.getRequestConstraints().getRequestFormParameters());
 	}
 
 	@Test
 	public void validateConstraintsForRequestPathParameters() {
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestPathParameters(), this.testCase.getRequestConstraints().getRequestPathParameters());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestPathParameters(),
+				this.testCase.getRequestConstraints().getRequestPathParameters());
 	}
 
 	@Test
 	public void validateConstraintsForRequestHeaders() {
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestHeaders(), this.testCase.getRequestConstraints().getRequestHeaders());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestHeaders(),
+				this.testCase.getRequestConstraints().getRequestHeaders());
 	}
 
 	@Test
 	public void validateConstraintsForRequestCookies() {
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestCookies(), this.testCase.getRequestConstraints().getRequestCookies());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestCookies(),
+				this.testCase.getRequestConstraints().getRequestCookies());
 	}
 
 	@Test
 	public void validateConstraintsForRequestBody() {
 		assumeThat(this.testCase.getRequestConstraints().getRequestBody(), notNullValue());
-		validateConstraints(this.testCase, this.testCase.getRequest().getRequestBody(), this.testCase.getRequestConstraints().getRequestBody());
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestBody(),
+				this.testCase.getRequestConstraints().getRequestBody());
 	}
 
 	@Test
