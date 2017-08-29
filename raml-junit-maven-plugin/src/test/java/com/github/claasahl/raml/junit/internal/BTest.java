@@ -27,11 +27,10 @@ import io.restassured.specification.RequestSpecification;
 public class BTest extends ValidateBase {
 
 	private final TestCase testCase;
-	private Response response;
+	private Response cachedResponse;
 
 	public BTest(TestCase testCase) {
 		this.testCase = testCase;
-		this.response = request(testCase);
 	}
 
 	@Test
@@ -73,29 +72,32 @@ public class BTest extends ValidateBase {
 
 	@Test
 	public void validateConstraintsForResponseHeaders() {
-		assertThat("No response!", this.response, notNullValue());
+		request();
+		assertThat("No response!", this.cachedResponse, notNullValue());
 
-		List<Parameter> headers = this.response.getHeaders().asList().stream().map(h -> h.getName()).distinct()
-				.map(h -> new Parameter(h, this.response.getHeaders().getValues(h))).collect(Collectors.toList());
+		List<Parameter> headers = this.cachedResponse.getHeaders().asList().stream().map(h -> h.getName()).distinct()
+				.map(h -> new Parameter(h, this.cachedResponse.getHeaders().getValues(h))).collect(Collectors.toList());
 		validateConstraints(this.testCase, headers, this.testCase.getRequestConstraints().getRequestHeaders());
 	}
 
 	@Test
 	public void validateConstraintsForResponseCookies() {
-		assertThat("No response!", this.response, notNullValue());
+		request();
+		assertThat("No response!", this.cachedResponse, notNullValue());
 
-		List<Parameter> cookies = StreamSupport.stream(this.response.getDetailedCookies().spliterator(), false)
-				.map(c -> c.getName()).map(c -> new Parameter(c, this.response.getDetailedCookies().getValues(c)))
+		List<Parameter> cookies = StreamSupport.stream(this.cachedResponse.getDetailedCookies().spliterator(), false)
+				.map(c -> c.getName()).map(c -> new Parameter(c, this.cachedResponse.getDetailedCookies().getValues(c)))
 				.collect(Collectors.toList());
 		validateConstraints(this.testCase, cookies, this.testCase.getRequestConstraints().getRequestCookies());
 	}
 
 	@Test
 	public void validateConstraintsForResponseBody() {
-		assertThat("No response!", this.response, notNullValue());
+		request();
+		assertThat("No response!", this.cachedResponse, notNullValue());
 
 		assumeThat(this.testCase.getResponseConstraints().getResponseBody(), notNullValue());
-		Body body = new Body(this.response.getContentType(), this.response.getBody().asString());
+		Body body = new Body(this.cachedResponse.getContentType(), this.cachedResponse.getBody().asString());
 		validateConstraints(this.testCase, body, this.testCase.getResponseConstraints().getResponseBody());
 	}
 
@@ -111,20 +113,22 @@ public class BTest extends ValidateBase {
 		return parameters.stream().collect(Collectors.toMap(Parameter::getName, Parameter::getValues));
 	}
 
-	private static Response request(TestCase testCase) {
-		Request request = testCase.getRequest();
-		String method = testCase.getKey().getRequestVerb();
-		String path = testCase.getKey().getRequestUrl();
-		Body body = request.getRequestBody();
+	private synchronized void request() {
+		if(this.cachedResponse == null) {
+			Request request = this.testCase.getRequest();
+			String method = this.testCase.getKey().getRequestVerb();
+			String path = this.testCase.getKey().getRequestUrl();
+			Body body = request.getRequestBody();
 
-		RequestSpecification specification = given().queryParams(parameters(request.getRequestQueryParameters()))
-				.formParams(parameters(request.getRequestFormParameters()))
-				.pathParams(parameters(request.getRequestPathParameters()))
-				.headers(parameters(request.getRequestHeaders())).cookies(parameters(request.getRequestCookies()));
-		if (body != null) {
-			specification = specification.contentType(body.getContentType()).body(body.getContent());
+			RequestSpecification specification = given().queryParams(parameters(request.getRequestQueryParameters()))
+					.formParams(parameters(request.getRequestFormParameters()))
+					.pathParams(parameters(request.getRequestPathParameters()))
+					.headers(parameters(request.getRequestHeaders())).cookies(parameters(request.getRequestCookies()));
+			if (body != null) {
+				specification = specification.contentType(body.getContentType()).body(body.getContent());
+			}
+			this.cachedResponse = specification.when().request(method, path);
 		}
-		return specification.when().request(method, path);
 	}
 
 }
