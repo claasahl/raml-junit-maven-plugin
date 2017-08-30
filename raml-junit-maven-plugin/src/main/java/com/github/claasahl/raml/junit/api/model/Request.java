@@ -17,6 +17,24 @@ public interface Request {
 	// it is valid)
 
 	/**
+	 * Returns the (fully-qualified) URL of the request.
+	 * 
+	 * @return the URL of the request
+	 */
+	@Nonnull
+	String getRequestUrl();
+
+	/**
+	 * Returns the request verb of the request. This may be any valid HTTP verb,
+	 * but most commonly one of <i>get</i>, <i>post</i>, <i>put</i> or
+	 * <i>delete</i>.
+	 * 
+	 * @return the request verb of the request
+	 */
+	@Nonnull
+	String getRequestVerb();
+
+	/**
 	 * Returns the <b>query</b> parameters to send with the request. The
 	 * parameter's name is expected to be unique within the returned collection.
 	 * <p/>

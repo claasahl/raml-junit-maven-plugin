@@ -17,6 +17,14 @@ public interface Response {
 	// it is valid)
 
 	/**
+	 * Returns the response code received with the response.
+	 * 
+	 * @return the response code received with the response
+	 */
+	@Nonnull
+	String getResponseCode();
+
+	/**
 	 * Returns the <b>headers</b> received with the response. The header's name
 	 * is expected to be unique within the returned collection.
 	 * <p/>

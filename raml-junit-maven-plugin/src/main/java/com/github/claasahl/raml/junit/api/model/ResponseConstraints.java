@@ -12,6 +12,14 @@ import javax.annotation.Nonnull;
  */
 public interface ResponseConstraints {
 	/**
+	 * Returns the response code received with the response.
+	 * 
+	 * @return the response code received with the response
+	 */
+	@Nonnull
+	String getResponseCode();
+
+	/**
 	 * Returns constraints of the <b>headers</b> to receive with the response.
 	 * The header's name is expected to be unique within the returned
 	 * collection.
