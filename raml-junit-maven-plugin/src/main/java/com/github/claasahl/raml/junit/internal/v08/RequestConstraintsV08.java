@@ -20,6 +20,16 @@ public class RequestConstraintsV08 extends ConstraintsBase implements RequestCon
 		super(key);
 		this.body = body(getKey().getContentType(), getMethod().body());
 	}
+	
+	@Override
+	public String getRequestUrl() {
+		return getKey().getRequestUrl();
+	}
+
+	@Override
+	public String getRequestVerb() {
+		return getKey().getRequestVerb();
+	}
 
 	@Override
 	public Collection<ParameterConstraints> getRequestQueryParameters() {

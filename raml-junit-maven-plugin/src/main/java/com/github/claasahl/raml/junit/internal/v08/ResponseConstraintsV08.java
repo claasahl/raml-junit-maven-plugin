@@ -18,6 +18,11 @@ public class ResponseConstraintsV08 extends ConstraintsBase implements ResponseC
 		super(key);
 		this.body = body(getKey().getContentType(), getResponse().body());
 	}
+	
+	@Override
+	public String getResponseCode() {
+		return getKey().getResponseCode();
+	}
 
 	@Override
 	public Collection<ParameterConstraints> getResponseHeaders() {
@@ -33,5 +38,4 @@ public class ResponseConstraintsV08 extends ConstraintsBase implements ResponseC
 	public BodyConstraints getResponseBody() {
 		return this.body == null ? null : BodyConstraintsFactoryV08.createConstraints(this.body);
 	}
-
 }

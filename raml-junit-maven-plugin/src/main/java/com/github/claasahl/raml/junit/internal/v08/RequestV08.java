@@ -27,6 +27,16 @@ public class RequestV08 implements Request {
 		this.resource = resource(this.key.getRequestUrl(), this.api.resources());
 		this.method = method(this.key.getRequestVerb(), this.resource.methods());
 	}
+	
+	@Override
+	public String getRequestUrl() {
+		return this.key.getRequestUrl();
+	}
+
+	@Override
+	public String getRequestVerb() {
+		return this.key.getRequestVerb();
+	}
 
 	@Override
 	public Collection<Parameter> getRequestQueryParameters() {
@@ -92,5 +102,4 @@ public class RequestV08 implements Request {
 		}
 		return parameters;
 	}
-
 }
