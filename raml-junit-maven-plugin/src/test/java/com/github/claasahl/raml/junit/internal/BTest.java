@@ -65,7 +65,6 @@ public class BTest extends ValidateBase {
 
 	@Test
 	public void validateConstraintsForRequestBody() {
-		assumeThat(this.testCase.getRequestConstraints().getRequestBody(), notNullValue());
 		validateConstraints(this.testCase, this.testCase.getRequest().getRequestBody(),
 				this.testCase.getRequestConstraints().getRequestBody());
 	}

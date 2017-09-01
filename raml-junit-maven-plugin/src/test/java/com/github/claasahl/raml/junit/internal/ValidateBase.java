@@ -2,7 +2,7 @@ package com.github.claasahl.raml.junit.internal;
 
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.Matchers.notNullValue;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
 import java.util.ArrayList;
@@ -40,6 +40,12 @@ public class ValidateBase {
 	}
 
 	protected final void validateConstraints(TestCase testCase, Body body, BodyConstraints constraints) {
+		if (constraints == null) {
+			String reason = String.format("Body for %s failed validation.", testCase.getKey());
+			assertThat(reason, body, nullValue());
+			return;
+		}
+
 		String reason = String.format("Body of type '%s' for %s failed validation.", constraints.getContentType(),
 				testCase.getKey());
 		for (Matcher<Body> matcher : constraints.getMatchers()) {
