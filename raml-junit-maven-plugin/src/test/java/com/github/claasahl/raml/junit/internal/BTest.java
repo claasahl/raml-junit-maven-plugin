@@ -102,7 +102,7 @@ public class BTest extends ValidateBase {
 
 	@Parameters
 	public static Collection<Object[]> data() {
-		return Factories.getRamlUrls().stream().flatMap(u -> {
+		return Suppliers.getRamlUrls().stream().flatMap(u -> {
 			String ramlVersion = Utils.getRamlVersion(u);
 			return Factories.getFactories(ramlVersion).createTestCases(u).stream();
 		}).map(TestCase::new).map(t -> new Object[] { t }).collect(Collectors.toList());

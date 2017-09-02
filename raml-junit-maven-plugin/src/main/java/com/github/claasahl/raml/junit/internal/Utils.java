@@ -1,17 +1,32 @@
 package com.github.claasahl.raml.junit.internal;
 
+import static io.restassured.RestAssured.given;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 import org.raml.v2.api.RamlModelBuilder;
 import org.raml.v2.api.RamlModelResult;
 import org.raml.v2.api.model.common.ValidationResult;
 
+import com.github.claasahl.raml.junit.api.model.Body;
+import com.github.claasahl.raml.junit.api.model.Parameter;
+import com.github.claasahl.raml.junit.api.model.Request;
+import com.github.claasahl.raml.junit.api.model.Response;
+
+import io.restassured.specification.RequestSpecification;
+
 public final class Utils {
-	
+
 	public static boolean isRamlUrl(URL ramlUrl) {
 		RamlModelResult ramlModelResult = buildApi(ramlUrl);
 		return ramlModelResult != null;
@@ -50,30 +65,45 @@ public final class Utils {
 			return null;
 		}
 	}
-	
+
 	public static Stream<TestCase> getTestCases() {
-		return Factories.getRamlUrls().stream().flatMap(u -> {
+		return Suppliers.getRamlUrls().stream().flatMap(u -> {
 			String ramlVersion = Utils.getRamlVersion(u);
 			return Factories.getFactories(ramlVersion).createTestCases(u).stream();
 		}).map(TestCase::new);
 	}
-	
+
 	public static org.raml.v2.api.model.v08.api.Api buildApiV08(URL ramlUrl) {
 		RamlModelResult ramlModelResult = buildApi(ramlUrl);
-		if(ramlModelResult != null) {
+		if (ramlModelResult != null) {
 			return ramlModelResult.getApiV08();
 		} else {
 			return null;
 		}
 	}
-	
+
 	public static org.raml.v2.api.model.v10.api.Api buildApiV10(URL ramlUrl) {
 		RamlModelResult ramlModelResult = buildApi(ramlUrl);
-		if(ramlModelResult != null) {
+		if (ramlModelResult != null) {
 			return ramlModelResult.getApiV10();
 		} else {
 			return null;
 		}
 	}
-
+	
+	protected static <T> T createFactory(String propertyKey, Supplier<T> defaultFactory) {
+		String factoryClass = System.getProperty(propertyKey);
+		if (factoryClass != null) {
+			try {
+				@SuppressWarnings("unchecked")
+				Class<T> factory = (Class<T>) Class.forName(factoryClass);
+				return factory.newInstance();
+			} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+				// TODO write error message to logger
+				return null;
+			}
+		} else {
+			return defaultFactory.get();
+		}
+	}
 }
