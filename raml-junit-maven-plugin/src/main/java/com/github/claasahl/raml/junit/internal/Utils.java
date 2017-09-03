@@ -1,29 +1,15 @@
 package com.github.claasahl.raml.junit.internal;
 
-import static io.restassured.RestAssured.given;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import java.util.function.Supplier;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 import org.raml.v2.api.RamlModelBuilder;
 import org.raml.v2.api.RamlModelResult;
 import org.raml.v2.api.model.common.ValidationResult;
-
-import com.github.claasahl.raml.junit.api.model.Body;
-import com.github.claasahl.raml.junit.api.model.Parameter;
-import com.github.claasahl.raml.junit.api.model.Request;
-import com.github.claasahl.raml.junit.api.model.Response;
-
-import io.restassured.specification.RequestSpecification;
 
 public final class Utils {
 
@@ -67,7 +53,7 @@ public final class Utils {
 	}
 
 	public static Stream<TestCase> getTestCases() {
-		return Suppliers.getRamlUrls().stream().flatMap(u -> {
+		return Suppliers.getSuppliers().getRamlUrls().stream().flatMap(u -> {
 			String ramlVersion = Utils.getRamlVersion(u);
 			return Factories.getFactories(ramlVersion).createTestCases(u).stream();
 		}).map(TestCase::new);

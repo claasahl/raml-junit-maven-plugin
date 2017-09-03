@@ -3,6 +3,7 @@ package com.github.claasahl.raml.junit.internal;
 import com.github.claasahl.raml.junit.api.TestCaseKey;
 import com.github.claasahl.raml.junit.api.model.Request;
 import com.github.claasahl.raml.junit.api.model.RequestConstraints;
+import com.github.claasahl.raml.junit.api.model.Response;
 import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
 
 public class TestCase {
@@ -11,10 +12,13 @@ public class TestCase {
 	private RequestConstraints requestConstraints;
 	private ResponseConstraints responseConstraints;
 	private Request request;
+	private Response response;
+	private boolean performRequest;
 
 	public TestCase(TestCaseKey key) {
 		this.key = key;
 		this.ramlVersion = Utils.getRamlVersion(this.key.getRamlUrl());
+		this.performRequest = true;
 	}
 
 	public TestCaseKey getKey() {
@@ -32,14 +36,22 @@ public class TestCase {
 		if (this.responseConstraints == null) {
 			this.responseConstraints = Factories.getFactories(this.ramlVersion).createResponseConstraints(this.key);
 		}
-		return responseConstraints;
+		return this.responseConstraints;
 	}
 
 	public Request getRequest() {
 		if (this.request == null) {
 			this.request = Factories.getFactories(this.ramlVersion).createRequest(this.key);
 		}
-		return request;
+		return this.request;
+	}
+
+	public Response getResponse() {
+		if (this.performRequest) {
+			this.performRequest = false;
+			this.response = Suppliers.getSuppliers().getResponse(getRequest());
+		}
+		return this.response;
 	}
 
 }

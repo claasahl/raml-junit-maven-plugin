@@ -1,36 +1,40 @@
 package com.github.claasahl.raml.junit.internal;
 
-import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assume.assumeThat;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.github.claasahl.raml.junit.api.model.Body;
-import com.github.claasahl.raml.junit.api.model.Parameter;
-import com.github.claasahl.raml.junit.api.model.Request;
-
-import io.restassured.response.Response;
-import io.restassured.specification.RequestSpecification;
-
 @RunWith(Parameterized.class)
 public class BTest extends ValidateBase {
 
 	private final TestCase testCase;
-	private Response cachedResponse;
 
 	public BTest(TestCase testCase) {
 		this.testCase = testCase;
+	}
+
+	@Test
+	public void validateRequestUrl() {
+		String reason = String.format("Request URL '%s' for %s failed validation.",
+				this.testCase.getRequest().getRequestUrl(), this.testCase.getKey());
+		assertThat(reason, this.testCase.getRequest().getRequestUrl(),
+				equalTo(this.testCase.getRequestConstraints().getRequestUrl()));
+	}
+
+	@Test
+	public void validateRequestVerb() {
+		String reason = String.format("Request verb '%s' for %s failed validation.",
+				this.testCase.getRequest().getRequestVerb(), this.testCase.getKey());
+		assertThat(reason, this.testCase.getRequest().getRequestVerb(),
+				equalTo(this.testCase.getRequestConstraints().getRequestVerb()));
 	}
 
 	@Test
@@ -70,64 +74,40 @@ public class BTest extends ValidateBase {
 	}
 
 	@Test
-	public void validateConstraintsForResponseHeaders() {
-		request();
-		assertThat("No response!", this.cachedResponse, notNullValue());
+	public void validateResponseCode() {
+		assertThat("No response!", this.testCase.getResponse(), notNullValue());
+		String reason = String.format("Response code '%s' for %s failed validation.",
+				this.testCase.getResponse().getResponseCode(), this.testCase.getKey());
+		assertThat(reason, this.testCase.getResponse().getResponseCode(),
+				equalTo(this.testCase.getResponseConstraints().getResponseCode()));
+	}
 
-		List<Parameter> headers = this.cachedResponse.getHeaders().asList().stream().map(h -> h.getName()).distinct()
-				.map(h -> new Parameter(h, this.cachedResponse.getHeaders().getValues(h))).collect(Collectors.toList());
-		validateConstraints(this.testCase, headers, this.testCase.getRequestConstraints().getRequestHeaders());
+	@Test
+	public void validateConstraintsForResponseHeaders() {
+		assertThat("No response!", this.testCase.getResponse(), notNullValue());
+		validateConstraints(this.testCase, this.testCase.getResponse().getResponseHeaders(),
+				this.testCase.getRequestConstraints().getRequestHeaders());
 	}
 
 	@Test
 	public void validateConstraintsForResponseCookies() {
-		request();
-		assertThat("No response!", this.cachedResponse, notNullValue());
-
-		List<Parameter> cookies = StreamSupport.stream(this.cachedResponse.getDetailedCookies().spliterator(), false)
-				.map(c -> c.getName()).map(c -> new Parameter(c, this.cachedResponse.getDetailedCookies().getValues(c)))
-				.collect(Collectors.toList());
-		validateConstraints(this.testCase, cookies, this.testCase.getRequestConstraints().getRequestCookies());
+		assertThat("No response!", this.testCase.getResponse(), notNullValue());
+		validateConstraints(this.testCase, this.testCase.getResponse().getResponseCookies(),
+				this.testCase.getRequestConstraints().getRequestCookies());
 	}
 
 	@Test
 	public void validateConstraintsForResponseBody() {
-		request();
-		assertThat("No response!", this.cachedResponse, notNullValue());
-
-		assumeThat(this.testCase.getResponseConstraints().getResponseBody(), notNullValue());
-		Body body = new Body(this.cachedResponse.getContentType(), this.cachedResponse.getBody().asString());
-		validateConstraints(this.testCase, body, this.testCase.getResponseConstraints().getResponseBody());
+		assertThat("No response!", this.testCase.getResponse(), notNullValue());
+		validateConstraints(this.testCase, this.testCase.getResponse().getResponseBody(),
+				this.testCase.getResponseConstraints().getResponseBody());
 	}
 
 	@Parameters
 	public static Collection<Object[]> data() {
-		return Suppliers.getRamlUrls().stream().flatMap(u -> {
+		return Suppliers.getSuppliers().getRamlUrls().stream().flatMap(u -> {
 			String ramlVersion = Utils.getRamlVersion(u);
 			return Factories.getFactories(ramlVersion).createTestCases(u).stream();
 		}).map(TestCase::new).map(t -> new Object[] { t }).collect(Collectors.toList());
 	}
-
-	private static Map<String, ?> parameters(Collection<Parameter> parameters) {
-		return parameters.stream().collect(Collectors.toMap(Parameter::getName, Parameter::getValues));
-	}
-
-	private synchronized void request() {
-		if(this.cachedResponse == null) {
-			Request request = this.testCase.getRequest();
-			String method = this.testCase.getKey().getRequestVerb();
-			String path = this.testCase.getKey().getRequestUrl();
-			Body body = request.getRequestBody();
-
-			RequestSpecification specification = given().queryParams(parameters(request.getRequestQueryParameters()))
-					.formParams(parameters(request.getRequestFormParameters()))
-					.pathParams(parameters(request.getRequestPathParameters()))
-					.headers(parameters(request.getRequestHeaders())).cookies(parameters(request.getRequestCookies()));
-			if (body != null) {
-				specification = specification.contentType(body.getContentType()).body(body.getContent());
-			}
-			this.cachedResponse = specification.when().request(method, path);
-		}
-	}
-
 }

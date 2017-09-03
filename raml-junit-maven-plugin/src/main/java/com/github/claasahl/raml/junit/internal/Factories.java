@@ -4,20 +4,15 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.Supplier;
 
-import com.github.claasahl.raml.junit.api.RamlUrlSupplier;
 import com.github.claasahl.raml.junit.api.TestCaseKey;
 import com.github.claasahl.raml.junit.api.factories.ConstraintsFactory;
 import com.github.claasahl.raml.junit.api.factories.RequestFactory;
-import com.github.claasahl.raml.junit.api.factories.ResponseFactory;
 import com.github.claasahl.raml.junit.api.factories.TestCaseFactory;
 import com.github.claasahl.raml.junit.api.model.Request;
 import com.github.claasahl.raml.junit.api.model.RequestConstraints;
-import com.github.claasahl.raml.junit.api.model.Response;
 import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
 import com.github.claasahl.raml.junit.internal.v00.EmptyContraintsFactory;
-import com.github.claasahl.raml.junit.internal.v00.EmptyRamlUrlSupplier;
 import com.github.claasahl.raml.junit.internal.v00.EmptyRequestFactory;
 import com.github.claasahl.raml.junit.internal.v00.EmptyTestCaseFactory;
 

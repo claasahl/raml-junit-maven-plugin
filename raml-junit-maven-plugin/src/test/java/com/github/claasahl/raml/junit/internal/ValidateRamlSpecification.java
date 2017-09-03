@@ -29,7 +29,8 @@ public class ValidateRamlSpecification {
 
 	@Parameters
 	public static Collection<Object[]> data() {
-		return Suppliers.getRamlUrls().stream().map(t -> new Object[] { t }).collect(Collectors.toList());
+		return Suppliers.getSuppliers().getRamlUrls().stream().map(t -> new Object[] { t })
+				.collect(Collectors.toList());
 	}
 
 	@Test
