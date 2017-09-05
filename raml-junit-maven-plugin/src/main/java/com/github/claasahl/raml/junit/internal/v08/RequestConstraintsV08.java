@@ -12,15 +12,12 @@ import com.github.claasahl.raml.junit.api.model.BodyConstraints;
 import com.github.claasahl.raml.junit.api.model.ParameterConstraints;
 import com.github.claasahl.raml.junit.api.model.RequestConstraints;
 
-public class RequestConstraintsV08 extends ConstraintsBase implements RequestConstraints {
-
-	private final BodyLike body;
+public class RequestConstraintsV08 extends Base implements RequestConstraints {
 
 	public RequestConstraintsV08(TestCaseKey key) {
 		super(key);
-		this.body = body(getKey().getContentType(), getMethod().body());
 	}
-	
+
 	@Override
 	public String getRequestUrl() {
 		return getKey().getRequestUrl();
@@ -61,6 +58,7 @@ public class RequestConstraintsV08 extends ConstraintsBase implements RequestCon
 
 	@Override
 	public BodyConstraints getRequestBody() {
-		return this.body == null ? null : BodyConstraintsFactoryV08.createConstraints(this.body);
+		BodyLike body = getBody(true);
+		return body == null ? null : BodyConstraintsFactoryV08.createConstraints(body);
 	}
 }

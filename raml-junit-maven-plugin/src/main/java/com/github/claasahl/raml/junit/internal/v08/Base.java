@@ -11,20 +11,24 @@ import org.raml.v2.api.model.v08.resources.Resource;
 import com.github.claasahl.raml.junit.api.TestCaseKey;
 import com.github.claasahl.raml.junit.internal.Utils;
 
-public class ConstraintsBase {
+public class Base {
 
 	private final TestCaseKey key;
 	private final Api api;
 	private final Resource resource;
 	private final Method method;
 	private final Response response;
+	private final BodyLike requestBody;
+	private final BodyLike responseBody;
 
-	protected ConstraintsBase(TestCaseKey key) {
+	protected Base(TestCaseKey key) {
 		this.key = key;
 		this.api = Utils.buildApiV08(this.key.getRamlUrl());
 		this.resource = resource(this.key.getRequestUrl(), this.api.resources());
 		this.method = method(this.key.getRequestVerb(), this.resource.methods());
 		this.response = response(this.key.getResponseCode(), this.method.responses());
+		this.requestBody = body(this.key.getContentType(), this.method.body());
+		this.responseBody = body(this.key.getContentType(), this.response.body());
 	}
 
 	protected TestCaseKey getKey() {
@@ -45,6 +49,10 @@ public class ConstraintsBase {
 
 	protected Response getResponse() {
 		return response;
+	}
+
+	protected BodyLike getBody(boolean request) {
+		return request ? this.requestBody : this.responseBody;
 	}
 
 	private static Resource resource(String resourcePath, List<Resource> resources) {
@@ -76,7 +84,7 @@ public class ConstraintsBase {
 		return null;
 	}
 
-	protected static BodyLike body(String contentType, List<BodyLike> bodies) {
+	private static BodyLike body(String contentType, List<BodyLike> bodies) {
 		for (BodyLike body : bodies) {
 			if (body.name().equals(contentType)) {
 				return body;

@@ -4,43 +4,32 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import org.raml.v2.api.model.v08.api.Api;
-import org.raml.v2.api.model.v08.methods.Method;
-import org.raml.v2.api.model.v08.resources.Resource;
+import org.raml.v2.api.model.v08.bodies.BodyLike;
 
 import com.github.claasahl.raml.junit.api.TestCaseKey;
 import com.github.claasahl.raml.junit.api.model.Body;
 import com.github.claasahl.raml.junit.api.model.Parameter;
 import com.github.claasahl.raml.junit.api.model.Request;
-import com.github.claasahl.raml.junit.internal.Utils;
 
-public class RequestV08 implements Request {
-
-	private final TestCaseKey key;
-	private final Api api;
-	private final Resource resource;
-	private final Method method;
+public class RequestV08 extends Base implements Request {
 
 	public RequestV08(TestCaseKey key) {
-		this.key = key;
-		this.api = Utils.buildApiV08(this.key.getRamlUrl());
-		this.resource = resource(this.key.getRequestUrl(), this.api.resources());
-		this.method = method(this.key.getRequestVerb(), this.resource.methods());
+		super(key);		
 	}
 	
 	@Override
 	public String getRequestUrl() {
-		return this.key.getRequestUrl();
+		return getKey().getRequestUrl();
 	}
 
 	@Override
 	public String getRequestVerb() {
-		return this.key.getRequestVerb();
+		return getKey().getRequestVerb();
 	}
 
 	@Override
 	public Collection<Parameter> getRequestQueryParameters() {
-		return parameters(this.method.queryParameters());
+		return parameters(getMethod().queryParameters());
 	}
 
 	@Override
@@ -51,12 +40,12 @@ public class RequestV08 implements Request {
 
 	@Override
 	public Collection<Parameter> getRequestPathParameters() {
-		return parameters(this.resource.uriParameters());
+		return parameters(getResource().uriParameters());
 	}
 
 	@Override
 	public Collection<Parameter> getRequestHeaders() {
-		return parameters(this.method.headers());
+		return parameters(getMethod().headers());
 	}
 
 	@Override
@@ -66,28 +55,8 @@ public class RequestV08 implements Request {
 
 	@Override
 	public Body getRequestBody() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	private static Resource resource(String resourcePath, List<Resource> resources) {
-		for (Resource resource : resources) {
-			if (resourcePath.equals(resource.resourcePath())) {
-				return resource;
-			} else {
-				return resource(resourcePath, resource.resources());
-			}
-		}
-		return null;
-	}
-
-	private static Method method(String requestVerb, List<Method> methods) {
-		for (Method method : methods) {
-			if (requestVerb.equals(method.method())) {
-				return method;
-			}
-		}
-		return null;
+		BodyLike body = getBody(true);
+		return body == null ? null : body(body);
 	}
 
 	private static Collection<Parameter> parameters(List<org.raml.v2.api.model.v08.parameters.Parameter> params) {
@@ -101,5 +70,11 @@ public class RequestV08 implements Request {
 			parameters.add(new Parameter(name, value));
 		}
 		return parameters;
+	}
+	
+	private static Body body(BodyLike body) {
+		String contentType = body.name();
+		String content = body.example().toString();
+		return new Body(contentType, content);
 	}
 }

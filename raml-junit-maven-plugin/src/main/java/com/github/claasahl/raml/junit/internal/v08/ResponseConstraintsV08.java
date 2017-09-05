@@ -10,15 +10,12 @@ import com.github.claasahl.raml.junit.api.model.BodyConstraints;
 import com.github.claasahl.raml.junit.api.model.ParameterConstraints;
 import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
 
-public class ResponseConstraintsV08 extends ConstraintsBase implements ResponseConstraints {
-
-	private final BodyLike body;
+public class ResponseConstraintsV08 extends Base implements ResponseConstraints {
 
 	public ResponseConstraintsV08(TestCaseKey key) {
 		super(key);
-		this.body = body(getKey().getContentType(), getResponse().body());
 	}
-	
+
 	@Override
 	public String getResponseCode() {
 		return getKey().getResponseCode();
@@ -36,6 +33,7 @@ public class ResponseConstraintsV08 extends ConstraintsBase implements ResponseC
 
 	@Override
 	public BodyConstraints getResponseBody() {
-		return this.body == null ? null : BodyConstraintsFactoryV08.createConstraints(this.body);
+		BodyLike body = getBody(false);
+		return body == null ? null : BodyConstraintsFactoryV08.createConstraints(body);
 	}
 }
