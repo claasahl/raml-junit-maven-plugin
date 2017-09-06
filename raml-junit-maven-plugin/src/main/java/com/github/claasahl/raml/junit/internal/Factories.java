@@ -12,9 +12,6 @@ import com.github.claasahl.raml.junit.api.factories.TestCaseFactory;
 import com.github.claasahl.raml.junit.api.model.Request;
 import com.github.claasahl.raml.junit.api.model.RequestConstraints;
 import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
-import com.github.claasahl.raml.junit.internal.v00.EmptyContraintsFactory;
-import com.github.claasahl.raml.junit.internal.v00.EmptyRequestFactory;
-import com.github.claasahl.raml.junit.internal.v00.EmptyTestCaseFactory;
 
 public final class Factories implements TestCaseFactory, ConstraintsFactory, RequestFactory {
 
@@ -61,10 +58,9 @@ public final class Factories implements TestCaseFactory, ConstraintsFactory, Req
 	}
 
 	private static Factories createFactory(String ramlVersion) {
-		TestCaseFactory testCaseFactory = Utils.createFactory(TEST_CASE_FACTORY + ramlVersion, EmptyTestCaseFactory::new);
-		ConstraintsFactory constraintsFactory = Utils.createFactory(CONSTRAINTS_FACTORY + ramlVersion,
-				EmptyContraintsFactory::new);
-		RequestFactory requestFactory = Utils.createFactory(REQUEST_FACTORY + ramlVersion, EmptyRequestFactory::new);
+		TestCaseFactory testCaseFactory = Utils.createFactory(TEST_CASE_FACTORY + ramlVersion, null);
+		ConstraintsFactory constraintsFactory = Utils.createFactory(CONSTRAINTS_FACTORY + ramlVersion, null);
+		RequestFactory requestFactory = Utils.createFactory(REQUEST_FACTORY + ramlVersion, null);
 		return new Factories(testCaseFactory, constraintsFactory, requestFactory);
 	}
 }
