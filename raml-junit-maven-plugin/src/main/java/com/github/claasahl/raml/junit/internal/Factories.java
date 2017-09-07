@@ -58,9 +58,9 @@ public final class Factories implements TestCaseFactory, ConstraintsFactory, Req
 	}
 
 	private static Factories createFactory(String ramlVersion) {
-		TestCaseFactory testCaseFactory = Utils.createFactory(TEST_CASE_FACTORY + ramlVersion, null);
-		ConstraintsFactory constraintsFactory = Utils.createFactory(CONSTRAINTS_FACTORY + ramlVersion, null);
-		RequestFactory requestFactory = Utils.createFactory(REQUEST_FACTORY + ramlVersion, null);
+		TestCaseFactory testCaseFactory = Utils.createFactory(TEST_CASE_FACTORY + ramlVersion);
+		ConstraintsFactory constraintsFactory = Utils.createFactory(CONSTRAINTS_FACTORY + ramlVersion);
+		RequestFactory requestFactory = Utils.createFactory(REQUEST_FACTORY + ramlVersion);
 		return new Factories(testCaseFactory, constraintsFactory, requestFactory);
 	}
 }

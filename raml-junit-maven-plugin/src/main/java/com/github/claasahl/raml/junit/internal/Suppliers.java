@@ -33,8 +33,8 @@ public class Suppliers implements RamlUrlSupplier, ResponseSupplier {
 
 	public static Suppliers getSuppliers() {
 		if (instance == null) {
-			RamlUrlSupplier ramlUrlSupplier = Utils.createFactory(RAML_URL_SUPPLIER, null);
-			ResponseSupplier responseSupplier = Utils.createFactory(RESPONSE_SUPPLIER, null);
+			RamlUrlSupplier ramlUrlSupplier = Utils.createFactory(RAML_URL_SUPPLIER);
+			ResponseSupplier responseSupplier = Utils.createFactory(RESPONSE_SUPPLIER);
 			instance = new Suppliers(ramlUrlSupplier, responseSupplier);
 		}
 		return instance;

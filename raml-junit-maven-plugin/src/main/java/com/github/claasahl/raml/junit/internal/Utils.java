@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
-import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import org.raml.v2.api.RamlModelBuilder;
@@ -77,7 +76,7 @@ public final class Utils {
 		}
 	}
 	
-	protected static <T> T createFactory(String propertyKey, Supplier<T> defaultFactory) {
+	protected static <T> T createFactory(String propertyKey) {
 		String factoryClass = System.getProperty(propertyKey);
 		if (factoryClass != null) {
 			try {
@@ -89,7 +88,7 @@ public final class Utils {
 				return null;
 			}
 		} else {
-			return defaultFactory.get();
+			return null;
 		}
 	}
 }
