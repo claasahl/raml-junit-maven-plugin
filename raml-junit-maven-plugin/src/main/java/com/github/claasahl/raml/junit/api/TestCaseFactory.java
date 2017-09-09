@@ -1,11 +1,9 @@
-package com.github.claasahl.raml.junit.api.factories;
+package com.github.claasahl.raml.junit.api;
 
 import java.net.URL;
 import java.util.List;
 
 import javax.annotation.Nonnull;
-
-import com.github.claasahl.raml.junit.api.TestCaseKey;
 
 /**
  * The interface {@link TestCaseFactory}.

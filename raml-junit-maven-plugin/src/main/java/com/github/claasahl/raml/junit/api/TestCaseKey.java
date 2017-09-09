@@ -4,9 +4,6 @@ import java.net.URL;
 
 import javax.annotation.Nonnull;
 
-import com.github.claasahl.raml.junit.api.factories.ConstraintsFactory;
-import com.github.claasahl.raml.junit.api.factories.RequestFactory;
-
 /**
  * The class {@link TestCaseKey}.
  * <p/>

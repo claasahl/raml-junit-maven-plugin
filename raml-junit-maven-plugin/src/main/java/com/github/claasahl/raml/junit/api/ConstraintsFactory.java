@@ -1,8 +1,7 @@
-package com.github.claasahl.raml.junit.api.factories;
+package com.github.claasahl.raml.junit.api;
 
 import javax.annotation.Nonnull;
 
-import com.github.claasahl.raml.junit.api.TestCaseKey;
 import com.github.claasahl.raml.junit.api.model.RequestConstraints;
 import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
 

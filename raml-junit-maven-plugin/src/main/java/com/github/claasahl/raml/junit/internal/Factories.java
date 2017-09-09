@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.claasahl.raml.junit.api.ConstraintsFactory;
+import com.github.claasahl.raml.junit.api.RequestFactory;
+import com.github.claasahl.raml.junit.api.TestCaseFactory;
 import com.github.claasahl.raml.junit.api.TestCaseKey;
-import com.github.claasahl.raml.junit.api.factories.ConstraintsFactory;
-import com.github.claasahl.raml.junit.api.factories.RequestFactory;
-import com.github.claasahl.raml.junit.api.factories.TestCaseFactory;
 import com.github.claasahl.raml.junit.api.model.Request;
 import com.github.claasahl.raml.junit.api.model.RequestConstraints;
 import com.github.claasahl.raml.junit.api.model.ResponseConstraints;

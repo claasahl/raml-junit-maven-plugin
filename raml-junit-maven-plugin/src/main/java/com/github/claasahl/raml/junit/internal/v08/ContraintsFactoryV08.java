@@ -1,7 +1,7 @@
 package com.github.claasahl.raml.junit.internal.v08;
 
+import com.github.claasahl.raml.junit.api.ConstraintsFactory;
 import com.github.claasahl.raml.junit.api.TestCaseKey;
-import com.github.claasahl.raml.junit.api.factories.ConstraintsFactory;
 import com.github.claasahl.raml.junit.api.model.RequestConstraints;
 import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
 
