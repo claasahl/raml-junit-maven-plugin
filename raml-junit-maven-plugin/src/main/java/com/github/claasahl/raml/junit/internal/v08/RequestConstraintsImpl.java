@@ -12,9 +12,9 @@ import com.github.claasahl.raml.junit.api.model.BodyConstraints;
 import com.github.claasahl.raml.junit.api.model.ParameterConstraints;
 import com.github.claasahl.raml.junit.api.model.RequestConstraints;
 
-public class RequestConstraintsV08 extends Base implements RequestConstraints {
+public class RequestConstraintsImpl extends Base implements RequestConstraints {
 
-	public RequestConstraintsV08(TestCaseKey key) {
+	public RequestConstraintsImpl(TestCaseKey key) {
 		super(key);
 	}
 
@@ -30,12 +30,12 @@ public class RequestConstraintsV08 extends Base implements RequestConstraints {
 
 	@Override
 	public Collection<ParameterConstraints> getRequestQueryParameters() {
-		return ParameterConstraintsFactoryV08.createConstraints(getMethod().queryParameters());
+		return ParameterConstraintsFactoryImpl.createConstraints(getMethod().queryParameters());
 	}
 
 	@Override
 	public Collection<ParameterConstraints> getRequestFormParameters() {
-		return ParameterConstraintsFactoryV08.createConstraints(new ArrayList<>());
+		return ParameterConstraintsFactoryImpl.createConstraints(new ArrayList<>());
 	}
 
 	@Override
@@ -43,22 +43,22 @@ public class RequestConstraintsV08 extends Base implements RequestConstraints {
 		List<Parameter> parameters = new ArrayList<>();
 		parameters.addAll(getResource().uriParameters());
 		parameters.addAll(getResource().baseUriParameters());
-		return ParameterConstraintsFactoryV08.createConstraints(parameters);
+		return ParameterConstraintsFactoryImpl.createConstraints(parameters);
 	}
 
 	@Override
 	public Collection<ParameterConstraints> getRequestHeaders() {
-		return ParameterConstraintsFactoryV08.createConstraints(getMethod().headers());
+		return ParameterConstraintsFactoryImpl.createConstraints(getMethod().headers());
 	}
 
 	@Override
 	public Collection<ParameterConstraints> getRequestCookies() {
-		return ParameterConstraintsFactoryV08.createConstraints(new ArrayList<>());
+		return ParameterConstraintsFactoryImpl.createConstraints(new ArrayList<>());
 	}
 
 	@Override
 	public BodyConstraints getRequestBody() {
 		BodyLike body = getBody(true);
-		return body == null ? null : BodyConstraintsFactoryV08.createConstraints(body);
+		return body == null ? null : BodyConstraintsFactoryImpl.createConstraints(body);
 	}
 }

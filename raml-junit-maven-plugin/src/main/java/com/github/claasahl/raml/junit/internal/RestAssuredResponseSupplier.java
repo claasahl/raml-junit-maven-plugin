@@ -15,6 +15,15 @@ import com.github.claasahl.raml.junit.api.model.Response;
 
 import io.restassured.specification.RequestSpecification;
 
+/**
+ * The class {@link RestAssuredResponseSupplier}.
+ * <p/>
+ * This is an implementation of the interface {@link ResponseSupplier} which
+ * integrates with the framework rest assured.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
 public class RestAssuredResponseSupplier implements ResponseSupplier {
 
 	@Override

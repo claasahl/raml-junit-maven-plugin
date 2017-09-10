@@ -18,7 +18,16 @@ import org.raml.v2.api.model.v08.methods.Method;
 import com.github.claasahl.raml.junit.api.TestCaseFactory;
 import com.github.claasahl.raml.junit.api.TestCaseKey;
 
-public class TestCaseFactoryV08 implements TestCaseFactory {
+/**
+ * The class {@link TestCaseFactoryImpl}.
+ * <p/>
+ * This is an implementation of the interface {@link TestCaseFactory} for RAML
+ * (v0.8) specifications.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
+public class TestCaseFactoryImpl implements TestCaseFactory {
 
 	@Override
 	public List<TestCaseKey> createTestCases(URL ramlUrl) {
@@ -31,9 +40,12 @@ public class TestCaseFactoryV08 implements TestCaseFactory {
 				}
 			} else if (ramlModelResult.isVersion08()) {
 				return Stream.of(ramlModelResult.getApiV08()).flatMap(api -> api.resources().stream())
-						.flatMap(resource -> Stream.concat(Stream.of(resource), resource.resources().stream()))// <- not recursive
-						.flatMap(resource -> resource.methods().stream()).flatMap(method -> method.responses().stream()
-								.flatMap(response -> t(ramlUrl, method, response)))
+						.flatMap(resource -> Stream.concat(Stream.of(resource), resource.resources().stream()))// <-
+																												// not
+																												// recursive
+						.flatMap(resource -> resource.methods().stream())
+						.flatMap(
+								method -> method.responses().stream().flatMap(response -> t(ramlUrl, method, response)))
 						.collect(Collectors.toList());
 			} else if (ramlModelResult.isVersion10()) {
 				// TODO write error message to logger

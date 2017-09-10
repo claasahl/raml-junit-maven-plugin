@@ -11,9 +11,9 @@ import com.github.claasahl.raml.junit.api.model.Body;
 import com.github.claasahl.raml.junit.api.model.Parameter;
 import com.github.claasahl.raml.junit.api.model.Request;
 
-public class RequestV08 extends Base implements Request {
+public class RequestImpl extends Base implements Request {
 
-	public RequestV08(TestCaseKey key) {
+	public RequestImpl(TestCaseKey key) {
 		super(key);		
 	}
 	
@@ -34,7 +34,6 @@ public class RequestV08 extends Base implements Request {
 
 	@Override
 	public Collection<Parameter> getRequestFormParameters() {
-		// TODO ???
 		return parameters(new ArrayList<>());
 	}
 

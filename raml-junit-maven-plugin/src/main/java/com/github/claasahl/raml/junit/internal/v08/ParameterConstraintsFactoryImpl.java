@@ -25,7 +25,7 @@ import org.raml.v2.api.model.v08.parameters.StringTypeDeclaration;
 import com.github.claasahl.raml.junit.api.model.Parameter;
 import com.github.claasahl.raml.junit.api.model.ParameterConstraints;
 
-public final class ParameterConstraintsFactoryV08 {
+public final class ParameterConstraintsFactoryImpl {
 
 	public static Collection<ParameterConstraints> createConstraints(
 			Collection<org.raml.v2.api.model.v08.parameters.Parameter> parameters) {

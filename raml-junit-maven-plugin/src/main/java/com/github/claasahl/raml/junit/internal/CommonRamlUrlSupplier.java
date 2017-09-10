@@ -13,6 +13,14 @@ import java.util.stream.Collectors;
 
 import com.github.claasahl.raml.junit.api.RamlUrlSupplier;
 
+/**
+ * The class {@link CommonRamlUrlSupplier}.
+ * <p/>
+ * This is an implementation of the interface {@link RamlUrlSupplier}.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
 public class CommonRamlUrlSupplier implements RamlUrlSupplier {
 	
 	@Override

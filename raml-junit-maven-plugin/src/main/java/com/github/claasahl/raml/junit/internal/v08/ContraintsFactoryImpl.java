@@ -5,16 +5,25 @@ import com.github.claasahl.raml.junit.api.TestCaseKey;
 import com.github.claasahl.raml.junit.api.model.RequestConstraints;
 import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
 
-public class ContraintsFactoryV08 implements ConstraintsFactory{
+/**
+ * The class {@link ContraintsFactoryImpl}.
+ * <p/>
+ * This is an implementation of the interface {@link ConstraintsFactory} for
+ * RAML (v0.8) specifications.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
+public class ContraintsFactoryImpl implements ConstraintsFactory {
 
 	@Override
 	public RequestConstraints createRequestConstraints(TestCaseKey testCase) {
-		return new RequestConstraintsV08(testCase);
+		return new RequestConstraintsImpl(testCase);
 	}
 
 	@Override
 	public ResponseConstraints createResponseConstraints(TestCaseKey testCase) {
-		return new ResponseConstraintsV08(testCase);
+		return new ResponseConstraintsImpl(testCase);
 	}
-	
+
 }

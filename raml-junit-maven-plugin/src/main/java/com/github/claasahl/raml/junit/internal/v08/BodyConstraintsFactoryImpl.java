@@ -13,7 +13,7 @@ import org.raml.v2.api.model.v08.bodies.BodyLike;
 import com.github.claasahl.raml.junit.api.model.Body;
 import com.github.claasahl.raml.junit.api.model.BodyConstraints;
 
-public final class BodyConstraintsFactoryV08 {
+public final class BodyConstraintsFactoryImpl {
 	public static BodyConstraints createConstraints(BodyLike body) {
 		String contentType = body.name();
 		List<Matcher<Body>> matchers = new ArrayList<>();
