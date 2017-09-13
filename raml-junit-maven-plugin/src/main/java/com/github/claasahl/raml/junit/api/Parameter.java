@@ -1,4 +1,4 @@
-package com.github.claasahl.raml.junit.api.model;
+package com.github.claasahl.raml.junit.api;
 
 import java.util.ArrayList;
 import java.util.Arrays;

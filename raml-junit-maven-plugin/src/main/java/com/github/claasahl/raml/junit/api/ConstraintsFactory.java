@@ -2,9 +2,6 @@ package com.github.claasahl.raml.junit.api;
 
 import javax.annotation.Nonnull;
 
-import com.github.claasahl.raml.junit.api.model.RequestConstraints;
-import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
-
 /**
  * The interface {@link ConstraintsFactory}.
  * <p/>

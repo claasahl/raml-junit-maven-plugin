@@ -2,8 +2,6 @@ package com.github.claasahl.raml.junit.api;
 
 import javax.annotation.Nonnull;
 
-import com.github.claasahl.raml.junit.api.model.Request;
-
 /**
  * The interface {@link RequestFactory}.
  * <p/>
