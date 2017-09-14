@@ -6,12 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.github.claasahl.raml.junit.api.ConstraintsFactory;
+import com.github.claasahl.raml.junit.api.Request;
+import com.github.claasahl.raml.junit.api.RequestConstraints;
 import com.github.claasahl.raml.junit.api.RequestFactory;
+import com.github.claasahl.raml.junit.api.ResponseConstraints;
 import com.github.claasahl.raml.junit.api.TestCaseFactory;
 import com.github.claasahl.raml.junit.api.TestCaseKey;
-import com.github.claasahl.raml.junit.api.model.Request;
-import com.github.claasahl.raml.junit.api.model.RequestConstraints;
-import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
 
 public final class Factories implements TestCaseFactory, ConstraintsFactory, RequestFactory {
 

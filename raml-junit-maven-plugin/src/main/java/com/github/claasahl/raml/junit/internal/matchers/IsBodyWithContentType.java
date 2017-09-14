@@ -4,7 +4,7 @@ import org.hamcrest.Factory;
 import org.hamcrest.FeatureMatcher;
 import org.hamcrest.Matcher;
 
-import com.github.claasahl.raml.junit.api.model.Body;
+import com.github.claasahl.raml.junit.api.Body;
 
 public class IsBodyWithContentType extends FeatureMatcher<Body, String> {
 

@@ -12,16 +12,16 @@
  * </ul>
  * <li>{@link com.github.claasahl.raml.junit.api.RequestFactory}</li>
  * <ul>
- * <li>{@link com.github.claasahl.raml.junit.api.model.Request}</li>
- * <li>{@link com.github.claasahl.raml.junit.api.model.Parameter}</li>
- * <li>{@link com.github.claasahl.raml.junit.api.model.Body}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.Request}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.Parameter}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.Body}</li>
  * </ul>
  * <li>{@link com.github.claasahl.raml.junit.api.ConstraintsFactory}</li>
  * <ul>
- * <li>{@link com.github.claasahl.raml.junit.api.model.RequestConstraints}</li>
- * <li>{@link com.github.claasahl.raml.junit.api.model.ResponseConstraints}</li>
- * <li>{@link com.github.claasahl.raml.junit.api.model.ParameterConstraints}</li>
- * <li>{@link com.github.claasahl.raml.junit.api.model.BodyConstraints}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.RequestConstraints}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.ResponseConstraints}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.ParameterConstraints}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.BodyConstraints}</li>
  * </ul>
  * </ul>
  * 

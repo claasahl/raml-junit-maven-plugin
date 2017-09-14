@@ -4,9 +4,9 @@ import java.net.URL;
 import java.util.List;
 
 import com.github.claasahl.raml.junit.api.RamlUrlSupplier;
+import com.github.claasahl.raml.junit.api.Request;
+import com.github.claasahl.raml.junit.api.Response;
 import com.github.claasahl.raml.junit.api.ResponseSupplier;
-import com.github.claasahl.raml.junit.api.model.Request;
-import com.github.claasahl.raml.junit.api.model.Response;
 
 public class Suppliers implements RamlUrlSupplier, ResponseSupplier {
 

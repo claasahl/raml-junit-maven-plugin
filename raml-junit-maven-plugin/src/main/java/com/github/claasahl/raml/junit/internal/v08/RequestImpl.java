@@ -6,10 +6,10 @@ import java.util.List;
 
 import org.raml.v2.api.model.v08.bodies.BodyLike;
 
+import com.github.claasahl.raml.junit.api.Body;
+import com.github.claasahl.raml.junit.api.Parameter;
+import com.github.claasahl.raml.junit.api.Request;
 import com.github.claasahl.raml.junit.api.TestCaseKey;
-import com.github.claasahl.raml.junit.api.model.Body;
-import com.github.claasahl.raml.junit.api.model.Parameter;
-import com.github.claasahl.raml.junit.api.model.Request;
 
 public class RequestImpl extends Base implements Request {
 

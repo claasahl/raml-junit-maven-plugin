@@ -9,8 +9,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.github.claasahl.raml.junit.api.model.ParameterConstraints;
-import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
+import com.github.claasahl.raml.junit.api.ParameterConstraints;
+import com.github.claasahl.raml.junit.api.ResponseConstraints;
 
 @RunWith(Parameterized.class)
 public class ValidateResponseConstraintsTest extends ValidateBase {

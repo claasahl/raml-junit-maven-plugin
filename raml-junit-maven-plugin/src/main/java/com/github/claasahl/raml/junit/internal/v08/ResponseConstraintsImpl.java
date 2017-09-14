@@ -5,10 +5,10 @@ import java.util.Collection;
 
 import org.raml.v2.api.model.v08.bodies.BodyLike;
 
+import com.github.claasahl.raml.junit.api.BodyConstraints;
+import com.github.claasahl.raml.junit.api.ParameterConstraints;
+import com.github.claasahl.raml.junit.api.ResponseConstraints;
 import com.github.claasahl.raml.junit.api.TestCaseKey;
-import com.github.claasahl.raml.junit.api.model.BodyConstraints;
-import com.github.claasahl.raml.junit.api.model.ParameterConstraints;
-import com.github.claasahl.raml.junit.api.model.ResponseConstraints;
 
 public class ResponseConstraintsImpl extends Base implements ResponseConstraints {
 
