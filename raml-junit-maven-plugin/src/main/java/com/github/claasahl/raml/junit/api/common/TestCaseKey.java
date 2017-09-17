@@ -1,4 +1,4 @@
-package com.github.claasahl.raml.junit.api;
+package com.github.claasahl.raml.junit.api.common;
 
 import java.net.URL;
 

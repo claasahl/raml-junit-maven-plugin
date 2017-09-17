@@ -4,22 +4,22 @@
  * model. A minimal implementation boils down to these factories and their
  * referenced data models as listed below.
  * <ul>
- * <li>{@link com.github.claasahl.raml.junit.api.TestCaseFactory}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.TestCaseFactory}</li>
  * <ul>
- * <li>{@link com.github.claasahl.raml.junit.api.TestCaseKey}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.TestCaseKey}</li>
  * </ul>
- * <li>{@link com.github.claasahl.raml.junit.api.ConstraintsFactory}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.ConstraintsFactory}</li>
  * <ul>
- * <li>{@link com.github.claasahl.raml.junit.api.RequestConstraints}</li>
- * <li>{@link com.github.claasahl.raml.junit.api.ResponseConstraints}</li>
- * <li>{@link com.github.claasahl.raml.junit.api.ParameterConstraints}</li>
- * <li>{@link com.github.claasahl.raml.junit.api.BodyConstraints}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.RequestConstraints}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.ResponseConstraints}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.ParameterConstraints}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.BodyConstraints}</li>
  * </ul>
- * <li>{@link com.github.claasahl.raml.junit.api.RequestFactory}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.RequestFactory}</li>
  * <ul>
- * <li>{@link com.github.claasahl.raml.junit.api.Request}</li>
- * <li>{@link com.github.claasahl.raml.junit.api.Parameter}</li>
- * <li>{@link com.github.claasahl.raml.junit.api.Body}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.Request}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.Parameter}</li>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.Body}</li>
  * </ul>
  * </ul>
  * 
@@ -46,4 +46,4 @@
  * @author Claas Ahlrichs
  *
  */
-package com.github.claasahl.raml.junit.api;
+package com.github.claasahl.raml.junit.api.common;
