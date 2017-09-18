@@ -14,8 +14,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.github.claasahl.raml.junit.api.Parameter;
-import com.github.claasahl.raml.junit.api.Request;
+import com.github.claasahl.raml.junit.api.common.Parameter;
+import com.github.claasahl.raml.junit.api.common.Request;
 
 @RunWith(Parameterized.class)
 public class ValidateRequestTest extends ValidateBase {

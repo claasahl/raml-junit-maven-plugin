@@ -1,10 +1,10 @@
 package com.github.claasahl.raml.junit.internal;
 
-import com.github.claasahl.raml.junit.api.Request;
-import com.github.claasahl.raml.junit.api.RequestConstraints;
-import com.github.claasahl.raml.junit.api.Response;
-import com.github.claasahl.raml.junit.api.ResponseConstraints;
-import com.github.claasahl.raml.junit.api.TestCaseKey;
+import com.github.claasahl.raml.junit.api.common.Request;
+import com.github.claasahl.raml.junit.api.common.RequestConstraints;
+import com.github.claasahl.raml.junit.api.common.Response;
+import com.github.claasahl.raml.junit.api.common.ResponseConstraints;
+import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 
 public class TestCase {
 	private final TestCaseKey key;

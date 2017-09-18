@@ -1,8 +1,8 @@
 package com.github.claasahl.raml.junit.internal.v08;
 
-import com.github.claasahl.raml.junit.api.Request;
-import com.github.claasahl.raml.junit.api.RequestFactory;
-import com.github.claasahl.raml.junit.api.TestCaseKey;
+import com.github.claasahl.raml.junit.api.common.Request;
+import com.github.claasahl.raml.junit.api.common.RequestFactory;
+import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 
 /**
  * The class {@link RequestFactoryImpl}.

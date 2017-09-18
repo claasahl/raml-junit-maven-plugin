@@ -7,11 +7,11 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-import com.github.claasahl.raml.junit.api.Body;
-import com.github.claasahl.raml.junit.api.Parameter;
-import com.github.claasahl.raml.junit.api.Request;
-import com.github.claasahl.raml.junit.api.Response;
-import com.github.claasahl.raml.junit.api.ResponseSupplier;
+import com.github.claasahl.raml.junit.api.common.Body;
+import com.github.claasahl.raml.junit.api.common.Parameter;
+import com.github.claasahl.raml.junit.api.common.Request;
+import com.github.claasahl.raml.junit.api.common.Response;
+import com.github.claasahl.raml.junit.api.common.ResponseSupplier;
 
 import io.restassured.specification.RequestSpecification;
 

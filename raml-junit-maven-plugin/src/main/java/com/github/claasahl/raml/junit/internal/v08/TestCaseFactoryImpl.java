@@ -15,8 +15,8 @@ import org.raml.v2.api.model.common.ValidationResult;
 import org.raml.v2.api.model.v08.bodies.Response;
 import org.raml.v2.api.model.v08.methods.Method;
 
-import com.github.claasahl.raml.junit.api.TestCaseFactory;
-import com.github.claasahl.raml.junit.api.TestCaseKey;
+import com.github.claasahl.raml.junit.api.common.TestCaseFactory;
+import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 
 /**
  * The class {@link TestCaseFactoryImpl}.

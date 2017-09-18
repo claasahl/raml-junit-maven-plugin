@@ -5,7 +5,7 @@ import org.hamcrest.Factory;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeDiagnosingMatcher;
 
-import com.github.claasahl.raml.junit.api.Parameter;
+import com.github.claasahl.raml.junit.api.common.Parameter;
 
 public class EveryValue extends TypeSafeDiagnosingMatcher<Parameter> {
 	private final Matcher<String> matcher;

@@ -10,8 +10,8 @@ import java.util.List;
 import org.hamcrest.Matcher;
 import org.raml.v2.api.model.v08.bodies.BodyLike;
 
-import com.github.claasahl.raml.junit.api.Body;
-import com.github.claasahl.raml.junit.api.BodyConstraints;
+import com.github.claasahl.raml.junit.api.common.Body;
+import com.github.claasahl.raml.junit.api.common.BodyConstraints;
 
 public final class BodyConstraintsFactoryImpl {
 	public static BodyConstraints createConstraints(BodyLike body) {

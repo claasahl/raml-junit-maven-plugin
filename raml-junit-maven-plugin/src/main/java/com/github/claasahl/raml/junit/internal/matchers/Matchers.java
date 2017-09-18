@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.hamcrest.Matcher;
 
-import com.github.claasahl.raml.junit.api.Body;
-import com.github.claasahl.raml.junit.api.Parameter;
+import com.github.claasahl.raml.junit.api.common.Body;
+import com.github.claasahl.raml.junit.api.common.Parameter;
 
 public final class Matchers {
 

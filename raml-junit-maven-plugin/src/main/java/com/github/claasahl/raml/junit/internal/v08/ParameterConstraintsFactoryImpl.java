@@ -22,8 +22,8 @@ import org.hamcrest.Matcher;
 import org.raml.v2.api.model.v08.parameters.IntegerTypeDeclaration;
 import org.raml.v2.api.model.v08.parameters.StringTypeDeclaration;
 
-import com.github.claasahl.raml.junit.api.Parameter;
-import com.github.claasahl.raml.junit.api.ParameterConstraints;
+import com.github.claasahl.raml.junit.api.common.Parameter;
+import com.github.claasahl.raml.junit.api.common.ParameterConstraints;
 
 public final class ParameterConstraintsFactoryImpl {
 

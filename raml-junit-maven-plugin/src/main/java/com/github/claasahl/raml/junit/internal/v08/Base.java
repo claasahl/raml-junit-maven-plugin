@@ -8,7 +8,7 @@ import org.raml.v2.api.model.v08.bodies.Response;
 import org.raml.v2.api.model.v08.methods.Method;
 import org.raml.v2.api.model.v08.resources.Resource;
 
-import com.github.claasahl.raml.junit.api.TestCaseKey;
+import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 import com.github.claasahl.raml.junit.internal.Utils;
 
 public class Base {

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.github.claasahl.raml.junit.api.RamlUrlSupplier;
+import com.github.claasahl.raml.junit.api.common.RamlUrlSupplier;
 
 /**
  * The class {@link CommonRamlUrlSupplier}.

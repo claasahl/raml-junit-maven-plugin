@@ -7,10 +7,10 @@ import java.util.List;
 import org.raml.v2.api.model.v08.bodies.BodyLike;
 import org.raml.v2.api.model.v08.parameters.Parameter;
 
-import com.github.claasahl.raml.junit.api.BodyConstraints;
-import com.github.claasahl.raml.junit.api.ParameterConstraints;
-import com.github.claasahl.raml.junit.api.RequestConstraints;
-import com.github.claasahl.raml.junit.api.TestCaseKey;
+import com.github.claasahl.raml.junit.api.common.BodyConstraints;
+import com.github.claasahl.raml.junit.api.common.ParameterConstraints;
+import com.github.claasahl.raml.junit.api.common.RequestConstraints;
+import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 
 public class RequestConstraintsImpl extends Base implements RequestConstraints {
 

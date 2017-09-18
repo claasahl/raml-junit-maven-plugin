@@ -14,10 +14,10 @@ import java.util.stream.Collectors;
 
 import org.hamcrest.Matcher;
 
-import com.github.claasahl.raml.junit.api.Body;
-import com.github.claasahl.raml.junit.api.BodyConstraints;
-import com.github.claasahl.raml.junit.api.Parameter;
-import com.github.claasahl.raml.junit.api.ParameterConstraints;
+import com.github.claasahl.raml.junit.api.common.Body;
+import com.github.claasahl.raml.junit.api.common.BodyConstraints;
+import com.github.claasahl.raml.junit.api.common.Parameter;
+import com.github.claasahl.raml.junit.api.common.ParameterConstraints;
 
 public class ValidateBase {
 

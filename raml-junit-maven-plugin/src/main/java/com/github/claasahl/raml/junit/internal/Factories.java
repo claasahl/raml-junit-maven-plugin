@@ -5,13 +5,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.github.claasahl.raml.junit.api.ConstraintsFactory;
-import com.github.claasahl.raml.junit.api.Request;
-import com.github.claasahl.raml.junit.api.RequestConstraints;
-import com.github.claasahl.raml.junit.api.RequestFactory;
-import com.github.claasahl.raml.junit.api.ResponseConstraints;
-import com.github.claasahl.raml.junit.api.TestCaseFactory;
-import com.github.claasahl.raml.junit.api.TestCaseKey;
+import com.github.claasahl.raml.junit.api.common.ConstraintsFactory;
+import com.github.claasahl.raml.junit.api.common.Request;
+import com.github.claasahl.raml.junit.api.common.RequestConstraints;
+import com.github.claasahl.raml.junit.api.common.RequestFactory;
+import com.github.claasahl.raml.junit.api.common.ResponseConstraints;
+import com.github.claasahl.raml.junit.api.common.TestCaseFactory;
+import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 
 public final class Factories implements TestCaseFactory, ConstraintsFactory, RequestFactory {
 

@@ -3,10 +3,10 @@ package com.github.claasahl.raml.junit.internal;
 import java.net.URL;
 import java.util.List;
 
-import com.github.claasahl.raml.junit.api.RamlUrlSupplier;
-import com.github.claasahl.raml.junit.api.Request;
-import com.github.claasahl.raml.junit.api.Response;
-import com.github.claasahl.raml.junit.api.ResponseSupplier;
+import com.github.claasahl.raml.junit.api.common.RamlUrlSupplier;
+import com.github.claasahl.raml.junit.api.common.Request;
+import com.github.claasahl.raml.junit.api.common.Response;
+import com.github.claasahl.raml.junit.api.common.ResponseSupplier;
 
 public class Suppliers implements RamlUrlSupplier, ResponseSupplier {
 

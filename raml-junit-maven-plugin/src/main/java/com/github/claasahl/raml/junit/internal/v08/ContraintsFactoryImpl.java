@@ -1,9 +1,9 @@
 package com.github.claasahl.raml.junit.internal.v08;
 
-import com.github.claasahl.raml.junit.api.ConstraintsFactory;
-import com.github.claasahl.raml.junit.api.RequestConstraints;
-import com.github.claasahl.raml.junit.api.ResponseConstraints;
-import com.github.claasahl.raml.junit.api.TestCaseKey;
+import com.github.claasahl.raml.junit.api.common.ConstraintsFactory;
+import com.github.claasahl.raml.junit.api.common.RequestConstraints;
+import com.github.claasahl.raml.junit.api.common.ResponseConstraints;
+import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 
 /**
  * The class {@link ContraintsFactoryImpl}.
