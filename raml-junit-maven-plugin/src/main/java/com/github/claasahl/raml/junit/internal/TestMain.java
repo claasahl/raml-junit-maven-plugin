@@ -2,6 +2,7 @@ package com.github.claasahl.raml.junit.internal;
 
 import java.net.MalformedURLException;
 
+import com.github.claasahl.raml.junit.internal.common.CommonRamlUrlSupplier;
 import com.github.claasahl.raml.junit.internal.v08.TestCaseFactoryImpl;
 
 public class TestMain {

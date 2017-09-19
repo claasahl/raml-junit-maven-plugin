@@ -1,4 +1,4 @@
-package com.github.claasahl.raml.junit.internal;
+package com.github.claasahl.raml.junit.internal.common;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import com.github.claasahl.raml.junit.api.common.RamlUrlSupplier;
+import com.github.claasahl.raml.junit.internal.Utils;
 
 /**
  * The class {@link CommonRamlUrlSupplier}.

@@ -1,4 +1,4 @@
-package com.github.claasahl.raml.junit.internal;
+package com.github.claasahl.raml.junit.internal.common;
 
 import static io.restassured.RestAssured.given;
 
