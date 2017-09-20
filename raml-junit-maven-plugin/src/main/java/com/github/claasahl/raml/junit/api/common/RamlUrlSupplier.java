@@ -12,6 +12,14 @@ import javax.annotation.Nonnull;
  * documents. Thus allowing to easily replace the default strategy with a more
  * specialized, suitable strategy, if the need arises.
  * <p/>
+ * Implementations of this interface supply a collection URLs to RAML
+ * specifications. They are meant to look for RAML specifications in local
+ * directories, return a fixed list of URLs or otherwise search for RAML
+ * specifications.
+ * <p/>
+ * For an overview of related classes, please refer to
+ * {@link com.github.claasahl.raml.junit.api.common}.
+ * <p/>
  * Implementing classes must provide a zero-argument constructor.
  * 
  * @author Claas Ahlrichs

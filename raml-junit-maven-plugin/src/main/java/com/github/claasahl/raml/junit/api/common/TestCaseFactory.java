@@ -12,6 +12,14 @@ import javax.annotation.Nonnull;
  * {@link TestCaseKey}s). Thus allowing to easily replace the default strategy
  * with a more specialized, suitable strategy, if the need arises.
  * <p/>
+ * Implementations of this interface are meant to load a RAML specification and
+ * extract a collection of test cases for the described API. As a rule of thumb,
+ * implementations should produced a test case for every combination of HTTP
+ * request verb, HTTP request URL, HTTP response status code and content type.
+ * <p/>
+ * For an overview of related classes, please refer to
+ * {@link com.github.claasahl.raml.junit.api.common}.
+ * <p/>
  * Implementing classes must provide a zero-argument constructor.
  * 
  * @author Claas Ahlrichs

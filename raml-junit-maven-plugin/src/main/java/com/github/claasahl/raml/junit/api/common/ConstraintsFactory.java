@@ -9,6 +9,14 @@ import javax.annotation.Nonnull;
  * allowing to easily replace the default strategy with a more specialized,
  * suitable strategy, if the need arises.
  * <p/>
+ * Implementations of interface feed on the previously extracted test cases (see
+ * {@link TestCaseFactory}) and look up details about a particular test case.
+ * For each test case, implementations are meant to provide a set of constraints
+ * to which an HTTP request and its HTTP response must adhere.
+ * <p/>
+ * For an overview of related classes, please refer to
+ * {@link com.github.claasahl.raml.junit.api.common}.
+ * <p/>
  * Implementing classes must provide a zero-argument constructor.
  * 
  * @author Claas Ahlrichs

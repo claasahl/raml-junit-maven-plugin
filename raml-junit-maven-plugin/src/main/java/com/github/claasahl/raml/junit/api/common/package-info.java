@@ -4,6 +4,7 @@
  * model. A minimal implementation boils down to these factories and their
  * referenced data models as listed below.
  * <ul>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.RamlUrlSupplier}</li>
  * <li>{@link com.github.claasahl.raml.junit.api.common.TestCaseFactory}</li>
  * <ul>
  * <li>{@link com.github.claasahl.raml.junit.api.common.TestCaseKey}</li>
@@ -21,6 +22,10 @@
  * <li>{@link com.github.claasahl.raml.junit.api.common.Parameter}</li>
  * <li>{@link com.github.claasahl.raml.junit.api.common.Body}</li>
  * </ul>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.ResponseSupplier}</li>
+ * <ul>
+ * <li>{@link com.github.claasahl.raml.junit.api.common.Response}</li>
+ * </ul>
  * </ul>
  * 
  * <h1>Process</h1>
@@ -28,6 +33,10 @@
  * The process and flow of data is as follows.
  * 
  * <ol>
+ * <li><b>RamlUrlSupplier</b>: Implementations of this interface supply a
+ * collection URLs to RAML specifications. They are meant to look for RAML
+ * specifications in local directories, return a fixed list of URLs or otherwise
+ * search for RAML specifications.</li>
  * <li><b>TestCaseFactory</b>: This factory is meant to load a RAML
  * specification and extract a collection of test cases for the described API.
  * As a rule of thumb, this factory produces a test case for every HTTP status
@@ -40,6 +49,10 @@
  * a particular test case. These HTTP requests may be based on the RAML document
  * itself (e.g. default values or example values), local JSON / XML files, or
  * other sources. Naturally, these HTTP requests must also adhere to the above
+ * provided constraints.</li>
+ * <li><b>ResponseSupplier</b>: Implementations of this interface take the
+ * previously generated requests, perform the actual HTTP request and provide
+ * the API's response. Naturally, these HTTP responses must adhere to the above
  * provided constraints.</li>
  * </ol>
  * 
