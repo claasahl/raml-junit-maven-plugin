@@ -6,6 +6,21 @@ import javax.annotation.Nonnull;
 
 /**
  * The interface {@link Response}.
+ * <p/>
+ * Implementations of this interface are meant to capture relevant details of
+ * HTTP responses from resources in a RAML specification. When receiving a
+ * response from a particular resource, the corresponding HTTP response's
+ * details are represented by this interface. These details include, but are not
+ * limited to: headers, cookies, content and content type of the body.
+ * <p/>
+ * This interface provides a customizable hook for representing such details.
+ * Thus allowing to easily swap out implementations with more specialized or
+ * suitable implementations, if the need arises.
+ * <p/>
+ * For an overview of related classes, please refer to
+ * {@link com.github.claasahl.raml.junit.api.common}.
+ * 
+ * @see ResponseConstraints
  * 
  * @author Claas Ahlrichs
  *

@@ -6,6 +6,21 @@ import javax.annotation.Nonnull;
 
 /**
  * The interface {@link ResponseConstraints}.
+ * <p/>
+ * Implementations of this interface are meant to capture relevant constraints
+ * of HTTP responses from resources in a RAML specification. When receiving a
+ * response from a particular resource, the corresponding HTTP response must
+ * comply with the constraints represented by this interface. These include, but
+ * are not limited to: headers, cookies, content and content type of the body.
+ * <p/>
+ * This interface provides a customizable hook for representing such
+ * constraints. Thus allowing to easily swap out implementations with more
+ * specialized or suitable implementations, if the need arises.
+ * <p/>
+ * For an overview of related classes, please refer to
+ * {@link com.github.claasahl.raml.junit.api.common}.
+ * 
+ * @see Response
  * 
  * @author Claas Ahlrichs
  *
