@@ -1,5 +1,6 @@
 package com.github.claasahl.raml.junit.api.common;
 
+import java.util.Collections;
 import java.util.List;
 
 import javax.annotation.Nonnull;
@@ -8,6 +9,15 @@ import org.hamcrest.Matcher;
 
 /**
  * The class {@link ParameterConstraints}.
+ * <p/>
+ * This class is meant to capture relevant constraints of parameters within
+ * requests and responses. It associates a named key with any number of
+ * constraints (i.e. 0 or more) and can be applied to various aspects of HTTP
+ * requests / responses. When validating such requests / responses, these
+ * constraints can be enforced for headers, cookies, path parameters and
+ * others.
+ * 
+ * @see Parameter
  * 
  * @author Claas Ahlrichs
  *
@@ -27,7 +37,7 @@ public class ParameterConstraints {
 	 */
 	public ParameterConstraints(String name, List<Matcher<Parameter>> matchers) {
 		this.name = name;
-		this.matchers = matchers;
+		this.matchers = Collections.unmodifiableList(matchers);
 	}
 
 	/**

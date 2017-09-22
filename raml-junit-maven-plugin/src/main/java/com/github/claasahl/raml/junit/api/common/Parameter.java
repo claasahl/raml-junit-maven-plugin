@@ -9,6 +9,13 @@ import javax.annotation.Nonnull;
 
 /**
  * The class {@link Parameter}.
+ * <p/>
+ * This class is meant to represent the abstract concept of a parameter. It
+ * associates a named key with any number of values (i.e. 0 or more) and can
+ * represent various aspects of HTTP requests / responses. These include, but
+ * are not limited to: headers, cookies and path parameters.
+ * 
+ * @see ParameterConstraints
  * 
  * @author Claas Ahlrichs
  *

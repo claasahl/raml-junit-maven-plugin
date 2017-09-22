@@ -4,6 +4,15 @@ import javax.annotation.Nonnull;
 
 /**
  * The class {@link Body}.
+ * <p/>
+ * This class is meant to represent the concept of a typed body or typed
+ * content. It simply associates content with its content type. HTTP requests
+ * can be constructed from such bodies and HTTP responses can be condensed into
+ * such a body. Naturally, HTTP requests and HTTP responses consist of more than
+ * just a body. Please refer to {@link Request} and {@link Response},
+ * respectively.
+ * 
+ * @see BodyConstraints
  * 
  * @author Claas Ahlrichs
  *
