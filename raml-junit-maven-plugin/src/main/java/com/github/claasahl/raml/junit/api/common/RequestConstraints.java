@@ -10,12 +10,12 @@ import javax.annotation.Nonnull;
  * Implementations of this interface are meant to capture relevant constraints
  * of HTTP requests for resources in a RAML specification. When sending a
  * request to a particular resource, the corresponding HTTP request must comply
- * with the constraints represented by this interface. These include, but are
- * not limited to: headers, cookies, path parameters, content and content type
- * of the body.
+ * with the constraints represented by this interface. These constraints may
+ * place limitations on headers, cookies, path parameters, content or other
+ * request-specific details.
  * <p/>
  * This interface provides a customizable hook for representing such
- * constraints. Thus allowing to easily swap out implementations with more
+ * constraints. Thus allowing easy replacement of implementations with more
  * specialized or suitable implementations, if the need arises.
  * <p/>
  * For an overview of related classes, please refer to
@@ -74,8 +74,7 @@ public interface RequestConstraints {
 	/**
 	 * Returns constraints of the <b>path</b> parameters to send with the
 	 * request. The parameter's name is expected to be unique within the
-	 * returned collection. The parameters are expected to hold a single value
-	 * (i.e. exactly one value).
+	 * returned collection.
 	 * <p/>
 	 * <b>Note:</b> The returned collection may not contain <code>null</code>
 	 * values.

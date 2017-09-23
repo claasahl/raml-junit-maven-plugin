@@ -36,7 +36,7 @@
  * <li><b>RamlUrlSupplier</b>: Implementations of this interface supply a
  * collection URLs to RAML specifications. They are meant to look for RAML
  * specifications in local directories, return a fixed list of URLs or otherwise
- * search for RAML specifications.</li>
+ * discover RAML specifications.</li>
  * <li><b>TestCaseFactory</b>: This factory is meant to load a RAML
  * specification and extract a collection of test cases for the described API.
  * As a rule of thumb, this factory produces a test case for every HTTP status

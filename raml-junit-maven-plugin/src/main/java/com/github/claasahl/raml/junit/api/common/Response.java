@@ -14,7 +14,7 @@ import javax.annotation.Nonnull;
  * limited to: headers, cookies, content and content type of the body.
  * <p/>
  * This interface provides a customizable hook for representing such details.
- * Thus allowing to easily swap out implementations with more specialized or
+ * Thus allowing easy replacement of implementations with more specialized or
  * suitable implementations, if the need arises.
  * <p/>
  * For an overview of related classes, please refer to

@@ -49,13 +49,13 @@ public class BodyConstraints {
 	}
 
 	/**
-	 * Returns the list of Hamcrest matcher for validating the body's content.
+	 * Returns the list of Hamcrest matchers for validating the body's content.
 	 * Each matcher is evaluated individually. Together, the returned matchers
 	 * are expected expected to handle all aspects of validation (e.g. whether
 	 * the content type matches, whether the content matches a schema and so
 	 * forth).
 	 * 
-	 * @return the list of Hamcrest matcher for validating the body's content
+	 * @return the list of Hamcrest matchers for validating the body's content
 	 */
 	public List<Matcher<Body>> getMatchers() {
 		return matchers;

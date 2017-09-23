@@ -14,8 +14,7 @@ import org.hamcrest.Matcher;
  * requests and responses. It associates a named key with any number of
  * constraints (i.e. 0 or more) and can be applied to various aspects of HTTP
  * requests / responses. When validating such requests / responses, these
- * constraints can be enforced for headers, cookies, path parameters and
- * others.
+ * constraints can be enforced for headers, cookies, path parameters and others.
  * 
  * @see Parameter
  * 
@@ -51,14 +50,14 @@ public class ParameterConstraints {
 	}
 
 	/**
-	 * Returns the list of Hamcrest matcher for validating the parameter's
+	 * Returns the list of Hamcrest matchers for validating the parameter's
 	 * value(s). Each matcher is evaluated individually. Together, the returned
 	 * matchers are expected expected to handle all aspects of validation (e.g.
 	 * whether the parameter is required or optional, whether minimum and
 	 * maximum boundaries are adhered to, whether the parameter accepts empty
 	 * values and so forth).
 	 * 
-	 * @return the list of Hamcrest matcher for validating the parameter's
+	 * @return the list of Hamcrest matchers for validating the parameter's
 	 *         value(s)
 	 */
 	public List<Matcher<Parameter>> getMatchers() {

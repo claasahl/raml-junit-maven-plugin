@@ -6,10 +6,10 @@ import javax.annotation.Nonnull;
  * The interface {@link ConstraintsFactory}.
  * <p/>
  * This interface provides a customizable hook for generating constraints. Thus
- * allowing to easily replace the default strategy with a more specialized,
+ * allowing easy replacement of the default strategy with a more specialized,
  * suitable strategy, if the need arises.
  * <p/>
- * Implementations of interface feed on the previously extracted test cases (see
+ * Implementations of interface feed on previously extracted test cases (see
  * {@link TestCaseFactory}) and look up details about a particular test case.
  * For each test case, implementations are meant to provide a set of constraints
  * to which an HTTP request and its HTTP response must adhere.

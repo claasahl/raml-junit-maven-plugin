@@ -74,11 +74,11 @@ public class Parameter {
 	 * <b>Examples:</b>
 	 * <ul>
 	 * <li>list contains 0 items: the parameter has no value (e.g.
-	 * <i>?parameter</i>)</li>
+	 * <i>http://some_url/?parameter</i>)</li>
 	 * <li>list contains 1 item: the parameter has a single value (e.g.
-	 * <i>?parameter=value</i>)</li>
+	 * <i>http://some_url/?parameter=value</i>)</li>
 	 * <li>list contains several items: the parameter has a multiple values
-	 * (e.g. <i>?parameter=value1&amp;parameter=value2</i>)</li>
+	 * (e.g. <i>http://some_url/?parameter=value1&amp;parameter=value2</i>)</li>
 	 * </ul>
 	 * 
 	 * @return the parameter's values

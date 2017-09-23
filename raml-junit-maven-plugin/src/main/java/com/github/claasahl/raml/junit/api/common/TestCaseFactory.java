@@ -9,7 +9,7 @@ import javax.annotation.Nonnull;
  * The interface {@link TestCaseFactory}.
  * <p/>
  * This interface provides a customizable hook for generating test cases (i.e.
- * {@link TestCaseKey}s). Thus allowing to easily replace the default strategy
+ * {@link TestCaseKey}s). Thus allowing easy replacement of the default strategy
  * with a more specialized, suitable strategy, if the need arises.
  * <p/>
  * Implementations of this interface are meant to load a RAML specification and
