@@ -6,8 +6,8 @@ import javax.annotation.Nonnull;
  * The interface {@link ResponseSupplier}.
  * <p/>
  * This interface provides a customizable hook for generating {@link Response}s.
- * Thus allowing easy replacement of the default strategy with a more specialized,
- * suitable strategy, if the need arises.
+ * Thus allowing easy replacement of the default strategy with a more
+ * specialized, suitable strategy, if the need arises.
  * <p/>
  * Implementations of this interface take previously generated requests (see
  * {@link RequestFactory}), perform the actual HTTP request and provide the

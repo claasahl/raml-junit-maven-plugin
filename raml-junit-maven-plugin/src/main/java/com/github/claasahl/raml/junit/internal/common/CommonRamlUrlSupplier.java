@@ -23,12 +23,12 @@ import com.github.claasahl.raml.junit.internal.Utils;
  *
  */
 public class CommonRamlUrlSupplier implements RamlUrlSupplier {
-	
+
 	@Override
 	public List<URL> getRamlUrls() {
 		try {
-			return Files.find(Paths.get("src/main/raml"), Integer.MAX_VALUE, this::isRamlDocument)
-					.map(p -> p.toUri()).map(u -> {
+			return Files.find(Paths.get("src/main/raml"), Integer.MAX_VALUE, this::isRamlDocument).map(p -> p.toUri())
+					.map(u -> {
 						try {
 							return u.toURL();
 						} catch (MalformedURLException e) {

@@ -6,8 +6,8 @@ import javax.annotation.Nonnull;
  * The interface {@link RequestFactory}.
  * <p/>
  * This interface provides a customizable hook for generating {@link Request}s.
- * Thus allowing easy replacement of the default strategy with a more specialized,
- * suitable strategy, if the need arises.
+ * Thus allowing easy replacement of the default strategy with a more
+ * specialized, suitable strategy, if the need arises.
  * <p/>
  * Implementations of this interface are meant to produce HTTP requests for a
  * particular test case. These HTTP requests may be based on the RAML document
