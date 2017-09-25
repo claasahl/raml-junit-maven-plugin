@@ -22,7 +22,7 @@ public final class Matchers {
 	public static Matcher<Parameter> hasValues(Matcher<? super List<String>> matcher) {
 		return IsParameterWithValues.hasValues(matcher);
 	}
-	
+
 	/**
 	 * Creates a matcher for {@link Parameter}s that matches when the
 	 * <code>getName()</code> method returns a value that satisfies the
@@ -34,7 +34,7 @@ public final class Matchers {
 	public static Matcher<Parameter> hasName(Matcher<? super String> matcher) {
 		return IsParameterWithName.hasName(matcher);
 	}
-	
+
 	/**
 	 * Creates a matcher for {@link Parameter}s that only matches when a single
 	 * pass over the examined {@link Parameter} yields values that are all
@@ -45,9 +45,9 @@ public final class Matchers {
 	 *            {@link Parameter}
 	 */
 	public static Matcher<Parameter> everyValue(final Matcher<String> matcher) {
-		return EveryValue.everyValue(matcher);	
+		return EveryValue.everyValue(matcher);
 	}
-	
+
 	/**
 	 * Creates a matcher for {@link String}s that matches when the
 	 * <code>length()</code> method returns a value that satisfies the specified
@@ -59,7 +59,7 @@ public final class Matchers {
 	public static Matcher<String> hasLength(Matcher<? super Integer> lengthMatcher) {
 		return IsStringWithLength.hasLength(lengthMatcher);
 	}
-	
+
 	/**
 	 * Creates a matcher for {@link String}s that converts them into an
 	 * {@link Integer} and matches when the resulting number satisfies the
@@ -71,7 +71,7 @@ public final class Matchers {
 	public static Matcher<String> toInteger(Matcher<Integer> matcher) {
 		return Map.map(Integer::valueOf, matcher);
 	}
-	
+
 	/**
 	 * Creates a matcher for {@link String}s that converts them into a
 	 * {@link Double} and matches when the resulting number satisfies the
@@ -83,7 +83,7 @@ public final class Matchers {
 	public static Matcher<String> toDouble(Matcher<Double> matcher) {
 		return Map.map(Double::valueOf, matcher);
 	}
-	
+
 	/**
 	 * Creates a matcher for {@link String}s that matches when the string
 	 * satisfies the specified pattern / regular expression.
@@ -98,11 +98,11 @@ public final class Matchers {
 	public static Matcher<Parameter> isRequired() {
 		return notNullValue(Parameter.class);
 	}
-	
+
 	public static Matcher<String> isInteger() {
 		return toInteger(notNullValue(Integer.class));
 	}
-	
+
 	/**
 	 * Creates a matcher for {@link Body}s that matches when the
 	 * <code>getContentType()</code> method returns a value that satisfies the

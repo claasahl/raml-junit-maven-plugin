@@ -14,9 +14,9 @@ import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 public class RequestImpl extends Base implements Request {
 
 	public RequestImpl(TestCaseKey key) {
-		super(key);		
+		super(key);
 	}
-	
+
 	@Override
 	public String getRequestUrl() {
 		return getKey().getRequestUrl();
@@ -60,17 +60,17 @@ public class RequestImpl extends Base implements Request {
 
 	private static Collection<Parameter> parameters(List<org.raml.v2.api.model.v08.parameters.Parameter> params) {
 		Collection<Parameter> parameters = new ArrayList<>();
-		for(org.raml.v2.api.model.v08.parameters.Parameter param : params) {
+		for (org.raml.v2.api.model.v08.parameters.Parameter param : params) {
 			String name = param.name();
 			String value = param.example();
-			if(value == null) {
+			if (value == null) {
 				value = param.defaultValue();
 			}
 			parameters.add(new Parameter(name, value));
 		}
 		return parameters;
 	}
-	
+
 	private static Body body(BodyLike body) {
 		String contentType = body.name();
 		String content = body.example().toString();

@@ -16,7 +16,7 @@ public class IsBodyWithContentType extends FeatureMatcher<Body, String> {
 	protected String featureValueOf(Body actual) {
 		return actual.getContentType();
 	}
-	
+
 	/**
 	 * Creates a matcher for {@link Body}s that matches when the
 	 * <code>getContentType()</code> method returns a value that satisfies the
@@ -29,5 +29,5 @@ public class IsBodyWithContentType extends FeatureMatcher<Body, String> {
 	public static Matcher<Body> hasContentType(Matcher<? super String> matcher) {
 		return new IsBodyWithContentType(matcher);
 	}
-	
+
 }
