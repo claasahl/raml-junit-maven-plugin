@@ -11,6 +11,15 @@ import com.github.claasahl.raml.junit.api.common.Parameter;
 import com.github.claasahl.raml.junit.api.common.Request;
 import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 
+/**
+ * The class {@link RequestImpl}.
+ * <p/>
+ * This is an implementation of the interface {@link Request} for RAML (v0.8)
+ * specifications.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
 public class RequestImpl extends Base implements Request {
 
 	public RequestImpl(TestCaseKey key) {

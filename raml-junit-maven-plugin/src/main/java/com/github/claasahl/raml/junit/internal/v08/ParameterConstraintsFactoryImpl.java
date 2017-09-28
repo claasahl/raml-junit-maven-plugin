@@ -25,6 +25,15 @@ import org.raml.v2.api.model.v08.parameters.StringTypeDeclaration;
 import com.github.claasahl.raml.junit.api.common.Parameter;
 import com.github.claasahl.raml.junit.api.common.ParameterConstraints;
 
+/**
+ * The class {@link ParameterConstraintsFactoryImpl}.
+ * 
+ * This is a utility class which creates {@link ParameterConstraints} for RAML
+ * (v0.8) specifications.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
 public final class ParameterConstraintsFactoryImpl {
 
 	public static Collection<ParameterConstraints> createConstraints(

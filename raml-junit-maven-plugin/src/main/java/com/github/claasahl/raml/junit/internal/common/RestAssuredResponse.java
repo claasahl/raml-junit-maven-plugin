@@ -8,6 +8,14 @@ import com.github.claasahl.raml.junit.api.common.Body;
 import com.github.claasahl.raml.junit.api.common.Parameter;
 import com.github.claasahl.raml.junit.api.common.Response;
 
+/**
+ * The class {@link RestAssuredResponse}.
+ * <p/>
+ * This is an implementation of the interface {@link Response} for rest assured.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
 public class RestAssuredResponse implements Response {
 
 	private final io.restassured.response.Response response;

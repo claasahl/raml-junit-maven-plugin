@@ -10,6 +10,15 @@ import com.github.claasahl.raml.junit.api.common.ParameterConstraints;
 import com.github.claasahl.raml.junit.api.common.ResponseConstraints;
 import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 
+/**
+ * The class {@link ResponseConstraintsImpl}.
+ * <p/>
+ * This is an implementation of the interface {@link ResponseConstraints} for
+ * RAML (v0.8) specifications.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
 public class ResponseConstraintsImpl extends Base implements ResponseConstraints {
 
 	public ResponseConstraintsImpl(TestCaseKey key) {

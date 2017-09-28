@@ -13,6 +13,15 @@ import org.raml.v2.api.model.v08.bodies.BodyLike;
 import com.github.claasahl.raml.junit.api.common.Body;
 import com.github.claasahl.raml.junit.api.common.BodyConstraints;
 
+/**
+ * The class {@link BodyConstraintsFactoryImpl}.
+ * 
+ * This is a utility class which creates {@link BodyConstraints} for RAML (v0.8)
+ * specifications.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
 public final class BodyConstraintsFactoryImpl {
 	public static BodyConstraints createConstraints(BodyLike body) {
 		String contentType = body.name();

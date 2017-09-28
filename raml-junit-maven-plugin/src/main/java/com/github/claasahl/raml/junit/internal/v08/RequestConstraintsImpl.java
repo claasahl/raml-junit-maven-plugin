@@ -12,6 +12,15 @@ import com.github.claasahl.raml.junit.api.common.ParameterConstraints;
 import com.github.claasahl.raml.junit.api.common.RequestConstraints;
 import com.github.claasahl.raml.junit.api.common.TestCaseKey;
 
+/**
+ * The class {@link RequestConstraintsImpl}.
+ * <p/>
+ * This is an implementation of the interface {@link RequestConstraints} for
+ * RAML (v0.8) specifications.
+ * 
+ * @author Claas Ahlrichs
+ *
+ */
 public class RequestConstraintsImpl extends Base implements RequestConstraints {
 
 	public RequestConstraintsImpl(TestCaseKey key) {
