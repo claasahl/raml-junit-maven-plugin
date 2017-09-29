@@ -60,7 +60,10 @@ public class Base {
 			if (resourcePath.equals(resource.resourcePath())) {
 				return resource;
 			} else {
-				return resource(resourcePath, resource.resources());
+				Resource r = resource(resourcePath, resource.resources());
+				if(r != null) {
+					return r;
+				}
 			}
 		}
 		return null;
