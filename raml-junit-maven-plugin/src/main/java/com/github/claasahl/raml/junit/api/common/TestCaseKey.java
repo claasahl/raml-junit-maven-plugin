@@ -24,13 +24,13 @@ import javax.annotation.Nonnull;
  */
 public final class TestCaseKey {
 	// TODO security settings should also be included here
-	// TODO does RAML enforce the same content type for requests and responses?
 
 	private final URL ramlUrl;
 	private final String requestVerb;
 	private final String requestUrl;
+	private final String requestType;
 	private final String responseCode;
-	private final String contentType;
+	private final String responseType;
 
 	/**
 	 * Creates a test case.
@@ -41,17 +41,21 @@ public final class TestCaseKey {
 	 *            the test case's request verb
 	 * @param requestUrl
 	 *            the test case's request URL
+	 * @param requestType
+	 *            the test case's request type
 	 * @param responseCode
 	 *            the test case's response code
-	 * @param contentType
-	 *            the test case's content type
+	 * @param responseType
+	 *            the test case's response type
 	 */
-	public TestCaseKey(URL ramlUrl, String requestVerb, String requestUrl, String responseCode, String contentType) {
+	public TestCaseKey(URL ramlUrl, String requestVerb, String requestUrl, String requestType, String responseCode,
+			String responseType) {
 		this.ramlUrl = ramlUrl;
 		this.requestVerb = requestVerb;
 		this.requestUrl = requestUrl;
+		this.requestType = requestType;
 		this.responseCode = responseCode;
-		this.contentType = contentType;
+		this.responseType = responseType;
 	}
 
 	/**
@@ -70,6 +74,18 @@ public final class TestCaseKey {
 	}
 
 	/**
+	 * Returns the request verb (i.e. verb of HTTP request) of the test case.
+	 * This may be any valid HTTP verb, but most commonly one of <i>get</i>,
+	 * <i>post</i>, <i>put</i> or <i>delete</i>.
+	 * 
+	 * @return the request verb of the test case
+	 */
+	@Nonnull
+	public String getRequestVerb() {
+		return requestVerb;
+	}
+	
+	/**
 	 * Returns the (fully-qualified) request URL (i.e. URL of HTTP request) of
 	 * the test case.
 	 * 
@@ -81,15 +97,14 @@ public final class TestCaseKey {
 	}
 
 	/**
-	 * Returns the request verb (i.e. verb of HTTP request) of the test case.
-	 * This may be any valid HTTP verb, but most commonly one of <i>get</i>,
-	 * <i>post</i>, <i>put</i> or <i>delete</i>.
+	 * Returns the request's content type (i.e. media type of HTTP request) of
+	 * the test case. If no content type is required, then <code>null</code> may
+	 * be returned.
 	 * 
-	 * @return the request verb of the test case
+	 * @return the content type of the test case
 	 */
-	@Nonnull
-	public String getRequestVerb() {
-		return requestVerb;
+	public String getRequestType() {
+		return requestType;
 	}
 
 	/**
@@ -103,19 +118,20 @@ public final class TestCaseKey {
 	}
 
 	/**
-	 * Returns the content type (i.e. content / media type of HTTP request and
-	 * HTTP response) of the test case. If no content type is required, then
-	 * <code>null</code> may be returned.
+	 * Returns the response's content type (i.e. media type of HTTP response) of
+	 * the test case. If no content type is required, then <code>null</code> may
+	 * be returned.
 	 * 
 	 * @return the content type of the test case
 	 */
-	public String getContentType() {
-		return contentType;
+	public String getResponseType() {
+		return responseType;
 	}
 
 	@Override
 	public String toString() {
 		return "TestCaseKey [ramlUrl=" + ramlUrl + ", requestVerb=" + requestVerb + ", requestUrl=" + requestUrl
-				+ ", responseCode=" + responseCode + ", contentType=" + contentType + "]";
+				+ ", requestType=" + requestType + ", responseCode=" + responseCode + ", responseType=" + responseType
+				+ "]";
 	}
 }

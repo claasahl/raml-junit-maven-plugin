@@ -27,8 +27,8 @@ public class Base {
 		this.resource = resource(this.key.getRequestUrl(), this.api.resources());
 		this.method = method(this.key.getRequestVerb(), this.resource.methods());
 		this.response = response(this.key.getResponseCode(), this.method.responses());
-		this.requestBody = body(this.key.getContentType(), this.method.body());
-		this.responseBody = body(this.key.getContentType(), this.response.body());
+		this.requestBody = body(this.key.getRequestType(), this.method.body());
+		this.responseBody = body(this.key.getResponseType(), this.response.body());
 	}
 
 	protected TestCaseKey getKey() {

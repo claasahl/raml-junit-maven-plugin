@@ -61,11 +61,14 @@ public class TestCaseFactoryImpl implements TestCaseFactory {
 
 	private static Stream<TestCaseKey> t(URL ramlPath, Method method, Response response) {
 		if (method.body().isEmpty()) {
-			return Stream.of(new TestCaseKey(ramlPath, method.method(), method.resource().resourcePath(),
-					response.code().value(), null));
+			return response.body().stream().map(b -> new TestCaseKey(ramlPath, method.method(),
+					method.resource().resourcePath(), null, response.code().value(), b.name()));
 		} else {
-			return method.body().stream().map(requestBody -> new TestCaseKey(ramlPath, method.method(),
-					method.resource().resourcePath(), response.code().value(), requestBody.name()));
+			return method.body().stream()
+					.flatMap(requestBody -> response.body().stream()
+							.map(responseBody -> new TestCaseKey(ramlPath, method.method(),
+									method.resource().resourcePath(), requestBody.name(), response.code().value(),
+									responseBody.name())));
 		}
 	}
 
