@@ -75,30 +75,31 @@ public class BTest extends ValidateBase {
 
 	@Test
 	public void validateResponseCode() {
-		assertThat("No response!", this.testCase.getResponse(), notNullValue());
-		String reason = String.format("Response code '%s' for %s failed validation.",
-				this.testCase.getResponse().getResponseCode(), this.testCase.getKey());
-		assertThat(reason, this.testCase.getResponse().getResponseCode(),
-				equalTo(this.testCase.getResponseConstraints().getResponseCode()));
+		String reason = String.format("No response for %s.", this.testCase.getKey());
+		assertThat(reason, this.testCase.getResponse(), notNullValue());
+		validateConstraints(this.testCase);
 	}
 
 	@Test
 	public void validateConstraintsForResponseHeaders() {
-		assertThat("No response!", this.testCase.getResponse(), notNullValue());
+		String reason = String.format("No response for %s.", this.testCase.getKey());
+		assertThat(reason, this.testCase.getResponse(), notNullValue());
 		validateConstraints(this.testCase, this.testCase.getResponse().getResponseHeaders(),
 				this.testCase.getRequestConstraints().getRequestHeaders());
 	}
 
 	@Test
 	public void validateConstraintsForResponseCookies() {
-		assertThat("No response!", this.testCase.getResponse(), notNullValue());
+		String reason = String.format("No response for %s.", this.testCase.getKey());
+		assertThat(reason, this.testCase.getResponse(), notNullValue());
 		validateConstraints(this.testCase, this.testCase.getResponse().getResponseCookies(),
 				this.testCase.getRequestConstraints().getRequestCookies());
 	}
 
 	@Test
 	public void validateConstraintsForResponseBody() {
-		assertThat("No response!", this.testCase.getResponse(), notNullValue());
+		String reason = String.format("No response for %s.", this.testCase.getKey());
+		assertThat(reason, this.testCase.getResponse(), notNullValue());
 		validateConstraints(this.testCase, this.testCase.getResponse().getResponseBody(),
 				this.testCase.getResponseConstraints().getResponseBody());
 	}

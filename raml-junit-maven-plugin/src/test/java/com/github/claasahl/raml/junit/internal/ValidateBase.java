@@ -1,7 +1,5 @@
 package com.github.claasahl.raml.junit.internal;
 
-import static org.hamcrest.Matchers.everyItem;
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertThat;
 
@@ -28,6 +26,13 @@ public class ValidateBase {
 
 	protected final <T> void parametersMustNotBeNull(Collection<T> parameters) {
 		assertThat(new ArrayList<>(parameters), everyItem(notNullValue()));
+	}
+	
+	protected final void validateConstraints(TestCase testCase) {
+		String reason = String.format("Response code '%s' for %s failed validation.",
+				testCase.getResponse().getResponseCode(), testCase.getKey());
+		assertThat(reason, testCase.getResponse().getResponseCode(),
+				equalTo(testCase.getResponseConstraints().getResponseCode()));
 	}
 
 	protected final void validateConstraints(TestCase testCase, Collection<Parameter> parameters,
