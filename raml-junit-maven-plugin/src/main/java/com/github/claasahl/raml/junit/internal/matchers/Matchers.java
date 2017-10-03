@@ -114,4 +114,16 @@ public final class Matchers {
 	public static Matcher<Body> hasContentType(Matcher<? super String> matcher) {
 		return IsBodyWithContentType.hasContentType(matcher);
 	}
+	
+	/**
+	 * Creates a matcher for {@link Body}s that matches when the
+	 * <code>getContent()</code> method returns a value that satisfies the
+	 * specified matcher.
+	 * 
+	 * @param matcher
+	 *            a matcher for the content of an examined {@link Body}
+	 */
+	public static Matcher<Body> hasContent(Matcher<? super String> matcher) {
+		return IsBodyWithContent.hasContent(matcher);
+	}
 }
