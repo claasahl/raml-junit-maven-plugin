@@ -1,6 +1,8 @@
 package com.github.claasahl.raml.junit.internal.v08;
 
+import static com.github.claasahl.raml.junit.internal.matchers.Matchers.hasContent;
 import static com.github.claasahl.raml.junit.internal.matchers.Matchers.hasContentType;
+import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchema;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
@@ -28,7 +30,15 @@ public final class BodyConstraintsFactoryImpl {
 		List<Matcher<Body>> matchers = new ArrayList<>();
 		matchers.add(notNullValue(Body.class));
 		matchers.add(hasContentType(equalTo(contentType)));
-		// TODO schema validation
+		switch (contentType) {
+		case "application/json":
+			matchers.add(hasContent(matchesJsonSchema(body.schemaContent())));
+			break;
+		default:
+			// TODO schema validation
+			System.err.println(body.schemaContent());
+			break;
+		}
 		return new BodyConstraints(contentType, matchers);
 	}
 }
