@@ -1,5 +1,8 @@
 package com.github.claasahl.raml.junit.internal;
 
+import static org.hamcrest.Matchers.notNullValue;
+import static org.junit.Assert.assertThat;
+
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -49,6 +52,37 @@ public class ValidateResponseTest extends ValidateBase {
 	@Test
 	public void cookiesMustNotBeNull() {
 		parametersMustNotBeNull(this.response.getResponseCookies());
+	}
+	
+	@Test
+	public void validateConstraintsForResponseHeaders() {
+		String reason = String.format("No response for %s.", this.testCase.getKey());
+		assertThat(reason, this.testCase.getResponse(), notNullValue());
+		validateConstraints(this.testCase, this.testCase.getResponse().getResponseHeaders(),
+				this.testCase.getRequestConstraints().getRequestHeaders());
+	}
+
+	@Test
+	public void validateConstraintsForResponseCookies() {
+		String reason = String.format("No response for %s.", this.testCase.getKey());
+		assertThat(reason, this.testCase.getResponse(), notNullValue());
+		validateConstraints(this.testCase, this.testCase.getResponse().getResponseCookies(),
+				this.testCase.getRequestConstraints().getRequestCookies());
+	}
+
+	@Test
+	public void validateConstraintsForResponseBody() {
+		String reason = String.format("No response for %s.", this.testCase.getKey());
+		assertThat(reason, this.testCase.getResponse(), notNullValue());
+		validateConstraints(this.testCase, this.testCase.getResponse().getResponseBody(),
+				this.testCase.getResponseConstraints().getResponseBody());
+	}
+	
+	@Test
+	public void validateResponseCode() {
+		String reason = String.format("No response for %s.", this.testCase.getKey());
+		assertThat(reason, this.testCase.getResponse(), notNullValue());
+		validateConstraints(this.testCase);
 	}
 
 }

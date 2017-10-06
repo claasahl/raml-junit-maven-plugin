@@ -1,5 +1,6 @@
 package com.github.claasahl.raml.junit.internal;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.everyItem;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertThat;
@@ -92,5 +93,58 @@ public class ValidateRequestTest extends ValidateBase {
 		List<Integer> values = parameters.stream().map(p -> p.getValues().size()).collect(Collectors.toList());
 		assertThat(values, everyItem(lessThanOrEqualTo(1)));
 	}
+	
+	@Test
+	public void validateConstraintsForRequestQueryParameters() {
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestQueryParameters(),
+				this.testCase.getRequestConstraints().getRequestQueryParameters());
+	}
+
+	@Test
+	public void validateConstraintsForRequestFormParameters() {
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestFormParameters(),
+				this.testCase.getRequestConstraints().getRequestFormParameters());
+	}
+
+	@Test
+	public void validateConstraintsForRequestPathParameters() {
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestPathParameters(),
+				this.testCase.getRequestConstraints().getRequestPathParameters());
+	}
+
+	@Test
+	public void validateConstraintsForRequestHeaders() {
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestHeaders(),
+				this.testCase.getRequestConstraints().getRequestHeaders());
+	}
+
+	@Test
+	public void validateConstraintsForRequestCookies() {
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestCookies(),
+				this.testCase.getRequestConstraints().getRequestCookies());
+	}
+
+	@Test
+	public void validateConstraintsForRequestBody() {
+		validateConstraints(this.testCase, this.testCase.getRequest().getRequestBody(),
+				this.testCase.getRequestConstraints().getRequestBody());
+	}
+	
+	@Test
+	public void validateRequestUrl() {
+		String reason = String.format("Request URL '%s' for %s failed validation.",
+				this.testCase.getRequest().getRequestUrl(), this.testCase.getKey());
+		assertThat(reason, this.testCase.getRequest().getRequestUrl(),
+				equalTo(this.testCase.getRequestConstraints().getRequestUrl()));
+	}
+
+	@Test
+	public void validateRequestVerb() {
+		String reason = String.format("Request verb '%s' for %s failed validation.",
+				this.testCase.getRequest().getRequestVerb(), this.testCase.getKey());
+		assertThat(reason, this.testCase.getRequest().getRequestVerb(),
+				equalTo(this.testCase.getRequestConstraints().getRequestVerb()));
+	}
+
 
 }
