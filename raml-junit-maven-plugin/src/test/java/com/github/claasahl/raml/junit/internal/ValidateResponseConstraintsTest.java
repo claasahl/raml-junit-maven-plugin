@@ -12,6 +12,11 @@ import org.junit.runners.Parameterized.Parameters;
 import com.github.claasahl.raml.junit.api.common.ParameterConstraints;
 import com.github.claasahl.raml.junit.api.common.ResponseConstraints;
 
+/**
+ * Ensure that ResponseConstraints have sane constraints
+ * @author Claas
+ *
+ */
 @RunWith(Parameterized.class)
 public class ValidateResponseConstraintsTest extends ValidateBase {
 	private final TestCase testCase;

@@ -18,6 +18,11 @@ import org.junit.runners.Parameterized.Parameters;
 import com.github.claasahl.raml.junit.api.common.Parameter;
 import com.github.claasahl.raml.junit.api.common.Request;
 
+/**
+ * Ensure that Requests have sane values
+ * @author Claas
+ *
+ */
 @RunWith(Parameterized.class)
 public class ValidateRequestTest extends ValidateBase {
 	private final TestCase testCase;
